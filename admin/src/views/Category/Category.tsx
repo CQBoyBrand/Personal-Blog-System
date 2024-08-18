@@ -10,7 +10,8 @@ const Category: FC = () => {
     const [form] = Form.useForm();
     const [dataSource, setDataSource] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
-    const [limit, setLimit] = useState(10)
+    // const [limit, setLimit] = useState(10)
+    const limit = 10;
     const [total, setTotal] = useState(0)
     const [visible, setVisible] = useState(false)
     const [modalTitle, setModalTitle] = useState('添加分类')

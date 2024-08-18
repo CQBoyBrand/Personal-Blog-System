@@ -111,17 +111,17 @@ const Comment: FC = () => {
                             {
                                 r.to_uname ? <div className='comment-info'>
                                     <div className='comment-user'>
-                                        <div className='nickname'>{r.from_uweb ? <a href={r.from_uweb}
+                                        <div className='nickname'>{r.from_uweb ? <a rel="noopener noreferrer" href={r.from_uweb}
                                                                                           target={'_blank'}>{r.from_uname}</a> : r.from_uname}</div>
                                         <div>回复</div>
-                                        <div className='nickname'>{r.to_web ? <a href={r.to_web}
+                                        <div className='nickname'>{r.to_web ? <a rel="noopener noreferrer" href={r.to_web}
                                                                                        target={'_blank'}>{r.to_uname}</a> : r.to_uname}</div>
                                         <div>说：</div>
                                     </div>
                                     <div className='comment-content' id={'r-md-preview'} dangerouslySetInnerHTML={{__html: renderComment(r.content)}}></div>
                                 </div> : <div className='comment-info'>
                                     <div className='comment-user'>
-                                        <div className='nickname'>{r.from_uweb ? <a href={r.from_uweb}
+                                        <div className='nickname'>{r.from_uweb ? <a rel="noopener noreferrer" href={r.from_uweb}
                                                                                           target={'_blank'}>{r.from_uname}</a> : r.from_uname}</div>
                                         <div>说：</div>
                                     </div>

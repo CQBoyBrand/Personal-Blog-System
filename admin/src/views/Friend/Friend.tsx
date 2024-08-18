@@ -25,7 +25,7 @@ const Friend: FC = () => {
         dataIndex: 'siteUrl',
         key: 'siteUrl',
         render: (siteUrl: string) => {
-            return <a href={siteUrl} target='_blank'>{siteUrl}</a>
+            return <a href={siteUrl} rel="noopener noreferrer" target='_blank'>{siteUrl}</a>
         }
     }, {
         title: '状态',

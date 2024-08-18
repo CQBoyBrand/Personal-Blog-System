@@ -80,7 +80,7 @@ const LayoutIndex: FC = (props) => {
     const dropMenu = (
         <Menu>
             <Menu.Item key="0">
-                <a href="http://www.brandhuang.com/" target='_blank'>前往博客</a>
+                <a href="http://www.brandhuang.com/" rel="noopener noreferrer" target='_blank'>前往博客</a>
             </Menu.Item>
             <Menu.Divider/>
             <Menu.Item key="3" onClick={logoutHandler}>退出登录</Menu.Item>
@@ -171,7 +171,7 @@ const LayoutIndex: FC = (props) => {
                         </Switch>
                     </Content>
                     <Footer style={{textAlign: 'center', fontSize: '12px', color: '#666', height: '66px'}}>Blog System
-                        Created by <a style={{fontSize: '12px', color: '#666'}} href="http://www.brandhuang.com"
+                        Created by <a rel="noopener noreferrer" style={{fontSize: '12px', color: '#666'}} href="http://www.brandhuang.com"
                                       target='_blank'>重庆崽儿Brand</a></Footer>
                 </div>
             </Layout>
