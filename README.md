@@ -160,6 +160,6 @@ pm2 start npm --name "backend" -- run backend
 
 面向娃编程，无聊写了个微信小程序，目前支持算术题打印、自定义字帖打印、口算练习、汉字笔顺练习。欢迎扫码体验
 
-![工具人助手](./qrcode.png)
+![工具人助手](./qrcode.jpg)
   
   ## 感谢你的支持
