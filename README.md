@@ -9,11 +9,11 @@
 ## 分支介绍
 - **`v-ts` 分支(默认分支)**：目前一直在更新的版本，计划用 `TypeScript` 重构
 
-> 该分支前端使用 `Nuxt.js`，管理端使用 ~~`Vue2.X.js`~~（已换成 `React.js`），服务端使用 `Nest.js`，数据库使用 `MySQL`
+> 该分支前端使用 `Nuxt 2.4.0`，管理端使用 ~~`Vue2.X.js`~~（已换成 `React 16.13.1`），服务端使用 `Nest.js`，数据库使用 `MySQL`
 
 - **`v-new` [分支](https://github.com/CQBoyBrand/Koa2-nuxt-MySQL/tree/v-new )**：后续应该不会在更新了，项目能完整跑起来，能正常使用（如有需要，可自行克隆修改～）
 
-> 该分支前端使用 `Nuxt.js`，管理端使用 `Vue2.X.js`，服务端使用 `Koa2`，数据库使用 `MySQL`
+> 该分支前端使用 `Nuxt2.x.js`，管理端使用 `Vue2.X.js`，服务端使用 `Koa2`，数据库使用 `MySQL`
 
 ## 项目目录介绍
 1. **blog** ：该文件夹存放前端代码（即用户访问的页面代码）
