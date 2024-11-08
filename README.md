@@ -7,7 +7,11 @@
 ## 博客线上地址：
 [http://www.brandhuang.com](http://www.brandhuang.com)
 ## 分支介绍
-- **`v-ts` 分支(默认分支)**：目前一直在更新的版本，计划用 `TypeScript` 重构
+- **`master` 分支（默认分支）**
+
+> 该分支前端使用 `Nuxt 2.4.0`，管理端使用 `React 16.13.1`，服务端使用 `Nest.js`，数据库使用 `MySQL`
+
+- **`v-ts` 分支**
 
 > 该分支前端使用 `Nuxt 2.4.0`，管理端使用 ~~`Vue2.X.js`~~（已换成 `React 16.13.1`），服务端使用 `Nest.js`，数据库使用 `MySQL`
 
