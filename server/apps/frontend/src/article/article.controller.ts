@@ -1,4 +1,4 @@
-import {Body, Controller, Get, HttpCode, Post, Req} from '@nestjs/common';
+import {Body, Controller, Get, HostParam, HttpCode, Ip, Post, Req, Headers} from '@nestjs/common';
 import {ArticleService} from './article.service';
 import {ApiOperation} from '@nestjs/swagger';
 
@@ -14,6 +14,7 @@ export class ArticleController {
     })
     @HttpCode(200)
     async getArticleListAll(@Body() params): Promise<any> {
+      
         const artList = await this.articleService.getArticleListAll(params);
         return artList;
     }
@@ -63,7 +64,13 @@ export class ArticleController {
         summary: '获取文章详情',
     })
     @HttpCode(200)
-    async getArticleDetail(@Body() params, @Req() req): Promise<any> {
+    async getArticleDetail(@Body() params, @Req() req, @Ip() ip, @HostParam() HostParam, @Headers() headers): Promise<any> {
+        // console.log("req-headers=",req.headers)
+        // console.log("req-socket=",req.socket)
+        // console.log("req-ip=",req.ip)
+        // console.log("ip=",ip)
+        // console.log("headers=",headers)
+        // console.log("HostParam=",HostParam)
         const artDetail = await this.articleService.getArticleDetail(params);
         return artDetail;
     }

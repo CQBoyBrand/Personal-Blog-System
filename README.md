@@ -1,56 +1,48 @@
-# Blog System
+# Personal-Blog-System
 ## 本项目暂时停更啦
 > 服务器到期了，续费太贵，暂时用静态博客了。本项目暂时不做更新了。
 
-> 截止 2022年8月12日，建议使用 node 版本：14，不要使用16版本，否则安装依赖会报错！
+### 项目使用技术栈及版本：
+- 基础：
+- Node.js(v20.14.0) (其他node版本可能会出问题)
+- Mysql
+- Nuxt.js(v3.14.159)
+- React 
+- Nest.js
 
-## 博客线上地址：
+### 博客线上地址：
 [http://www.brandhuang.com](http://www.brandhuang.com)
-## 分支介绍
+### 分支介绍
 - **`master` 分支（默认分支）**
 
-> 以后最新代码都将合并到该分支
+- **`v-ts` [分支](vhttps://github.com/CQBoyBrand/Personal-Blog-System/tree/v-ts)**: 后续应该不会在更新了，项目能完整跑起来，能正常使用（如有需要，可自行克隆修改～）
 
-> 该分支前端使用 `Nuxt 2.4.0`，管理端使用 `React 16.13.1`，服务端使用 `Nest.js`，数据库使用 `MySQL`
+        该分支前端使用 `Nuxt 2.4.0`，管理端使用`React 16.13.1`，服务端使用 `Nest.js`，数据库使用 `MySQL`
 
-- **`v-ts` 分支**
-
-> 该分支前端使用 `Nuxt 2.4.0`，管理端使用 ~~`Vue2.X.js`~~（已换成 `React 16.13.1`），服务端使用 `Nest.js`，数据库使用 `MySQL`
 
 - **`v-new` [分支](https://github.com/CQBoyBrand/Koa2-nuxt-MySQL/tree/v-new )**：后续应该不会在更新了，项目能完整跑起来，能正常使用（如有需要，可自行克隆修改～）
 
-> 该分支前端使用 `Nuxt2.x.js`，管理端使用 `Vue2.X.js`，服务端使用 `Koa2`，数据库使用 `MySQL`
+        该分支前端使用 `Nuxt2.x.js`，管理端使用 `Vue2.X.js`，服务端使用 `Koa2`，数据库使用 `MySQL`
 
-## 项目目录介绍
-1. **blog** ：该文件夹存放前端代码（即用户访问的页面代码）
-2. **admin** ：该文件夹存放管理后台代码（即博主用来管理博客内容的地方）
-3. **server** ： 该文件夹用来提供 API 服务（即为 blog 和 admin 提供接口，进行与数据库的交互）
+### 项目目录介绍
+1. **blog-web** ：该文件夹存放前端代码（即用户访问的页面代码）
+2. **blog-admin** ：该文件夹存放管理后台代码（后台管理系统，用来管理博客内容的地方）
+3. **blog-server** ： 该文件夹用来提供 API 服务（即为 blog 和 admin 提供接口，进行与数据库的交互）
 4. **nginxConfig** : 该文件夹是通过域名访问服务器的一些简单配置（请自行修改，更深了解请自行 Google）
 5. **blog.sql** ：该文件是本博客线上使用的数据库文件（方便想使用本项目的人能轻松运行起来，数据库采用的 MySQL，请自行安装）
 
-# 注意：**`新的sql文件调整了字段`**
-如果已经部署了之前的代码的朋友，想要使用新的代码，请照sql文件自行调整～（数据库字段更改日期：2020年8月27日）
 
-**世界不毁灭，折腾不停止！**
-> 本分支将继续折腾我的个人博客，计划如下
-
-- [ ] **blog**：打算采用 `TypeScript` 重构。
-- [x] **admin**：计划用 React 重构。
-- [x] **server**：计划近期用 `nest.js` 进行重构（纯粹是想学习用用 `TypeScript`）
-
-**后续主要按 Vue + React + nodejs 这样的技术栈来玩，博客功能应该暂时就这么多了，后面主要是优化代码，写的代码实在是太烂了。。**
-
- ## 使用：
- 分别在 `admin`、`blog`、 `server` 文件夹下执行依赖安装
+ ### 使用：
+ 分别在 `blog-admin`、`blog-web`、 `blog-server` 文件夹下执行依赖安装
  
- ### 安装依赖
+ #### 安装依赖
  ```bash
  npm install
  # 或者
  yarn install
 
  ```
- ### 本地运行
+ #### 本地运行
 
  `servre` 端需要先全局安装 `nestjs` 脚手架
  
@@ -64,7 +56,7 @@
     启动 admin 端服务：nest start -w backend
     启动 blog 端服务：nest start -w frontend
 ```
- ### 打包
+ #### 打包
 
  ```bash
 //blog
@@ -158,11 +150,11 @@ pm2 start npm --name "backend" -- run backend
  
   我 1 核 1G 的垃圾服务器在服务器直接执行 `nest start frontend` ，直接卡爆。。。,高配置的应该没啥问题吧
 
-# 公众号「九零后重庆崽儿」
+### 公众号「九零后重庆崽儿」
 
 ![公众号](./brandQRcode.jpg)
 
-# 小程序「工具人助手」
+### 小程序「工具人助手」
 
 面向娃编程，无聊写了个微信小程序，目前支持算术题打印、自定义字帖打印、口算练习、汉字笔顺练习。欢迎扫码体验
 

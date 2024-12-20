@@ -95,6 +95,7 @@ export class ArticleService {
     }
 
     async getArticleListAll(params): Promise<any> {
+       
         const artList = await this.articleRepo.query(`
             select
             A.id, A.artTitle, A.abstract,A.artType,
@@ -226,8 +227,6 @@ export class ArticleService {
             where (
                 A.artTitle like "%${params.keyword}%"
                 or
-                A.content like "%${params.keyword}%"
-                or
                 A.abstract like "%${params.keyword}%"
             )
             AND A.status = 1
@@ -239,8 +238,6 @@ export class ArticleService {
             SELECT COUNT(*) as total FROM article where
             (
                 artTitle like "%${params.keyword}%"
-                or
-                content like "%${params.keyword}%"
                 or
                 abstract like "%${params.keyword}%"
             )

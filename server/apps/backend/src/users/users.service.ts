@@ -14,10 +14,11 @@ export class UsersService {
     ) {}
 
     async userRegister({username, password}): Promise<any> {
+        console.log("userRegister=", username, password);
         const pwd = md5(process.env.AUTH_PWD_SALT + password);
 
         const oldUser = await this.userRepository.findOne({
-            username,
+            where: {username},
         });
         if (oldUser) {
             throw new BadRequestException('用户已存在');

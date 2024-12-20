@@ -1,0 +1,15 @@
+export default {
+    "Dashboard": "首页",
+    "setting": "系统设置",
+    "usersetting": "用户设置",
+    "websetting": "网站设置",
+    "article": "文章管理",
+    "articleList": "文章列表",
+    "articlePublish": "发布文章",
+    "comment": "评论管理",
+    "commentList": "评论列表",
+    "category": "分类管理",
+    "categoryList": "分类列表",
+    "tag": "标签管理",
+    "tagList": "标签列表",
+}

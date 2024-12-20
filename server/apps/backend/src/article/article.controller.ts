@@ -46,6 +46,7 @@ export class ArticleController {
     @UseGuards(AuthGuard('jwt'))
     @ApiBearerAuth()
     async getArticleList(@Body() params): Promise<any> {
+        console.log(params);
         const artList = await this.articleService.getArtList(params);
         const artCount = await this.articleService.getArtCount();
 

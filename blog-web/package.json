@@ -1,0 +1,35 @@
+{
+  "name": "personnal-blog",
+  "description": "My personnal blog",
+  "author": "Brand",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.7.0",
+    "@yzfe/svgicon": "^1.2.2",
+    "@yzfe/vue-svgicon": "^5.0.3",
+    "highlight.js": "^11.10.0",
+    "htmlparser2": "^9.1.0",
+    "marked": "^15.0.3",
+    "marked-code-format": "^1.1.6",
+    "marked-code-preview": "^1.3.7",
+    "marked-highlight": "^2.2.1",
+    "marked-smartypants": "^1.1.9",
+    "node-emoji": "^2.2.0",
+    "nuxt": "^3.14.159",
+    "pinia": "^2.2.6",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "devDependencies": {
+    "sass-embedded": "^1.81.0"
+  }
+}

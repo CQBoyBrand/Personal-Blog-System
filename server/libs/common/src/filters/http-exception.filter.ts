@@ -9,9 +9,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
-
-    const message = exception.message.errmsg;
-    const code = exception.message.errcode;
+    const exceptionRes: any = exception.getResponse();
+    console.log(exceptionRes);
+    const message = exceptionRes.message || exceptionRes.errmsg // exception.response.sqlMessage;
+    const code = exceptionRes.statusCode || exceptionRes.errcode // exception.status;
     // Logger.log('错误提示', message);
     const errorResponse = {
       message: message || '请求失败',

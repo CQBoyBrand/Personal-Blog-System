@@ -20,6 +20,7 @@ export class UsersController {
     })
     @HttpCode(200)
     async register(@Body() params: UserRegisterDto): Promise<object> {
+        console.log(params)
         const resData =  await this.userService.userRegister(params);
         return resData;
     }
@@ -31,6 +32,8 @@ export class UsersController {
     @HttpCode(200)
     @UseGuards(AuthGuard('local'))
     async login(@Body() params: UserLoginDto, @Req() req): Promise<object> {
+        console.log(req.user)
+        console.log(params)
         const payload = {username: req.user.username, sub: req.user.id, permissions: req.user.permissions};
         const token = this.jwtService.sign(payload);
 

@@ -1,18 +1,18 @@
 import { NestFactory } from '@nestjs/core';
-import * as rateLimit from 'express-rate-limit';
+import { rateLimit } from 'express-rate-limit';
 import { AppModule } from './app.module';
 import {TransformInterceptor} from '@common/common/interface/transform.interceptor';
 import {HttpExceptionFilter} from '@common/common/filters/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-      cors: {
-          origin: ['http://www.brandhuang.com', 'https://www.brandhuang.com'],
-          methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-          preflightContinue: false,
-          optionsSuccessStatus: 204,
-      },
-      // cors: true,
+      // cors: {
+      //     origin: ['http://www.brandhuang.com', 'https://www.brandhuang.com'],
+      //     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      //     preflightContinue: false,
+      //     optionsSuccessStatus: 204,
+      // },
+      cors: true,
   });
   app.useGlobalInterceptors(new TransformInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());

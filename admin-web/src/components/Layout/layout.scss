@@ -1,0 +1,53 @@
+.layout_container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+     .layout_content{
+        display: flex;
+        height: 100%;
+    }
+
+    .header_container {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        background-color: rgba(27, 80, 145, 1);
+        h1 {
+            margin: 0;
+        }
+        .header_search_container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            .header_search_input {
+                width: 200px;
+            }
+        }
+
+        .header_operation_container {
+            display: flex;
+            .header_operation_icon + .header_operation_icon {
+                margin-left: 10px;
+            }
+            .header_operation_icon {
+                cursor: pointer;
+                font-size: 19px;
+            }
+        }
+        .collapasedBtn {
+            width: 40px;
+            height: 40px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+    }
+    .content_container {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        overflow-x: auto;
+        
+    }
+}

@@ -18,6 +18,7 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
     constructor(
         @InjectRepository(User) private readonly userRepository: Repository<User>,
     ) {
+        console.log('LocalStrategy');
         super({
             usernameField: 'username',
             passwordField: 'password',

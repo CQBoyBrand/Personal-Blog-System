@@ -29,7 +29,7 @@ export class PermissionsStrategy extends PassportStrategy(Strategy, 'permissions
      */
     async validate(payload: any) {
         const currentUser = await this.userRepository.findOne({
-            username: payload.username,
+            where: {username: payload.username},
         });
         console.log("currentUser=", currentUser);
         if (currentUser.permissions !== 0) {
