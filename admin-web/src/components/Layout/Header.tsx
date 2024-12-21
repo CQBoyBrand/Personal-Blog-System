@@ -1,15 +1,16 @@
 import { FC, useEffect, useState } from "react"
-import { Input } from "antd";
+import { Input, message } from "antd";
+import { useNavigate  } from "react-router-dom"
 import {
   SearchOutlined,
   FullscreenOutlined,
   FullscreenExitOutlined,
   BellFilled,
   MenuUnfoldOutlined,
-  MenuFoldOutlined
+  MenuFoldOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 import I18n from "@/components/I18n";
-import { use } from "i18next";
 import { userInfo } from "@/api/modules/user";
 interface HeaderProps {
   menuCollapsed: boolean;
@@ -17,6 +18,7 @@ interface HeaderProps {
 }
 const Header: FC<HeaderProps> = (props: HeaderProps) => {
   const { menuCollapsed, menuToggle }= props;
+  const navigate = useNavigate();
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [nickname, setNickname] = useState('');
   useEffect(() => {
@@ -56,6 +58,11 @@ const Header: FC<HeaderProps> = (props: HeaderProps) => {
         }
         <I18n style={{color: "#7c7efa"}}/>
         <BellFilled style={{color: "#f59a23"}} className="header_operation_icon" />
+        <UserOutlined onClick={() => {
+            sessionStorage.clear()
+            message.success('退出成功')
+            navigate('/login')
+        }}/>
       </div>
     </div>
   )

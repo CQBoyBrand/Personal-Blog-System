@@ -58,11 +58,14 @@ function MdEditor(props: any) {
                 markdown({codeLanguages: languages}),
                 EditorView.updateListener.of(async (v) => {
                      //监测得到的最新代码,并渲染到预览界面 
-                     console.log(view.documentTop)
-                     console.log(view.contentHeight)
+                    //  console.log(view.documentTop)
+                    //  console.log(view.contentHeight)
+                    if (props && props.updateContent) {
+                        props.updateContent(v.state.doc.toString())
+                    }
                     setPreviewContent(await mdRender(v.state.doc.toString()))
                     // 预览区和代码区同步滚动
-                    console.log(view.root)
+                    // console.log(view)
                  }),
             ],
             });
@@ -75,63 +78,6 @@ function MdEditor(props: any) {
             view.destroy();
         }   
     }, [inputRef, props])
-
-    useEffect(() => {
-        if (mdEditor) {
-            console.log(mdEditor.documentTop)
-            // 监听内容改变
-            // mdEditor.on('change', (cm: any) => {
-            //     let inputVal = cm.getValue()
-            //     if (linkToNewPage) {
-            //         setPreviewContent(marked(inputVal).replace(/<a/g, '<a target="_blank"'))
-            //     } else {
-            //         setPreviewContent(marked(inputVal))
-            //     }
-            //     // setMdVal(inputVal)
-            //     if (props && props.updateContent) {
-            //         props.updateContent(inputVal)
-            //     }
-            // })
-
-            // 编辑器滚动时触发
-            // mdEditor.on('scroll', (instance: any, from: number, to: number) => {
-            //     let editScrollTop = instance.doc.scrollTop // 编辑器滚动条距顶部的距离
-            //     let editScrollHeight = instance.doc.height // 编辑器滚动区域总高度
-            //     // @ts-ignore
-            //     let previewDomHeight = previewDom.current.scrollHeight // 预览区总高度
-            //     // @ts-ignore
-            //     previewDom.current.scrollTop = (editScrollTop / editScrollHeight) * previewDomHeight
-            // })
-        }
-    }, [mdEditor])
-    // useEffect(() => {
-    //     if (props && props.updateContent) {
-    //         props.updateContent(mdVal)
-    //     }
-    // }, [mdVal])
-    useEffect(() => {
-        // Codemirror.commands.undo = function () {
-        //     undo()
-        // }
-        // Codemirror.commands.redo = function () {
-        //     redo()
-        // }
-    }, [mdEditor])
-
-    useEffect(() => {
-        // if (props && typeof props.imgUpload === 'function') {
-        //     setShowUpload(true)
-        // } else {
-        //     setShowUpload(false)
-        // }
-
-        // if (props && props.defaultMd) {
-        //     mdEditor.setValue(props.defaultMd)
-        // }
-
-
-    }, [props, mdEditor])
-
 
     // 上传图片-上传
     const fileChange = (e: any) => {

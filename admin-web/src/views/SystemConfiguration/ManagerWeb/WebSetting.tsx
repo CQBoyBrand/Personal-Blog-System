@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
 import {Button, Form, Input, message, Switch} from "antd";
 import {addConfig, editConfig, getConfig} from "@/api/modules/config";
+import './WebSetting.scss'
 
 const WebSetting: FC = () => {
     const [form] = Form.useForm();

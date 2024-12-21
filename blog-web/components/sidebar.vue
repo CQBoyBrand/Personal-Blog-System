@@ -24,7 +24,7 @@
       <ul class="module-item-wrap hot">
         <li class="hot-item module-item" v-for="(item, index) in hotArticleList" :key="item.id + '_' + index"><span>{{index +
           1}}</span><NuxtLink
-          :to="`/article/${item.id}`" target="_blank" :title="item.artTitle">{{item.artTitle}}</NuxtLink></li>
+          :to="`/article/${item.id}`" :title="item.artTitle">{{item.artTitle}}</NuxtLink></li>
       </ul>
     </section>
     <!--分类-->
@@ -32,14 +32,14 @@
       <div class="module-title">分类</div>
       <ul class="module-item-wrap category">
         <li class="category-item module-item" v-for="(item, index) in categoryList" :key="item.id + '_' + index"><NuxtLink
-          :to="`/category/${item.id}`" target="_blank">{{item.categoryname}}<span>共 {{item.total}} 篇文章</span></NuxtLink></li>
+          :to="`/category/${item.id}`" >{{item.categoryname}}<span>共 {{item.total}} 篇文章</span></NuxtLink></li>
       </ul>
     </section>
     <!--标签-->
     <section class="module-css">
       <div class="module-title">标签</div>
       <div class="module-item-wrap tag">
-        <NuxtLink :to="`/tag/${item.id}`" target="_blank" v-for="(item, index) in tagList" :key="item.tagname + '_' + index"># {{item.tagname}}
+        <NuxtLink :to="`/tag/${item.id}`"  v-for="(item, index) in tagList" :key="item.tagname + '_' + index"># {{item.tagname}}
           [{{item.total}}]</NuxtLink>
       </div>
     </section>

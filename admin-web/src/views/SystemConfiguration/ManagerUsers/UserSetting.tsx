@@ -5,6 +5,7 @@ import {updateUserInfo, userInfo} from "@/api/modules/user";
 import {  PlusOutlined } from '@ant-design/icons';
 import md5 from "md5";
 import {getQNToken, uploadToQN} from "@/api/modules/qn";
+import './UserSetting.scss'
 
 const UserSetting: FC = () => {
     const [form] = Form.useForm();
