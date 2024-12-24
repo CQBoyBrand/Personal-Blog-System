@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {Button, Form, Input, message, Avatar, Upload} from "antd";
 import {useNavigate} from 'react-router-dom'
 import {updateUserInfo, userInfo} from "@/api/modules/user";
@@ -65,6 +65,7 @@ const UserSetting: FC = () => {
     }
     // 图片上传前
     const beforeUpload = (file: any, fileList: any) => {
+        console.log(fileList)
         const isJPG = file.type === 'image/jpeg' || file.type === 'image/png'
         const isLt2M = file.size / 1024 / 1024 < 2
         if (!isJPG) {
@@ -184,6 +185,7 @@ const UserSetting: FC = () => {
                         rules={[
                             ({ getFieldValue }) => ({
                                 validator(rule, value) {
+                                    console.log(rule)
                                     if (!value || getFieldValue('password') === value) {
                                         return Promise.resolve();
                                     }

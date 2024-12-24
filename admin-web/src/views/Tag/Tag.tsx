@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {Table, Button, Modal, Input, Form, message} from "antd";
 import {ExclamationCircleOutlined} from '@ant-design/icons'
 import {timestampToTime} from "@/utils/utils";
@@ -54,6 +54,7 @@ const Tag: FC = () => {
             title: '操作',
             width: '200px',
             render: (row: any, record: any) => {
+                console.log(row)
                 return (
                     <div>
                         <Button type="primary" onClick={() => {
@@ -170,6 +171,7 @@ const Tag: FC = () => {
                         message.error(res.message)
                     }
                 }).catch(err => {
+                    console.log(err)
                 })
             } else if (handlerType === 'edit') {
                 let editParams = {
@@ -185,7 +187,7 @@ const Tag: FC = () => {
                         message.error(res.message)
                     }
                 }).catch(err => {
-
+                    console.log(err)
                 })
             }
         } catch (errorInfo) {

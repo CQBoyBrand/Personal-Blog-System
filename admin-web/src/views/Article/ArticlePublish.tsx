@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useRef, useState} from "react";
+import {FC, useEffect, useRef, useState} from "react";
 import {useNavigate, useSearchParams} from 'react-router-dom'
 import {Button, Form, Input, message, Switch, Select, Upload} from "antd";
 import {PlusOutlined} from '@ant-design/icons';
@@ -17,7 +17,7 @@ const ArticlePublish: FC = () => {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
     const md = useRef(null)
-    const [mdRef, setMdRef] = useState()
+    const [mdRef, setMdRef] = useState<any>()
     const domain = 'https://upload-z0.qiniup.com' // 七牛云的上传地址，根据自己所在地区选择，我这里是华东
     const qiniuaddr = 'static.brandhuang.com' // 这是七牛云空间的外链默认域名，可换成自己的   p063wr224.bkt.clouddn.com
     const [artTitle, setArtTitle] = useState('') // 文章标题
@@ -31,6 +31,9 @@ const ArticlePublish: FC = () => {
     const [articleType, setArticleType] = useState('add') // 编辑或者添加
     const [artDiscuss, setArtDiscuss] = useState(true) // 是否开启文章评论，默认开启
     const uploadImage = (file: any) => {
+        console.log(artTitle);
+        console.log(abstract);
+        console.log(category);
         let filetype = ''
         if (file.type === 'image/png') {
             filetype = 'png'
@@ -209,6 +212,7 @@ const ArticlePublish: FC = () => {
     const beforeUpload = (file: any, fileList: any) => {
         const isJPG = file.type === 'image/jpeg' || file.type === 'image/png'
         const isLt2M = file.size / 1024 / 1024 < 2
+        console.log(fileList)
         if (!isJPG) {
             message.error('上传图片只能是 JPG 格式!')
         }

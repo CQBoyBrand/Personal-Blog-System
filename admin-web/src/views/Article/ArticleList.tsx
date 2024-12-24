@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {useNavigate} from 'react-router-dom'
 import {Button, message, Modal, Table, Tag} from "antd";
 import {ExclamationCircleOutlined} from '@ant-design/icons'
@@ -67,6 +67,8 @@ const ArticleList: FC = () => {
             title: '操作',
             width: '200px',
             render: (row: any, record: any) => {
+                console.log("row=", row)
+                console.log("record=", record)
                 return (
                     <div>
                         <Button type="primary" onClick={() => {

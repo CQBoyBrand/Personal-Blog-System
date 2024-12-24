@@ -20,13 +20,15 @@ const entityArr = [
 ];
 
 const entity = TypeOrmModule.forFeature(entityArr);
-
+const envPath = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env';
+console.log(process.env.NODE_ENV);
 @Global()
 @Module({
     imports: [
         entity,
         ConfigModule.forRoot({
             isGlobal: true,
+            envFilePath: envPath,
         }),
         TypeOrmModule.forRootAsync({
             useFactory() {

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Popover } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";

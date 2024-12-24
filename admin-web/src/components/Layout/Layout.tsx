@@ -1,9 +1,8 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import Header from "./Header";
 import Content from "./Content";
 import SideBar from "./SideBar";
 import "./layout.scss";
-import { Outlet } from "react-router-dom";
 
 const Layout: FC = () => {
     const [menuCollapsed, setMenuCollapsed] = useState(false);

@@ -6,7 +6,6 @@ export interface IResult<T = any> {
     message: string;
     data: T
 }
-
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
     headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -41,7 +40,7 @@ class HttpRequest {
             })
         });
     }
-    get<T = any>(url: string, config: AxiosRequestConfig): Promise<IResult<T>>{
+    get<T = any>(url: string, config?: AxiosRequestConfig): Promise<IResult<T>>{
         return this.request({
             url,
             data: {
@@ -50,7 +49,7 @@ class HttpRequest {
             method: "GET"
         })
     }
-    post<T = any>(url: string, config: AxiosRequestConfig): Promise<IResult<T>>{
+    post<T = any>(url: string, config?: AxiosRequestConfig): Promise<IResult<T>>{
         return this.request({
             url,
             data: {

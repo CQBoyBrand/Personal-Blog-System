@@ -1,12 +1,12 @@
-import React, {FC, useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {Button, Form, Input, message, Switch} from "antd";
 import {addConfig, editConfig, getConfig} from "@/api/modules/config";
 import './WebSetting.scss'
 
 const WebSetting: FC = () => {
     const [form] = Form.useForm();
-    const [icp, setIcp] = useState()
-    const [psr, setPsr] = useState()
+    const [icp, setIcp] = useState("")
+    const [psr, setPsr] = useState("")
     const [id, setId] = useState()
     const [configType, setConfigType] = useState('add')
     const [discussStatus, setDiscussStatus] = useState(false)
@@ -44,7 +44,7 @@ const WebSetting: FC = () => {
         try {
             const values = await form.validateFields();
             if(configType === 'add') {
-                addConfig(webSettingInfo).then(res => {
+                addConfig(webSettingInfo).then(() => {
                     message.success('操作成功')
                     getConfigHandler()
                 })
@@ -55,6 +55,7 @@ const WebSetting: FC = () => {
                     psr: psr,
                     discussStatus: discussStatus,
                 }).then(res => {
+                    console.log(res)
                     message.success('操作成功')
                     getConfigHandler()
                 })

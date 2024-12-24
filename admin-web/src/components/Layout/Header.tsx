@@ -58,6 +58,7 @@ const Header: FC<HeaderProps> = (props: HeaderProps) => {
         }
         <I18n style={{color: "#7c7efa"}}/>
         <BellFilled style={{color: "#f59a23"}} className="header_operation_icon" />
+        {nickname}
         <UserOutlined onClick={() => {
             sessionStorage.clear()
             message.success('退出成功')

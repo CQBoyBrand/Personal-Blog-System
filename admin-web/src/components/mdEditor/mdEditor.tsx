@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState, useImperativeHandle} from 'react';
+import {useEffect, useRef, useState, useImperativeHandle} from 'react';
 import {marked} from "marked";
 import hljs from 'highlight.js'
 import { markedHighlight } from "marked-highlight";
@@ -13,14 +13,14 @@ import { EditorView , keymap} from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 import {defaultKeymap} from "@codemirror/commands"
 import { markdown } from '@codemirror/lang-markdown';
-import { javascript } from '@codemirror/lang-javascript';
-import { vue } from '@codemirror/lang-vue';
+// import { javascript } from '@codemirror/lang-javascript';
+// import { vue } from '@codemirror/lang-vue';
 import {languages} from "@codemirror/language-data";
 
 const Hilighter = markedHighlight({
   emptyLangClass: 'hljs',
   langPrefix: 'hljs language-',
-  highlight(code, lang, info) {
+  highlight(code, lang) {
     const language = hljs.getLanguage(lang) ? lang : 'plaintext';
     return hljs.highlight(code, { language }).value;
   }
@@ -48,8 +48,9 @@ function MdEditor(props: any) {
     const [mdEditor, setMdEditor] = useState<any>()
     const [linkToNewPage, setLinkToNewPage] = useState(true)
     const [previewContent, setPreviewContent] = useState<any>() // 预览内容
-    const [mdVal, setMdVal] = useState('') // 预览内容
+    // const [mdVal, setMdVal] = useState('') // 预览内容
     useEffect(() => {
+        setShowUpload(false)
           const state = EditorState.create({
               doc: props.defaultMd,
               extensions: [

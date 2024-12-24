@@ -1,9 +1,7 @@
-import { Children, FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import { RouteMap } from "@/router/RouteMap";
-import { MailOutlined,AppstoreOutlined } from '@ant-design/icons';
-import { SubMenuType } from "antd/es/menu/interface";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 interface SideBarProps {

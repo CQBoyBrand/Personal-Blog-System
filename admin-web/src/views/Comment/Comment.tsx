@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useMemo, useState} from "react";
+import {FC, useEffect, useMemo, useState} from "react";
 import {Button, message, Table, Modal, Tabs} from "antd";
 import {checkComment, getComment} from "@/api/modules/comment";
 import {timestampToTime} from "@/utils/utils";
@@ -13,7 +13,7 @@ const { confirm } = Modal;
 const Hilighter = markedHighlight({
   emptyLangClass: 'hljs',
   langPrefix: 'hljs language-',
-  highlight(code, lang, info) {
+  highlight(code, lang) {
     const language = hljs.getLanguage(lang) ? lang : 'plaintext';
     return hljs.highlight(code, { language }).value;
   }
@@ -117,8 +117,8 @@ const Comment: FC = () => {
             },
             {
                 title: '内容',
-                width: 300,
                 render: (v: any, r: any) => {
+                    console.log(v);
                     return (
                         <div>
                             {
@@ -171,6 +171,7 @@ const Comment: FC = () => {
                 title: '操作',
                 width: 100,
                 render: (row: any, record: any) => {
+                    console.log(row)
                     return (
                         <div>
                             {record.isChecked === 0 ?

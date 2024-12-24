@@ -8,7 +8,7 @@ import ax from '../api'
 const prefix = '/config'
 
 // 添加配置
-export function addConfig (params?: Object) {
+export function addConfig (params: Object) {
   return ax.post(prefix + '/addConfig',params)
     .then(res => res.data)
     .catch(e => e)
@@ -22,7 +22,7 @@ export function getConfig (params?: Object) {
 }
 
 // 编辑配置
-export function editConfig (params?: Object) {
+export function editConfig (params: Object) {
   return ax.post(prefix + '/editConfig',params)
     .then(res => res.data)
     .catch(e => e)

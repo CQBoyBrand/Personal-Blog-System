@@ -11,7 +11,6 @@
           <ul class="art-list-detail">
             <li class="art-detail-item" v-for="(list,listIndex) in returnArtList(archiveData.list,item)" :key="listIndex">
               <span class="date">{{list.cdate}}</span><NuxtLink :to="`/article/${list.id}`"
-                                                                 target="_blank"
                                                                 :title="list.artTitle">{{list
               .artTitle}}</NuxtLink><span class="views">{{list.pv}}</span>
             </li>

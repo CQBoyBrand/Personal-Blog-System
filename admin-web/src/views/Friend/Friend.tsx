@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {Table, Button, Modal, Input, Form, message} from "antd";
 import {ExclamationCircleOutlined} from '@ant-design/icons'
 import {addLink, editLink, getLink, updateLinkStatus} from "@/api/modules/link";
@@ -43,6 +43,7 @@ const Friend: FC = () => {
         title: '操作',
         width: '200px',
         render: (row: any, record: any) => {
+            console.log(row)
             return (
                 <div>
                     <Button type="primary" onClick={() => {
@@ -154,6 +155,7 @@ const Friend: FC = () => {
                         message.error(res.message)
                     }
                 }).catch(err => {
+                    console.log(err)
                 })
             } else if (handlerType === 'edit') {
                 let editParams = {
@@ -169,7 +171,7 @@ const Friend: FC = () => {
                         message.error(res.message)
                     }
                 }).catch(err => {
-
+                    console.log(err)
                 })
             }
         } catch (errorInfo) {

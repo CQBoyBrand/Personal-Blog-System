@@ -31,7 +31,6 @@ export class PermissionsStrategy extends PassportStrategy(Strategy, 'permissions
         const currentUser = await this.userRepository.findOne({
             where: {username: payload.username},
         });
-        console.log("currentUser=", currentUser);
         if (currentUser.permissions !== 0) {
             throw new CustomException('当前用户无操作权限！');
         } else {

@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {Table, Button, Modal, Input, Form, message, Select} from "antd";
 import {ExclamationCircleOutlined} from '@ant-design/icons'
 import {addCategory, delCategory, editCategory, getCategory} from "@/api/modules/category";
@@ -71,6 +71,7 @@ const Category: FC = () => {
             title: '操作',
             width: '200px',
             render: (row: any, record: any) => {
+                console.log(row)
                 return (
                     <div>
                         <Button type="primary" onClick={() => {
@@ -162,6 +163,7 @@ const Category: FC = () => {
     }
 
     useEffect(() => {
+        console.log(editData)
         getCategoryList()
     }, [])
     const pageChange = (page: any) => {
@@ -186,6 +188,7 @@ const Category: FC = () => {
                         message.error(res.message)
                     }
                 }).catch(err => {
+                    console.log(err)
                 })
             } else if (handlerType === 'edit') {
                 let editParams = {
@@ -201,7 +204,7 @@ const Category: FC = () => {
                         message.error(res.message)
                     }
                 }).catch(err => {
-
+                    console.log(err)
                 })
             }
         } catch (errorInfo) {

@@ -16,7 +16,7 @@ export function login (params: Object) {
 }
 
 // userInfo
-export function userInfo (params?: Object) {
+export function userInfo (params: Object) {
     return ax.get(prefix + '/getUserInfo', params)
         .then(res => res.data)
         .catch(e => e)
