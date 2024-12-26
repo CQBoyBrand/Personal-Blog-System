@@ -20,8 +20,8 @@ const entityArr = [
 ];
 
 const entity = TypeOrmModule.forFeature(entityArr);
-const envPath = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env';
-console.log(process.env.NODE_ENV);
+const ENV = process.env.NODE_ENV || process.env.DEV;
+const envPath = ENV ? `.env.${ENV}` : '.env';
 @Global()
 @Module({
     imports: [

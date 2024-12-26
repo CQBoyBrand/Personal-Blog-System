@@ -6,13 +6,13 @@ import {TransformInterceptor} from '@common/common/interface/transform.intercept
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    // cors: {
-    //     origin: ['http://admin.brandhuang.com', 'https://admin.brandhuang.com'],
-    //     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    //     preflightContinue: false,
-    //     optionsSuccessStatus: 204,
-    // },
-      cors: true,
+    cors: {
+        origin: ['https://admintest.brandhuang.com', 'https://admin.brandhuang.com'],
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        preflightContinue: false,
+        optionsSuccessStatus: 204,
+    },
+      // cors: true,
   });
 
   app.useGlobalInterceptors(new TransformInterceptor());
@@ -20,7 +20,7 @@ async function bootstrap() {
   app.use(
       rateLimit({
         windowMs: 10 * 60 * 1000, // 10 minutes
-        max: 10000, // limit each IP to 100 requests per windowMs
+        max: 100, // limit each IP to 100 requests per windowMs
       }),
   );
   await app.listen(process.env.ADMIN_PORT);

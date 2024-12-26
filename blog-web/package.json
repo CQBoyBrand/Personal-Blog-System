@@ -5,8 +5,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build:test": "nuxt build --mode test",
+    "build:prod": "cross-env NODE_ENV=production nuxt build",
     "dev": "nuxt dev",
+    "dev:test": "nuxt dev --mode test",
+    "dev:prod": "cross-env NODE_ENV=production nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -15,6 +18,7 @@
     "@pinia/nuxt": "^0.7.0",
     "@yzfe/svgicon": "^1.2.2",
     "@yzfe/vue-svgicon": "^5.0.3",
+    "cross-env": "^7.0.3",
     "highlight.js": "^11.10.0",
     "htmlparser2": "^9.1.0",
     "marked": "^15.0.3",

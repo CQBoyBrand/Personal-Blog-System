@@ -1,7 +1,7 @@
 
 const IS_DEV = process.env.NODE_ENV !== 'production'
-const baseURL = IS_DEV ? 'http://localhost:3002' : 'http://api.brandhuang.com/frontend';
-
+const baseURL = IS_DEV ? 'http://localhost:1002' : 'https://api.brandhuang.com/frontend';
+console.log("IS_DEV=", process.env)
 export async function post(url, data = null) {
   return useFetch(baseURL + url, {
     method: 'POST',
