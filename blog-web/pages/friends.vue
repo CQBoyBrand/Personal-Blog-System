@@ -34,10 +34,9 @@
 </template>
 
 <script setup>
-  const {data: linkListData} = await useFetch('http://localhost:3002/link/getlinkList', {
-    method: "POST",
-  });
-  const linkList = linkListData.value.data;
+import { getlinkList } from '~/api/service';
+
+  const {data: linkList} = await getlinkList();
   // const {data: commentsListData} = await useFetch('http://localhost:3002/link/getlinkList', {
   //   method: "POST",
   // });

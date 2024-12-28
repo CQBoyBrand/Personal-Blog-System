@@ -33,7 +33,7 @@
       </div>
       <div class="site-tech">
         <div>前端：Nuxt.js（V3）</div>
-        <div>管理端：React.js + Antd</div>
+        <div>管理端：React.js (V18) + Antd</div>
         <div>服务端：Nest.js</div>
         <div>数据库：Mysql</div>
         <div>本站源码Github：<a href="https://github.com/CQBoyBrand/Personal-Blog-System" target="_blank">Personal-Blog-System</a></div>

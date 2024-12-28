@@ -25,6 +25,8 @@
 </template>
 
 <script setup>
+import { getArchive } from '~/api/service';
+
   useHead({
     title: '归档 | Archives',
     meta: [
@@ -32,10 +34,7 @@
       { name: 'description', content: '重庆崽儿Brand的个人博客,归档 | Archives' }
     ]
   })
-  const {data: artObj, error} = await useFetch('http://localhost:3002/article/getArchive', {
-    method: "POST",
-  });
-  const archiveData = artObj.value.data;  
+  const {data: archiveData} = await getArchive(); 
   let actived = ref(0)
     const changeActived = (index) => {
       actived = index

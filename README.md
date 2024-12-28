@@ -1,13 +1,11 @@
 # Personal-Blog-System
-## 本项目暂时停更啦
-> 服务器到期了，续费太贵，暂时用静态博客了。本项目暂时不做更新了。
 
-### 项目使用技术栈及版本：
+### 项目 master 分支 使用技术栈及版本：
 - 基础：
 - Node.js(v20.14.0) (其他node版本可能会出问题)
 - Mysql
 - Nuxt.js(v3.14.159)
-- React 
+- React (v18.3.1) + Antd (v5.22.2)
 - Nest.js
 
 ### 博客线上地址：
@@ -59,27 +57,28 @@
  #### 打包
 
  ```bash
-//blog
+//blog-web
         执行打包：npm run build
+        // 请查看package.json 文件,
+        // 根据 .env、.env.production、.env.test等 配置打包不通环境的版本
+        // 打包部署需要上传以下 2 个文件（夹）
+        .outtput
+        ecosystem.config.js
 
-        // 打包部署需要上传以下 4 个文件（夹）
-        .nuxt
-        server
-        pakage.json
-        nuxt.config.js
-
-        最好在服务器这四个文件(夹)的同一级目录下新建一个static来放favicon.ico文件,要不然这个图片显示不出来
-
-        上传好文件后，记得执行 npm install 安装依赖
+        上传好文件后
 
         pm2启动服务:
-        pm2 start npm --name "blog" -- run start
+
+        pm2 start
 
 
-// admin
-        在.env,  .env.production中配置不同的环境
+// admin-web
+        在 .env, .env.production 中配置不同的环境
 
         执行打包：npm run build
+
+        // 请查看package.json 文件,
+        // 根据 .env、.env.production、.env.test等 配置打包不通环境的版本
 
         上传 dist 文件夹
 
@@ -135,8 +134,15 @@
 
  然后启动（我用 `pm2`）:
  ```bash
-pm2 start npm --name "frontend" -- run frontend
-pm2 start npm --name "backend" -- run backend
+// 请查看package.json 文件,启动不同的端和环境，例如：
+// 启动 web 端测试环境
+npm run pm2frontend:test
+// 启动 admin 端测试环境
+npm run pm2backend:test
+// 启动 web 端生产环境
+npm run pm2frontend:prod
+// 启动 admin 端生产环境
+npm run pm2backend:prod
  ```
 
  (**请执行完一个就部署一个**，因为 `dist` 文件夹会被覆盖，在本地运行的时候你会发现 `dist` 目录下可以同时存在 `frontend` 和 `backend` 两个文件夹，**但是** `build` 的时候不会！！)

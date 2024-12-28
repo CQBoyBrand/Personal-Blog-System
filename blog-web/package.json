@@ -5,11 +5,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:test": "nuxt build --mode test",
-    "build:prod": "cross-env NODE_ENV=production nuxt build",
+    "build": "nuxt build",
+    "build:test": "nuxt build --dotenv .env.test",
+    "build:prod": "nuxt build --dotenv .env.production",
     "dev": "nuxt dev",
-    "dev:test": "nuxt dev --mode test",
-    "dev:prod": "cross-env NODE_ENV=production nuxt dev",
+    "dev:test": "nuxt dev --dotenv .env.test",
+    "dev:prod": "nuxt dev --dotenv .env.production",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
