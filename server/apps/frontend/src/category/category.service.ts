@@ -17,7 +17,7 @@ export class CategoryService {
             id, categoryname,
             (SELECT COUNT(*) as total FROM article where status = 1 and FIND_IN_SET(C.id, category) ) as total
             from category  AS C
-            where C.status = 1;
+            where C.status = 1 and C.authorId = 0;
         `);
         return categoryList;
     }

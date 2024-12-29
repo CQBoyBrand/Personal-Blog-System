@@ -11,10 +11,17 @@
           <div class="contact-label">Github：</div><div class="contact-detail"><a href="https://github.com/CQBoyBrand" target="_blank">
           重庆崽儿Brand</a></div>
         </div>
-        <div  style="text-align: center;padding: 10px 0;margin: 15px 0;font-size: 12px;">
-          <p style="color: #333;">来公众号找我</p>
-          <img width="130" height="130" src="@/assets/images/WXbrand.jpg" alt="重庆崽儿Brand公众号">
-          <p style="font-size: 12px;">扫码关注，不迷路</p>
+        <div style="display: flex;">
+          <div  style="text-align: center;padding: 10px 0;margin: 15px 0;font-size: 12px;">
+            <p style="color: #333;">来公众号找我</p>
+            <img width="130" height="130" src="@/assets/images/WXbrand.jpg" alt="九零后重庆崽儿公众号" />
+            <p style="font-size: 12px;">扫码关注，不迷路</p>
+          </div>
+          <div  style="text-align: center;padding: 10px 0;margin: 15px 0;font-size: 12px;">
+            <p style="color: #333;">带娃小工具</p>
+            <img width="130" height="130" src="@/assets/images/qrcode.jpg" alt="工具人助手小程序" />
+            <p style="font-size: 12px;">微信搜 工具人助手</p>
+          </div>
         </div>
       </div>
     </section>
@@ -45,10 +52,10 @@
     </section>
     <!--阿里云服务器-->
     <section class="module-css sticky-css">
-      <div class="module-title">阿里云优惠券</div>
+      <div class="module-title">阿里云优惠券<span style="font-size: 12px;">（新用户可获得15%补贴）</span></div>
       <div class="module-item-wrap aliyun">
         <a href="https://www.aliyun.com/minisite/goods?userCode=r2v7kr9u" target="_blank">
-          <img src="../assets/images/aliyun/cnodejs540-130.jpg" alt="阿里云优惠券">
+          <img width="100%" height="auto" src="../assets/images/aliyun/cnodejs540-130.jpg" alt="阿里云优惠券" />
         </a>
       </div>
     </section>

@@ -14,9 +14,8 @@ export class UsersService {
     ) {}
 
     async userRegister({username, password}): Promise<any> {
-        console.log("userRegister=", username, password);
         const pwd = md5(process.env.AUTH_PWD_SALT + password);
-
+        throw new BadRequestException('暂不提供用户注册哦！');
         const oldUser = await this.userRepository.findOne({
             where: {username},
         });

@@ -5,7 +5,7 @@ import {Repository} from 'typeorm';
 import {CustomException} from '@common/common/common/http.decoration';
 
 const request = require('request');
-
+const ENV = process.env.NODE_ENV || process.env.DEV;
 @Injectable()
 export class ArticleService {
     constructor(
@@ -17,6 +17,7 @@ export class ArticleService {
         const currentTime = new Date().getTime();
         const newArticle = new Article();
         newArticle.id = currentTime;
+        newArticle.authorId = params.authorId;
         newArticle.artTitle = params.artTitle;
         newArticle.artType = params.artType;
         newArticle.abstract = params.abstract;
@@ -61,7 +62,7 @@ export class ArticleService {
             thumbnail: params.thumbnail,
             editdate: currentTime,
         }).then(res => {
-            if (process.env.DEV === 'production') {
+            if (ENV === 'production') {
                 // 百度推送
                 request.post({
                     url: `http://data.zz.baidu.com/update?site=${process.env.BAIDU_PUSH_SITE}&token=${process.env.BAIDU_PUSH_TOKEN}`,
@@ -93,6 +94,7 @@ export class ArticleService {
             from article as A
             left join tag as T
             on FIND_IN_SET(T.id , A.tag)
+            where A.authorId = ${params.authorId}
             group by A.id
             ORDER BY A.cdate desc
             limit ${(params.currentPage - 1) * params.limit}, ${params.limit};
@@ -116,7 +118,7 @@ export class ArticleService {
         }).then( res => {
             const affectedRows = res.raw.affectedRows;
             if (affectedRows > 0) {
-                if (process.env.DEV === 'production') {
+                if (ENV === 'production') {
                     if (params.status == 0) {
                         request.post({
                             url: `http://data.zz.baidu.com/del?site=${process.env.BAIDU_PUSH_SITE}&token=${process.env.BAIDU_PUSH_TOKEN}`,

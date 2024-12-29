@@ -14,6 +14,7 @@ export class TagService {
 
     async addTag(params): Promise<any> {
         const newTag = new Tag();
+        newTag.authorId = params.authorId;
         newTag.tagdesc = params.tagdesc;
         newTag.tagname = params.tagname;
         return await this.tagRepository.save(newTag).then(() => {
@@ -39,6 +40,7 @@ export class TagService {
             ( SELECT COUNT(*) FROM article where FIND_IN_SET(T.id, tag) ) as artNum,
             T.cdate
             from tag as T
+            where T.authorId = ${params.authorId}
             ORDER BY T.cdate desc
             limit ${(params.currentPage - 1) * params.limit}, ${params.limit};
         `);

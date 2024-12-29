@@ -1,4 +1,4 @@
-import {Body, Controller, HttpCode, Post, UseGuards} from '@nestjs/common';
+import {Body, Controller, HttpCode, Post, UseGuards, Req} from '@nestjs/common';
 import {CategoryService} from '../category/category.service';
 import {ApiBearerAuth, ApiOperation, ApiTags} from '@nestjs/swagger';
 import {AuthGuard} from '@nestjs/passport';
@@ -19,8 +19,8 @@ export class TagController {
     @UseGuards(AuthGuard('jwt'))
     @UseGuards(AuthGuard('permissions'))
     @ApiBearerAuth()
-    async addCategory(@Body() params): Promise<any> {
-        const newTag = await this.tagService.addTag(params);
+    async addCategory(@Body() params,  @Req() req): Promise<any> {
+        const newTag = await this.tagService.addTag({...params, authorId: req.user.id});
         return newTag;
     }
 
@@ -31,8 +31,8 @@ export class TagController {
     @HttpCode(200)
     @UseGuards(AuthGuard('jwt'))
     @ApiBearerAuth()
-    async getTag(@Body() params): Promise<any> {
-        const tagList = await this.tagService.getTagList(params);
+    async getTag(@Body() params,  @Req() req): Promise<any> {
+        const tagList = await this.tagService.getTagList({...params, authorId: req.user.id});
         const tagCount = await this.tagService.getTagCount();
 
         const result = {
@@ -50,8 +50,8 @@ export class TagController {
     @HttpCode(200)
     @UseGuards(AuthGuard('jwt'))
     @ApiBearerAuth()
-    async getAllTag(@Body() params): Promise<any> {
-        const allTagList = await this.tagService.getAllTag(params);
+    async getAllTag(@Body() params,  @Req() req): Promise<any> {
+        const allTagList = await this.tagService.getAllTag({...params, authorId: req.user.id});
 
         return allTagList;
     }
@@ -64,8 +64,8 @@ export class TagController {
     @UseGuards(AuthGuard('jwt'))
     @UseGuards(AuthGuard('permissions'))
     @ApiBearerAuth()
-    async editCategory(@Body() params): Promise<any> {
-        const editTag = await this.tagService.editTag(params);
+    async editCategory(@Body() params,  @Req() req): Promise<any> {
+        const editTag = await this.tagService.editTag({...params, authorId: req.user.id});
 
         return editTag;
     }
@@ -78,8 +78,8 @@ export class TagController {
     @UseGuards(AuthGuard('jwt'))
     @UseGuards(AuthGuard('permissions'))
     @ApiBearerAuth()
-    async delCategory(@Body() params): Promise<any> {
-        const delTag = await this.tagService.delTag(params);
+    async delCategory(@Body() params,  @Req() req): Promise<any> {
+        const delTag = await this.tagService.delTag({...params, authorId: req.user.id});
 
         return delTag;
     }

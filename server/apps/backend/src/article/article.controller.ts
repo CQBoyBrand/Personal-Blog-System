@@ -1,4 +1,4 @@
-import {Body, Controller, HttpCode, Post, Put, UseGuards} from '@nestjs/common';
+import {Body, Controller, HttpCode, Post, Put, UseGuards, Req} from '@nestjs/common';
 import {ApiBearerAuth, ApiOperation, ApiTags} from '@nestjs/swagger';
 import {AuthGuard} from '@nestjs/passport';
 import {ArticleService} from './article.service';
@@ -20,8 +20,8 @@ export class ArticleController {
     @UseGuards(AuthGuard('jwt'))
     @UseGuards(AuthGuard('permissions'))
     @ApiBearerAuth()
-    async addArticle(@Body() params: ArticleCreateDto): Promise<any> {
-        const addArt = await this.articleService.addArticle(params);
+    async addArticle(@Body() params: ArticleCreateDto, @Req() req: any): Promise<any> {
+        const addArt = await this.articleService.addArticle({...params, authorId: req.user.id});
         return addArt;
     }
 
@@ -33,8 +33,8 @@ export class ArticleController {
     @UseGuards(AuthGuard('jwt'))
     @UseGuards(AuthGuard('permissions'))
     @ApiBearerAuth()
-    async editArticle(@Body() params): Promise<any> {
-        const editArt = await this.articleService.editArticle(params);
+    async editArticle(@Body() params, @Req() req): Promise<any> {
+        const editArt = await this.articleService.editArticle({...params, authorId: req.user.id});
         return editArt;
     }
 
@@ -45,9 +45,8 @@ export class ArticleController {
     @HttpCode(200)
     @UseGuards(AuthGuard('jwt'))
     @ApiBearerAuth()
-    async getArticleList(@Body() params): Promise<any> {
-        console.log(params);
-        const artList = await this.articleService.getArtList(params);
+    async getArticleList(@Body() params, @Req() req): Promise<any> {
+        const artList = await this.articleService.getArtList({...params, authorId: req.user.id});
         const artCount = await this.articleService.getArtCount();
 
         const result = {
@@ -65,8 +64,8 @@ export class ArticleController {
     @HttpCode(200)
     @UseGuards(AuthGuard('jwt'))
     @ApiBearerAuth()
-    async getArticleListByTag(@Body() params): Promise<any> {
-        const artList = await this.articleService.getArtList(params);
+    async getArticleListByTag(@Body() params, @Req() req): Promise<any> {
+        const artList = await this.articleService.getArtList({...params, authorId: req.user.id});
         const artCount = await this.articleService.getArtCount();
 
         const result = {
@@ -84,8 +83,8 @@ export class ArticleController {
     @HttpCode(200)
     @UseGuards(AuthGuard('jwt'))
     @ApiBearerAuth()
-    async getArticleDetail(@Body() params): Promise<any> {
-        const artDetail = await this.articleService.getArticleDetail(params);
+    async getArticleDetail(@Body() params, @Req() req): Promise<any> {
+        const artDetail = await this.articleService.getArticleDetail({...params, authorId: req.user.id});
         return artDetail;
     }
 
@@ -97,8 +96,8 @@ export class ArticleController {
     @UseGuards(AuthGuard('jwt'))
     @UseGuards(AuthGuard('permissions'))
     @ApiBearerAuth()
-    async updateArtStatus(@Body() params): Promise<any> {
-        const artStatus = await this.articleService.deleteArticle(params);
+    async updateArtStatus(@Body() params, @Req() req): Promise<any> {
+        const artStatus = await this.articleService.deleteArticle({...params, authorId: req.user.id});
 
         return artStatus;
     }

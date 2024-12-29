@@ -13,6 +13,13 @@ export class Tag {
         comment: 'id',
     })
     id: number;
+    
+    @Column({
+        type: 'int',
+        comment: '作者',
+        nullable: false,
+    })
+    authorId: number;
 
     @Column({
         type: 'text',

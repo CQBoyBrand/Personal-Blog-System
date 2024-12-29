@@ -14,6 +14,7 @@ export class CategoryService {
 
     async addCategory(params): Promise<any> {
         const newCategory = new Category();
+        newCategory.authorId = params.authorId;
         newCategory.categorydesc = params.categorydesc;
         newCategory.categoryname = params.categoryname;
         newCategory.categorytype = params.categorytype;
@@ -35,6 +36,7 @@ export class CategoryService {
             ( SELECT COUNT(*) FROM article where FIND_IN_SET(c.id, category) ) as artNum,
             c.cdate
             from category as c
+            where c.authorId = ${params.authorId}
             ORDER BY c.cdate desc
             limit ${(params.currentPage - 1) * params.limit}, ${params.limit};
         `);

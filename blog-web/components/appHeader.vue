@@ -1,7 +1,7 @@
 <template>
   <header class="app-header">
     <nav class="nav_wrap clearfix" v-if="!isMobile">
-      <h2 class="logo"><a href="/" title="重庆崽儿Brand">重庆崽儿Brand</a></h2>
+      <h2 class="logo"><NuxtLink to="/" title="重庆崽儿Brand">重庆崽儿Brand</NuxtLink></h2>
       <div class="nav_box transition-box" v-show="isShow">
         <NuxtLink class="linkItem" to="/" >代码</NuxtLink>
         <NuxtLink class="linkItem" to="/life">生活</NuxtLink>
@@ -13,9 +13,9 @@
             <div class="search_container">
               <input
                 class="search_input"
-                type="text" v-model="searchval" placeholder="输入文章关键词">
+                type="text" v-model="searchval" placeholder="输入搜索关键词">
               <span class="search_btn" @click="searchHandle">
-                <img :src="searchSvg" alt="">
+                <img :src="searchSvg" alt="" />
               </span>
             </div>
           </form>
@@ -25,7 +25,7 @@
     <nav class="nav_wrap clearfix" v-else>
       <h1 class="logo">重庆崽儿Brand</h1>
       <div class="menu_icon">
-        <img @click="showMenu($event)" src="@/assets/images/menu.svg" alt="">
+        <img @click="showMenu($event)" src="@/assets/images/menu.svg" alt="" />
       </div>
         <ul class="nav_box transition-box" v-show="isShow">
           <nuxt-link to="/" tag="li" @click.native="menuToggle">代码</nuxt-link>
@@ -33,20 +33,20 @@
           <nuxt-link to="/archives" tag="li" @click.native="menuToggle">归档</nuxt-link>
           <nuxt-link to="/friends" tag="li" @click.native="menuToggle">友链</nuxt-link>
           <nuxt-link to="/about" tag="li" @click.native="menuToggle">关于我</nuxt-link>
-          <a>
+          <span>
             <form autocomplete="off" @submit.prevent="searchHandleMob" style="width: 96%;">
               <div class="search_container">
                 <input
                   class="search_input"
                   @focus="isFocus=true"
                   @blur="isFocus=false"
-                  type="text" v-model="searchval" placeholder="输入文章关键词">
+                  type="text" v-model="searchval" placeholder="输入搜索关键词">
                 <span class="search_btn" @click="searchHandle">
-                  <img :src="searchSvg" alt="">
+                  <img :src="searchSvg" alt="" />
                 </span>
               </div>
             </form>
-          </a>
+          </span>
         </ul>
     </nav>
   </header>

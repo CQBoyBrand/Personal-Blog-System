@@ -6,6 +6,7 @@
  */
 export interface ArticleInterface {
     id: number;
+    authorId: number;
     artTitle: string;
     abstract: string;
     category: string;

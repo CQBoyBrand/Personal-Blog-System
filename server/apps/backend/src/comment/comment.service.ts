@@ -50,7 +50,6 @@ export class CommentService {
         const affectedData = await this.commentRepository.
         createQueryBuilder('comment').
         where('comment.id= :id', {id}).getOne();
-        console.log(affectedData);
         return affectedData;
     }
     async updateComment(params): Promise<any> {

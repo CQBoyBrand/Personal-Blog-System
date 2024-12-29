@@ -60,9 +60,9 @@ export class User {
 
     @Column({
         type: 'int',
-        comment: '用户权限',
+        comment: '用户权限,0是无权限，1是有权限',
         nullable: false,
-        default: 1,
+        default: 0,
     })
     permissions: number;
 }

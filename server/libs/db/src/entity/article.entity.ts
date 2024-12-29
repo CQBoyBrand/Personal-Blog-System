@@ -16,6 +16,13 @@ export class Article {
     id: number;
 
     @Column({
+        type: 'int',
+        comment: '作者',
+        nullable: false,
+    })
+    authorId: number;
+    
+    @Column({
         type: 'text',
         comment: '文章标题',
         nullable: false,

@@ -1,4 +1,4 @@
-import {Body, Controller, HttpCode, Post, UseGuards} from '@nestjs/common';
+import {Body, Controller, HttpCode, Post, UseGuards, Req} from '@nestjs/common';
 import {ApiBearerAuth, ApiOperation, ApiTags} from '@nestjs/swagger';
 import {AuthGuard} from '@nestjs/passport';
 import {CategoryService} from './category.service';
@@ -18,8 +18,8 @@ export class CategoryController {
     @UseGuards(AuthGuard('jwt'))
     @UseGuards(AuthGuard('permissions'))
     @ApiBearerAuth()
-    async addCategory(@Body() params): Promise<any> {
-        const newCategory = await this.categoryService.addCategory(params);
+    async addCategory(@Body() params,  @Req() req): Promise<any> {
+        const newCategory = await this.categoryService.addCategory({...params, authorId: req.user.id});
         return newCategory;
     }
 
@@ -30,8 +30,8 @@ export class CategoryController {
     @HttpCode(200)
     @UseGuards(AuthGuard('jwt'))
     @ApiBearerAuth()
-    async getCategory(@Body() params): Promise<any> {
-        const cateList = await this.categoryService.getCategoryList(params);
+    async getCategory(@Body() params,  @Req() req): Promise<any> {
+        const cateList = await this.categoryService.getCategoryList({...params, authorId: req.user.id});
         const cateCount = await this.categoryService.getCategoryCount();
 
         const result = {
@@ -49,8 +49,8 @@ export class CategoryController {
     @HttpCode(200)
     @UseGuards(AuthGuard('jwt'))
     @ApiBearerAuth()
-    async getAllCategory(@Body() params): Promise<any> {
-        const allCategory = await this.categoryService.getAllCategory(params);
+    async getAllCategory(@Body() params,  @Req() req): Promise<any> {
+        const allCategory = await this.categoryService.getAllCategory({...params, authorId: req.user.id});
         return allCategory;
     }
 
@@ -62,8 +62,8 @@ export class CategoryController {
     @UseGuards(AuthGuard('jwt'))
     @UseGuards(AuthGuard('permissions'))
     @ApiBearerAuth()
-    async editCategory(@Body() params): Promise<any> {
-        const editCate = await this.categoryService.editCategpry(params);
+    async editCategory(@Body() params,  @Req() req): Promise<any> {
+        const editCate = await this.categoryService.editCategpry({...params, authorId: req.user.id});
 
         return editCate;
     }
@@ -76,8 +76,8 @@ export class CategoryController {
     @UseGuards(AuthGuard('jwt'))
     @UseGuards(AuthGuard('permissions'))
     @ApiBearerAuth()
-    async delCategory(@Body() params): Promise<any> {
-        const delCate = await this.categoryService.delCategory(params);
+    async delCategory(@Body() params,  @Req() req): Promise<any> {
+        const delCate = await this.categoryService.delCategory({...params, authorId: req.user.id});
 
         return delCate;
     }

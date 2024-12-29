@@ -23,7 +23,7 @@ export class ArticleService {
             from article as A
             left join tag as T
             on FIND_IN_SET(T.id , A.tag)
-            where A.status = 1 and A.id = ${params.id}
+            where A.status = 1 and A.id = ${params.id} and A.authorId = 0
              group by A.id
         `);
         const articleDetail = sqlQuery[0];
@@ -62,7 +62,7 @@ export class ArticleService {
             FROM article as A
             left join tag as T
             on FIND_IN_SET(T.id , A.tag)
-            WHERE A.status = 1
+            WHERE A.status = 1 and A.authorId = 0
             group by A.id
             ORDER BY A.cdate DESC;
         `);
@@ -108,7 +108,7 @@ export class ArticleService {
             from article as A
             left join tag as T
             on FIND_IN_SET(T.id , A.tag)
-            where A.status = 1
+            where A.status = 1 and A.authorId = 0
             group by A.id
             ORDER BY A.cdate desc
             limit ${(params.currentPage - 1) * params.limit}, ${params.limit};
@@ -137,7 +137,7 @@ export class ArticleService {
             from article as A
             left join tag as T
             on FIND_IN_SET(T.id, A.tag)
-            where A.status = 1
+            where A.status = 1 and A.authorId = 0
             AND FIND_IN_SET('${params.tagid}', A.tag)
             group by A.id
             ORDER BY A.cdate DESC
@@ -166,7 +166,7 @@ export class ArticleService {
             from article as A
             left join tag as T
             on FIND_IN_SET(T.id, A.tag)
-            where A.status = 1
+            where A.status = 1 and A.authorId = 0
             AND FIND_IN_SET('${params.categoryid}', A.category)
             group by A.id
             ORDER BY A.cdate DESC
@@ -196,7 +196,7 @@ export class ArticleService {
             left join tag as T
             on FIND_IN_SET(T.id, A.tag)
             where A.artType = "${params.artType}"
-            AND A.status = 1
+            AND A.status = 1 and A.authorId = 0
             group by A.id
             ORDER BY A.cdate DESC
             limit ${(params.currentPage - 1) * params.limit}, ${params.limit};
@@ -229,7 +229,7 @@ export class ArticleService {
                 or
                 A.abstract like "%${params.keyword}%"
             )
-            AND A.status = 1
+            AND A.status = 1 and A.authorId = 0
             group by A.id
             ORDER BY A.cdate DESC
             limit ${(params.currentPage - 1) * params.limit}, ${params.limit};

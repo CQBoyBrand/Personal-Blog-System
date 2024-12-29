@@ -17,7 +17,7 @@ export class TagService {
             id, tagname,
             (SELECT COUNT(*) as total FROM article where status = 1 and FIND_IN_SET(T.id, tag) ) as total
             from tag AS T
-            where T.status = 1;
+            where T.status = 1 and T.authorId = 0;
         `);
     }
 }

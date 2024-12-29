@@ -51,8 +51,8 @@
   useHead({
     title: articleDetail.artTitle,
     meta: [
-      { name: 'keywords', content: articleDetail.abstract },
-      { name: 'description', content: articleDetail.abstract }
+      { name: 'keywords', content: tagList.join(",") + ", " + articleDetail.abstract },
+      { name: 'description', content: tagList.join(",") + ", "  + articleDetail.abstract }
     ]
   })
 </script>
@@ -67,7 +67,7 @@
     padding: 15px;
     .article-title {
       text-align: center;
-      font-size: 20px;
+      font-size: 24px;
       color: #666;
       margin: 16px 0;
     }

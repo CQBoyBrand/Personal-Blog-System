@@ -35,7 +35,7 @@
 
 <script setup>
 import { getlinkList } from '~/api/service';
-
+// const linkList = [];
   const {data: linkList} = await getlinkList();
   // const {data: commentsListData} = await useFetch('http://localhost:3002/link/getlinkList', {
   //   method: "POST",
