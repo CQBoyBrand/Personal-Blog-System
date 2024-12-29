@@ -2,6 +2,7 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Article} from '@libs/db/entity/article.entity';
 import {Repository} from 'typeorm';
+import {CustomException} from '@common/common/common/http.decoration';
 
 @Injectable()
 export class ArticleService {
@@ -26,6 +27,9 @@ export class ArticleService {
             where A.status = 1 and A.id = ${params.id} and A.authorId = 0
              group by A.id
         `);
+        if (sqlQuery.length === 0){
+            throw new CustomException('您查看的内容暂未公开或已删除', 404);
+        }
         const articleDetail = sqlQuery[0];
         if (articleDetail.pv >= 0) {
             const newPv = articleDetail.pv + 1;

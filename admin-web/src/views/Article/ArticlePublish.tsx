@@ -144,7 +144,7 @@ const ArticlePublish: FC = () => {
                 addArticle(params).then(res => {
                     if (res.code === 200) {
                         message.success('文章添加成功')
-                        history('/article/list')
+                        history('/article/articleList')
                     } else {
                         message.error(res.message)
                     }
@@ -167,7 +167,7 @@ const ArticlePublish: FC = () => {
                 editArticle(params).then(res => {
                     if (res.code === 200) {
                         message.success('文章修改成功')
-                        history('/article/list')
+                        history('/article/articleList')
                     } else {
                         message.error(res.message)
                     }
@@ -286,6 +286,7 @@ const ArticlePublish: FC = () => {
                 >
                     <Select
                         placeholder="请选择文章分类"
+                        style={{width: "200px"}}
                         allowClear
                     >
                         {
@@ -304,6 +305,7 @@ const ArticlePublish: FC = () => {
                     <Select
                         placeholder="请选择文章标签"
                         mode="multiple"
+                        style={{width: "200px"}}
                         maxTagCount={3}
                         allowClear
                     >
@@ -321,6 +323,7 @@ const ArticlePublish: FC = () => {
                 >
                     <Input size='large'
                            placeholder="文章缩略图"
+                           style={{width: "200px"}}
                            onChange={(e) => {
                                setThumbnail(e.target.value)
                            }}/>

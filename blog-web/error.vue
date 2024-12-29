@@ -4,6 +4,7 @@ import type { NuxtError } from '#app'
 const props = defineProps({
   error: Object as () => NuxtError
 })
+// console.log("err=", props.error)
 </script>
 
 <template>

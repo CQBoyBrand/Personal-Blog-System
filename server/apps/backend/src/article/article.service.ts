@@ -32,7 +32,7 @@ export class ArticleService {
         newArticle.discuss = 0;
         newArticle.status = 0;
         return await this.articleRepository.save(newArticle).then(res => {
-            if (process.env.DEV === 'production') {
+            if (ENV === 'production') {
                 // 百度 seo push
                 request.post({
                     url: `http://data.zz.baidu.com/urls?site=${process.env.BAIDU_PUSH_SITE}&token=${process.env.BAIDU_PUSH_TOKEN}`,
@@ -116,7 +116,7 @@ export class ArticleService {
         return await this.articleRepository.update(params.id, {
             status: params.status,
         }).then( res => {
-            const affectedRows = res.raw.affectedRows;
+            const affectedRows = res.affected;
             if (affectedRows > 0) {
                 if (ENV === 'production') {
                     if (params.status == 0) {

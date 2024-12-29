@@ -45,7 +45,7 @@
       currentPage: 1,
       limit: 10
     });
-  tagList = articleDetail.tag.split(",");
+  tagList = articleDetail?.tag.split(",");
   const htmlData = ref("");
   htmlData.value = await mdRender(articleDetail.content)
   useHead({
