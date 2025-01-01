@@ -22,7 +22,7 @@
       </div>
       <ul class="friends-box clearfix">
         <li v-for="(link, i) in linkList" :key="i">
-          <a :href="link.siteUrl" target="_blank">{{link.siteName}}</a>
+          <a :href="link.siteUrl" target="_blank" ref="nofollow">{{link.siteName}}</a>
         </li>
       </ul>
     </section>

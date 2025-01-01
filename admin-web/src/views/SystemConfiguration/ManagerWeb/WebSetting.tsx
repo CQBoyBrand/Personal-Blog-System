@@ -5,8 +5,8 @@ import './WebSetting.scss'
 
 const WebSetting: FC = () => {
     const [form] = Form.useForm();
-    const [icp, setIcp] = useState("")
-    const [psr, setPsr] = useState("")
+    // const [icp, setIcp] = useState("")
+    // const [psr, setPsr] = useState("")
     const [id, setId] = useState()
     const [configType, setConfigType] = useState('add')
     const [discussStatus, setDiscussStatus] = useState(false)
@@ -14,12 +14,11 @@ const WebSetting: FC = () => {
 
     const getConfigHandler = () => {
         getConfig().then(res => {
-            console.log(res)
             if (res.code === 200) {
                 if (res.data) {
                     setId(res.data.id)
-                    setPsr(res.data.psr)
-                    setIcp(res.data.icp)
+                    // setPsr(res.data.psr)
+                    // setIcp(res.data.icp)
                     setDiscussStatus(res.data.discussStatus === 1)
                     if (res.data.id > 0) {
                         setConfigType('edit')
@@ -29,6 +28,7 @@ const WebSetting: FC = () => {
                     form.setFieldsValue({
                         icp: res.data.icp,
                         psr: res.data.psr,
+                        discussStatus: res.data.discussStatus === 1,
                     })
                 }
             }
@@ -36,31 +36,31 @@ const WebSetting: FC = () => {
     }
     const saveWebInfo = async () => {
 
-        let webSettingInfo = {
-            icp: icp,
-            psr: psr,
-            discussStatus: discussStatus,
-        }
+        // let webSettingInfo = {
+        //     icp: icp,
+        //     psr: psr,
+        //     discussStatus: discussStatus,
+        // }
         try {
             const values = await form.validateFields();
             if(configType === 'add') {
-                addConfig(webSettingInfo).then(() => {
+                addConfig(values).then(() => {
                     message.success('操作成功')
                     getConfigHandler()
                 })
             } else if (configType === 'edit') {
                 editConfig({
                     id: id,
-                    icp: icp,
-                    psr: psr,
-                    discussStatus: discussStatus,
+                    ...values
                 }).then(res => {
-                    console.log(res)
-                    message.success('操作成功')
-                    getConfigHandler()
+                    if (res.code === 200) {
+                        message.success('操作成功')
+                        getConfigHandler()
+                    } else {
+                        message.error(res.message)
+                    }
                 })
             }
-            console.log('Success:', values);
         } catch (errorInfo) {
             console.log('Failed:', errorInfo);
         }
@@ -79,9 +79,7 @@ const WebSetting: FC = () => {
                     rules={[{required: true, message: '请填写ICP备案号'}]}
                 >
                     <Input size='large'
-                           onChange={(e) => {
-                               setIcp(e.target.value)
-                           }}/>
+                          />
                 </Form.Item>
                 <Form.Item
                     label="公安备案号"
@@ -89,9 +87,7 @@ const WebSetting: FC = () => {
                     rules={[{required: true, message: '请填写公安备案号'}]}
                 >
                     <Input size='large'
-                           onChange={(e) => {
-                               setPsr(e.target.value)
-                           }}/>
+                           />
                 </Form.Item>
                 <Form.Item
                     label="全站评论"

@@ -12,4 +12,6 @@ export default {
     "categoryList": "Category List",
     "tag": "Tag Management",
     "tagList": "Tag List",
+    "link": "Link Management",
+    "linkList": "Link List",
 }

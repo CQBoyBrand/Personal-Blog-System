@@ -12,4 +12,6 @@ export default {
     "categoryList": "分类列表",
     "tag": "标签管理",
     "tagList": "标签列表",
+    "link": "友链管理",
+    "linkList": "友链列表",
 }

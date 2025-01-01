@@ -1,7 +1,7 @@
 <template>
   <header class="app-header">
     <nav class="nav_wrap clearfix" v-if="!isMobile">
-      <h2 class="logo"><NuxtLink to="/" title="重庆崽儿Brand">重庆崽儿Brand</NuxtLink></h2>
+      <h1 class="logo"><NuxtLink to="/" title="重庆崽儿Brand">重庆崽儿Brand</NuxtLink></h1>
       <div class="nav_box transition-box" v-show="isShow">
         <NuxtLink class="linkItem" to="/" >代码</NuxtLink>
         <NuxtLink class="linkItem" to="/life">生活</NuxtLink>

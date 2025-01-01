@@ -83,25 +83,6 @@ export const RouteMap: IRoute[] = [
                 ]
             },
             {
-                id: "comment",
-                key: "comment",
-                title: "comment",
-                icon: <SettingFilled />,
-                path: "comment",
-                children: [
-                    {
-                        index: true, 
-                        id: "commentList",
-                        key: "commentList",
-                        path: "commentList",
-                        icon: <BarsOutlined />,
-                        title: "commentList",
-                        element: <LazyImportComponent lazyChildren={lazy(() => import("@/views/Comment/Comment"))} />,
-                        children: []
-                    },
-                ]
-            },
-            {
                 id: "category",
                 key: "category",
                 title: "category",
@@ -135,6 +116,44 @@ export const RouteMap: IRoute[] = [
                         icon: <BarsOutlined />,
                         title: "tagList",
                         element: <LazyImportComponent lazyChildren={lazy(() => import("@/views/Tag/Tag"))} />,
+                        children: []
+                    },
+                ]
+            },
+            {
+                id: "comment",
+                key: "comment",
+                title: "comment",
+                icon: <SettingFilled />,
+                path: "comment",
+                children: [
+                    {
+                        index: true, 
+                        id: "commentList",
+                        key: "commentList",
+                        path: "commentList",
+                        icon: <BarsOutlined />,
+                        title: "commentList",
+                        element: <LazyImportComponent lazyChildren={lazy(() => import("@/views/Comment/Comment"))} />,
+                        children: []
+                    },
+                ]
+            },
+            {
+                id: "link",
+                key: "link",
+                title: "link",
+                icon: <SettingFilled />,
+                path: "link",
+                children: [
+                    {
+                        index: true, 
+                        id: "linkList",
+                        key: "linkList",
+                        path: "linkList",
+                        icon: <BarsOutlined />,
+                        title: "linkList",
+                        element: <LazyImportComponent lazyChildren={lazy(() => import("@/views/Friend/Friend"))} />,
                         children: []
                     },
                 ]
