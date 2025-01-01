@@ -39,6 +39,7 @@
     "express-rate-limit": "^7.4.1",
     "highlight.js": "^11.10.0",
     "htmlparser2": "^9.1.0",
+    "imagekit": "^6.0.0",
     "marked": "^15.0.0",
     "md5": "^2.2.1",
     "mysql": "^2.18.1",
