@@ -4,14 +4,12 @@ import {useNavigate} from 'react-router-dom'
 import {updateUserInfo, userInfo} from "@/api/modules/user";
 import {  PlusOutlined } from '@ant-design/icons';
 import md5 from "md5";
-import {getQNToken, uploadToQN} from "@/api/modules/qn";
+import { uploadFiles} from "@/api/modules/upload";
 import './UserSetting.scss'
 
 const UserSetting: FC = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate()
-    const domain = 'https://upload-z0.qiniup.com' // 七牛云的上传地址，根据自己所在地区选择，我这里是华东
-    const qiniuaddr = 'static.brandhuang.com' // 这是七牛云空间的外链默认域名，可换成自己的   p063wr224.bkt.clouddn.com
     const [avatar, setAvatar] = useState('')
     const [newUserInfo, setNewUserInfo] = useState({
         id: '',
@@ -45,23 +43,36 @@ const UserSetting: FC = () => {
         } else {
             filetype = 'jpg'
         }
-        // 重命名要上传的文件
-        const keyname = sessionStorage.getItem('username') + '-' + new Date().getTime()  + '.' + filetype
-
-        getQNToken().then(res => {
-                const formdata = new FormData()
-                formdata.append('file', req.file)
-                formdata.append('token', res.data)
-                formdata.append('key', keyname)
-                // 获取到凭证之后再将文件上传到七牛云空间
-                uploadToQN(domain, formdata).then( (result: { key: string; }) => {
-                    let avatar = 'http://' + qiniuaddr + '/' + result.key
-                    form.setFieldsValue({
-                        avatar:avatar
-                    })
-                    setAvatar(avatar)
-                })
+        let filename = sessionStorage.getItem('username') + '-user-' + new Date().getTime() + '.' + filetype;
+        const keyname = import.meta.env.VITE_DEV === "production" ? filename : import.meta.env.VITE_DEV + '_' + filename;
+        const formdata = new FormData()
+        formdata.append('file', req.file)
+        formdata.append('fileName', keyname)
+        formdata.append('type', 'user')
+        uploadFiles(formdata).then(res => {
+            let avatar = res.data.url;
+            form.setFieldsValue({
+                avatar:avatar
+            })
+            setAvatar(avatar)
         })
+        // // 重命名要上传的文件
+        // const keyname = sessionStorage.getItem('username') + '-' + new Date().getTime()  + '.' + filetype
+
+        // getQNToken().then(res => {
+        //         const formdata = new FormData()
+        //         formdata.append('file', req.file)
+        //         formdata.append('token', res.data)
+        //         formdata.append('key', keyname)
+        //         // 获取到凭证之后再将文件上传到七牛云空间
+        //         uploadToQN(domain, formdata).then( (result: { key: string; }) => {
+        //             let avatar = 'http://' + qiniuaddr + '/' + result.key
+        //             form.setFieldsValue({
+        //                 avatar:avatar
+        //             })
+        //             setAvatar(avatar)
+        //         })
+        // })
     }
     // 图片上传前
     const beforeUpload = (file: any, fileList: any) => {

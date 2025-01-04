@@ -6,7 +6,7 @@ import MdEditor from "@/components/mdEditor/mdEditor";
 import {addArticle, editArticle, getArticleDetail} from "@/api/modules/article";
 import {getAllCategory} from "@/api/modules/category";
 import {getAllTag} from "@/api/modules/tag";
-import {getQNToken, uploadToQN} from "@/api/modules/qn";
+import { uploadFiles} from "@/api/modules/upload";
 import './article.scss'
 
 const {Option} = Select;
@@ -18,8 +18,6 @@ const ArticlePublish: FC = () => {
     const id = searchParams.get('id');
     const md = useRef(null)
     const [mdRef, setMdRef] = useState<any>()
-    const domain = 'https://upload-z0.qiniup.com' // 七牛云的上传地址，根据自己所在地区选择，我这里是华东
-    const qiniuaddr = 'static.brandhuang.com' // 这是七牛云空间的外链默认域名，可换成自己的   p063wr224.bkt.clouddn.com
     const [artTitle, setArtTitle] = useState('') // 文章标题
     const [abstract, setAbstract] = useState('') // 文章摘要
     const [category, setCategory] = useState('') // 文章分类
@@ -41,19 +39,15 @@ const ArticlePublish: FC = () => {
             filetype = 'jpg'
         }
         // 重命名要上传的文件
-        const keyname = sessionStorage.getItem('username') + '-content-' + new Date().getTime() + '.' + filetype
-
-        getQNToken().then(res => {
-            const formdata = new FormData()
-            formdata.append('file', file)
-            formdata.append('token', res.data)
-            formdata.append('key', keyname)
-            // 获取到凭证之后再将文件上传到七牛云空间
-            uploadToQN(domain, formdata).then((result: { key: string; }) => {
-                let avatar = 'http://' + qiniuaddr + '/' + result.key
-                // 上传图片成功后，将url插入markdown中
-                mdRef.current.addImg(avatar)
-            })
+        let filename = sessionStorage.getItem('username') + '-content-' + new Date().getTime() + '.' + filetype;
+        const keyname = import.meta.env.VITE_DEV === "production" ? filename : import.meta.env.VITE_DEV + '_' + filename;
+        const formdata = new FormData()
+        formdata.append('file', file)
+        formdata.append('fileName', keyname)
+        formdata.append('type', 'article')
+        uploadFiles(formdata).then(res => {
+            console.log(res.data.url);
+            mdRef.current.addImg(res.data.url)
         })
 
     }
@@ -62,6 +56,9 @@ const ArticlePublish: FC = () => {
             content: content,
         })
     }
+    useEffect(() => {
+        // getUploadToken()
+    }, [])
     useEffect(() => {
         setMdRef(md)
     }, [md])
@@ -191,22 +188,21 @@ const ArticlePublish: FC = () => {
             filetype = 'jpg'
         }
         // 重命名要上传的文件
-        const keyname = sessionStorage.getItem('username') + '-thumbnail-' + new Date().getTime() + '.' + filetype
 
-        getQNToken().then(res => {
-            const formdata = new FormData()
-            formdata.append('file', req.file)
-            formdata.append('token', res.data)
-            formdata.append('key', keyname)
-            // 获取到凭证之后再将文件上传到七牛云空间
-            uploadToQN(domain, formdata).then((result: { key: string; }) => {
-                let avatar = 'http://' + qiniuaddr + '/' + result.key
-                form.setFieldsValue({
-                    thumbnail: avatar
-                })
-                setThumbnail(avatar)
+        let filename = sessionStorage.getItem('username') + '-content-' + new Date().getTime() + '.' + filetype;
+        const keyname = import.meta.env.VITE_DEV === "production" ? filename : import.meta.env.VITE_DEV + '_' + filename;
+        const formdata = new FormData()
+        formdata.append('file', req.file)
+        formdata.append('fileName', keyname)
+        formdata.append('type', 'article')
+        uploadFiles(formdata).then(res => {
+            // mdRef.current.addImg(res.data.url)
+            form.setFieldsValue({
+                thumbnail: res.data.url
             })
+            setThumbnail(res.data.url)
         })
+
     }
     // 图片上传前
     const beforeUpload = (file: any, fileList: any) => {

@@ -24,6 +24,7 @@
     "i18next": "^24.0.2",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^3.0.1",
+    "imagekitio-react": "^4.2.0",
     "marked": "^15.0.4",
     "marked-highlight": "^2.2.1",
     "md5": "^2.3.0",

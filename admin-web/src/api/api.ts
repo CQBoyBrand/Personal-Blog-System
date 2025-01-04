@@ -15,6 +15,7 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
         if (token) {
             config.headers.Authorization = `Bearer ${token}`
         }
+        console.log(config.headers)
     return config;
 }, (error: AxiosError) => {
     return Promise.reject(error);
@@ -40,30 +41,31 @@ class HttpRequest {
             })
         });
     }
-    get<T = any>(url: string, config?: AxiosRequestConfig): Promise<IResult<T>>{
+    get<T = any>(url: string, params?: AxiosRequestConfig, options?: any): Promise<IResult<T>>{
         return this.request({
             url,
             data: {
-                ...config
+                ...params
             },
+            ...options,
             method: "GET"
         })
     }
-    post<T = any>(url: string, config?: AxiosRequestConfig): Promise<IResult<T>>{
+    post<T = any>(url: string, params?: AxiosRequestConfig, options?: any): Promise<IResult<T>>{
         return this.request({
             url,
-            data: {
-                ...config
-            },
+            data: params,
+            ...options,
             method: "POST"
         })
     }
-    put<T = any>(url: string, config: AxiosRequestConfig): Promise<IResult<T>>{
+    put<T = any>(url: string, params: AxiosRequestConfig,options?: any): Promise<IResult<T>>{
         return this.request({
             url,
             data: {
-                ...config
+                ...params
             },
+            ...options,
             method: "PUT"
         })
     }

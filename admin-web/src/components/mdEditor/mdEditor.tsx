@@ -4,17 +4,12 @@ import hljs from 'highlight.js'
 import { markedHighlight } from "marked-highlight";
 import './mdEditor.scss'
 import './preview.scss'
-// import 'codemirror/lib/codemirror.css'
-// import 'codemirror/theme/darcula.css'
-// import 'codemirror/addon/fold/foldgutter.css'
 
 import { basicSetup } from 'codemirror';
 import { EditorView , keymap} from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 import {defaultKeymap} from "@codemirror/commands"
 import { markdown } from '@codemirror/lang-markdown';
-// import { javascript } from '@codemirror/lang-javascript';
-// import { vue } from '@codemirror/lang-vue';
 import {languages} from "@codemirror/language-data";
 
 const Hilighter = markedHighlight({
@@ -34,28 +29,29 @@ marked.use({
 
 async function mdRender(val: string){
     // const replacer = (match) => emoji.emojify(match)
-let html = await marked.parse(val)
+    let html = await marked.parse(val)
     return html.replace(/<a/g, '<a target="_blank"')
 }
 
 function MdEditor(props: any) {
     const inputRef = useRef<any>(null) // 获取 输入框 dom
     const mdContainer = useRef(null) // 获取 md 容器 dom
-    const fileUpload = useRef<HTMLInputElement>(null)  // 获取 上产文件的input dom
+    const fileUpload = useRef<any>()  // 获取 上产文件的input dom
     const previewDom = useRef<any>(null)  // 获取 预览 dom
     const [showUpload, setShowUpload] = useState(false) // 上传图片按钮处理
     const [fullscreen, setFullscreen] = useState(false) // 全屏
     const [mdEditor, setMdEditor] = useState<any>()
-    const [linkToNewPage, setLinkToNewPage] = useState(true)
+    // const [linkToNewPage, setLinkToNewPage] = useState(true)
     const [previewContent, setPreviewContent] = useState<any>() // 预览内容
     // const [mdVal, setMdVal] = useState('') // 预览内容
     useEffect(() => {
-        setShowUpload(false)
+        setShowUpload(true)
           const state = EditorState.create({
               doc: props.defaultMd,
               extensions: [
                 basicSetup,
                 keymap.of(defaultKeymap),
+                EditorView.lineWrapping,
                 markdown({codeLanguages: languages}),
                 EditorView.updateListener.of(async (v) => {
                      //监测得到的最新代码,并渲染到预览界面 
@@ -79,6 +75,48 @@ function MdEditor(props: any) {
             view.destroy();
         }   
     }, [inputRef, props])
+    const insertContentIntoEditor = (type: string, content?: string, ) => {
+        const { state, dispatch } = mdEditor;
+        const currentPos = state.selection.main.head;
+        let insertTxt = "";
+        let lastPos = currentPos;
+        switch (type) {
+            case "image":
+                insertTxt = content ? `\n![图片描述](${content})\n` : '\n![]()\n';
+                lastPos = currentPos + insertTxt.length;
+                break;
+            case "link":
+                insertTxt = `[]()`;
+                lastPos = currentPos + insertTxt.length;
+                break;
+            case "code":
+                insertTxt = `\`\`\`\n\n\`\`\``;
+                lastPos = currentPos + 3;
+                break;
+            case "lineCode":
+                insertTxt = `\`\``;
+                lastPos = currentPos + 1;
+                break;
+            case "del":
+                insertTxt = `~~~~`;
+                lastPos = currentPos + 2;
+                break;
+            case "table":
+                insertTxt = `\n|     |\n| --- |\n|     |\n`;
+                break;
+            default:
+                break;
+        }
+        dispatch({
+          changes: {
+            from: currentPos,
+            to: currentPos,  // 插入位置到当前位置（没有选区）
+            insert: insertTxt,
+          },
+          selection: { anchor: lastPos },  // 插入后将光标移至文本末尾
+        });
+        mdEditor.focus()
+    }
 
     // 上传图片-上传
     const fileChange = (e: any) => {
@@ -98,76 +136,45 @@ function MdEditor(props: any) {
 
     // 插入图片链接
     const insertImage = (url?: string) => {
-        let position = mdEditor.getCursor() // 获取当前光标位置 {line: 0,ch: 0}
-        let hasUrl = `![图片描述](${url})`
-        let insertTxt = url ? hasUrl : '![]()'
-        mdEditor.replaceSelection(insertTxt, position) // 在光标位置插入数据
-        let posCh = url ? hasUrl.length : 4
-        position.ch += posCh
-        mdEditor.focus()
-        mdEditor.setCursor(position) // 设置光标位置
+        insertContentIntoEditor("image", url);
+        fileUpload.current.value = '';
     }
     // 插入代码
     const insertCode = async () => {
-        let position = mdEditor.getCursor() // 获取当前光标位置 {line: 0,ch: 0}
-        let insertTxt = '```\n\n```'
-        mdEditor.replaceSelection(insertTxt, position) // 在光标位置插入数据
-        position.ch += 3
-        mdEditor.focus()
-        mdEditor.setCursor(position) // 设置光标位置
+        insertContentIntoEditor("code");
     }
     // 插入行内代码
     const insertLineCode = () => {
-        let position = mdEditor.getCursor() // 获取当前光标位置 {line: 0,ch: 0}
-        let insertTxt = '``'
-        mdEditor.replaceSelection(insertTxt, position) // 在光标位置插入数据
-        position.ch += 1
-        mdEditor.focus()
-        mdEditor.setCursor(position) // 设置光标位置
+        insertContentIntoEditor("lineCode");
     }
     // 插入链接
     const insertLink = () => {
-        let position = mdEditor.getCursor() // 获取当前光标位置 {line: 0,ch: 0}
-        let insertTxt = `[Link]( 'Link title')`
-        mdEditor.replaceSelection(insertTxt, position) // 在光标位置插入数据
-        position.ch += 7
-        mdEditor.focus()
-        mdEditor.setCursor(position) // 设置光标位置
+        insertContentIntoEditor("link");
     }
     // 删除
     const insertDel = () => {
-        let position = mdEditor.getCursor() // 获取当前光标位置 {line: 0,ch: 0}
-        let insertTxt = '~~~~'
-        mdEditor.replaceSelection(insertTxt, position) // 在光标位置插入数据
-        position.ch += 2
-        mdEditor.focus()
-        mdEditor.setCursor(position) // 设置光标位置
+        insertContentIntoEditor("del");
     }
     // 插入表格
-    const insertTable = () => {
-        let position = mdEditor.getCursor() // 获取当前光标位置 {line: 0,ch: 0}
-        let insertTxt = `\n|     |\n| --- |\n|     |\n`
-        mdEditor.replaceSelection(insertTxt, position) // 在光标位置插入数据
-        position.ch += 3
-        mdEditor.focus()
-        mdEditor.setCursor(position) // 设置光标位置
-    }
+    // const insertTable = () => {
+    //     insertContentIntoEditor("table");
+    // }
 
     // 回退
-    const undo = () => {
-        let position = mdEditor.getCursor() // 获取当前光标位置 {line: 0,ch: 0}
-        mdEditor.undo()
-        mdEditor.focus()
-        mdEditor.setCursor(position)
-    }
-    // 撤销
-    const redo = () => {
-        let position = mdEditor.getCursor() // 获取当前光标位置 {line: 0,ch: 0}
-        mdEditor.redo()
-        console.log(position)
-        mdEditor.focus()
-        mdEditor.setCursor(position)
-    }
+    // const undo = () => {
+    //     let position = mdEditor.getCursor() // 获取当前光标位置 {line: 0,ch: 0}
+    //     mdEditor.undo()
+    //     mdEditor.focus()
+    //     mdEditor.setCursor(position)
+    // }
+    // // 撤销
+    // const redo = () => {
+    //     let position = mdEditor.getCursor() // 获取当前光标位置 {line: 0,ch: 0}
+    //     mdEditor.redo()
+    //     console.log(position)
+    //     mdEditor.focus()
+    //     mdEditor.setCursor(position)
+    // }
 
     // 全屏-开启与退出
     const handleFullScreen = () => {
@@ -241,20 +248,20 @@ function MdEditor(props: any) {
             // 父组件向该组件 markdown 中插入图片链接
             insertImage(params)
         },
-        getInputData() {
-            // 获取该组件输入的数据，返回给父组件
-            // 方便父组件拿到数据，和其他数据一起进行存储
-            return {
-                md: mdEditor.getValue(), // md 格式
-                mdToHtml: marked(mdEditor.getValue()) // md 专成 html 格式后的数据
-            }
-        }
+        // getInputData() {
+        //     // 获取该组件输入的数据，返回给父组件
+        //     // 方便父组件拿到数据，和其他数据一起进行存储
+        //     return {
+        //         md: mdEditor.getValue(), // md 格式
+        //         mdToHtml: marked(mdEditor.getValue()) // md 专成 html 格式后的数据
+        //     }
+        // }
     }))
     return (
         <div className="react-md-container" ref={mdContainer}>
             <div className='react-md-editor-toolbar'>
                 <ul className='tool-bar-lists-left'>
-                    <li onClick={insertCode}>代码</li>
+                    <li onClick={insertCode}>代码块</li>
                     <li onClick={insertLineCode}>行内代码</li>
                     <li onClick={insertLink}>链接</li>
                     <li onClick={uploadImage}>
@@ -264,14 +271,14 @@ function MdEditor(props: any) {
 
                     <li onClick={() => insertImage()}>图片链接</li>
                     <li onClick={() => insertDel()}>删除</li>
-                    <li onClick={() => insertTable()}>表格</li>
-                    <li onClick={undo}>回退</li>
-                    <li onClick={redo}>撤销</li>
+                    {/* <li onClick={() => insertTable()}>表格</li> */}
+                    {/* <li onClick={undo}>回退</li>
+                    <li onClick={redo}>撤销</li> */}
                 </ul>
                 <ul className='tool-bar-lists-right'>
                     <li onClick={() => handleFullScreen()}>{fullscreen ? '退出全屏' : '全屏'}</li>
                     <li onClick={() => handleCopyDom()}>复制DOM</li>
-                    <li className='tool-bar-setting'>
+                    {/* <li className='tool-bar-setting'>
                         <div>设置</div>
                         <div className='setting-panel'>
                             <div className='panelItem'>
@@ -283,7 +290,7 @@ function MdEditor(props: any) {
                                 </label>
                             </div>
                         </div>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
             <div className='react-md-editor-main'>
