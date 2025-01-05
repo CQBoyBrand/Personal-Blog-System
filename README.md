@@ -1,7 +1,10 @@
 # Personal-Blog-System
 
+> 好像 nodejs 17+ 不再支持 centos。选择服务器镜像可能需要注意下。
+
+> centos安装高版本nodejs网上有办法解决，请自行搜索
+
 ### 项目 master 分支 使用技术栈及版本：
-- 基础：
 - Node.js(v20.14.0) (其他node版本可能会出问题)
 - Mysql
 - Nuxt.js(v3.14.159)
@@ -9,11 +12,14 @@
 - Nest.js
 
 ### 博客线上地址：
-[http://www.brandhuang.com](http://www.brandhuang.com)
+[https://www.brandhuang.com](https://www.brandhuang.com)
+
+> 永久静态博客备份地址（部署在 netlify 上）
+[https://blog.brandhuang.com](https://blog.brandhuang.com)
 ### 分支介绍
 - **`master` 分支（默认分支）**
 
-- **`v-ts` [分支](vhttps://github.com/CQBoyBrand/Personal-Blog-System/tree/v-ts)**: 后续应该不会在更新了，项目能完整跑起来，能正常使用（如有需要，可自行克隆修改～）
+- **`v-ts` [分支](https://github.com/CQBoyBrand/Personal-Blog-System/tree/v-ts)**: 后续应该不会在更新了，项目能完整跑起来，能正常使用（如有需要，可自行克隆修改～）
 
         该分支前端使用 `Nuxt 2.4.0`，管理端使用`React 16.13.1`，服务端使用 `Nest.js`，数据库使用 `MySQL`
 
@@ -122,7 +128,7 @@
 ### 初次使用本项目请注意
 由于数据库没有初始数据，要登录后台需要先注册用户
 
-`（2020年8月更新：sql文件中内置了一条用户数据：账号：admin，密码：123; 如果没有数据，请自行注册。）`
+`（2020年8月更新： 使用admin-web时，请先自行注册一个账号。）`
 
 操作详情参考：[issues #8](https://github.com/CQBoyBrand/Koa2-nuxt-MySQL/issues/8)
 
