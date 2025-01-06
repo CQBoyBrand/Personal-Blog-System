@@ -42,8 +42,7 @@ const Friend: FC = () => {
     }, {
         title: '操作',
         width: '200px',
-        render: (row: any, record: any) => {
-            console.log(row)
+        render: (record: any) => {
             return (
                 <div>
                     <Button type="primary" onClick={() => {
@@ -207,7 +206,7 @@ const Friend: FC = () => {
 
             <Modal
                 title={modalTitle}
-                visible={visible}
+                open={visible}
                 onOk={handleOk}
                 okText='保存'
                 cancelText='取消'

@@ -154,7 +154,9 @@ npm run pm2backend:prod
  (**请执行完一个就部署一个**，因为 `dist` 文件夹会被覆盖，在本地运行的时候你会发现 `dist` 目录下可以同时存在 `frontend` 和 `backend` 两个文件夹，**但是** `build` 的时候不会！！)
  
  ### 服务器部署教程
- 1. 项目比较详细、完整的部署请看我的文章：[http://www.brandhuang.com/article/1552997590733](http://www.brandhuang.com/article/1552997590733)
+ 1. 项目比较详细、完整的部署请看我的文章：[https://www.brandhuang.com/article/1552997590733](https://www.brandhuang.com/article/1552997590733)
+
+ 1. 项目比较详细、完整的部署请看我的文章(备用地址零)：[https://blog.brandhuang.com/article/1552997590733](https://blog.brandhuang.com/article/1552997590733)
  
  2. 项目比较详细、完整的部署请看我的文章(备用地址一)：[https://juejin.im/post/6844903558895124488](https://juejin.im/post/6844903558895124488)
   

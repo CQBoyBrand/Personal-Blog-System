@@ -117,8 +117,7 @@ const Comment: FC = () => {
             },
             {
                 title: '内容',
-                render: (v: any, r: any) => {
-                    console.log(v);
+                render: (r: any) => {
                     return (
                         <div>
                             {
@@ -170,8 +169,7 @@ const Comment: FC = () => {
             {
                 title: '操作',
                 width: 100,
-                render: (row: any, record: any) => {
-                    console.log(row)
+                render: (record: any) => {
                     return (
                         <div>
                             {record.isChecked === 0 ?

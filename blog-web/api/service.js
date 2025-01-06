@@ -5,6 +5,22 @@ const tagPrefix = '/tag'
 const commentPrefix = '/comment'
 const linkPrefix = '/link'
 const configPrefix = '/config'
+const visitPrefix = '/visit'
+const statisticsPrefix = '/sticstatis'
+// 发送客户端信息到服务端
+export function setVisitInfo() {
+  return useHttp({
+    url: visitPrefix + '/setVisitInfo',
+    method: 'post',
+  })
+}
+// 获取网站统计信息
+export function getStatisticsInfo() {
+  return useHttp({
+    url: statisticsPrefix + '/getStatisticsInfo',
+    method: 'post',
+  })
+}
 // 获取网站配置
 export function getSiteConfig(params) {
   return useHttp({

@@ -7,6 +7,8 @@ import { CategoryModule } from './category/category.module';
 import { CommentModule } from './comment/comment.module';
 import { LinkModule } from './link/link.module';
 import { SiteConfigModule } from './site-config/site-config.module';
+import { IpModule } from './ip/ip.module';
+import { StatisticsModule } from './statistics/statistics.module';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { SiteConfigModule } from './site-config/site-config.module';
     CommentModule,
     LinkModule,
     SiteConfigModule,
+    IpModule,
+    StatisticsModule
   ],
   controllers: [],
   providers: [],

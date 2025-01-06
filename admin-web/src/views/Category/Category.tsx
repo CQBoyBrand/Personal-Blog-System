@@ -15,7 +15,7 @@ const Category: FC = () => {
     const [total, setTotal] = useState(0)
     const [visible, setVisible] = useState(false)
     const [modalTitle, setModalTitle] = useState('添加分类')
-    const [editData, setEditData] = useState({})
+    // const [editData, setEditData] = useState({})
     const [handlerType, setHandlerType] = useState('add')
     const [currentId, setCurrentId] = useState('')
     const colums = [
@@ -70,8 +70,7 @@ const Category: FC = () => {
         }, {
             title: '操作',
             width: '200px',
-            render: (row: any, record: any) => {
-                console.log(row)
+            render: (record: any) => {
                 return (
                     <div>
                         <Button type="primary" onClick={() => {
@@ -142,7 +141,7 @@ const Category: FC = () => {
         setModalTitle('编辑分类')
         setVisible(true)
         setHandlerType('edit')
-        setEditData(info)
+        // setEditData(info)
         setCurrentId(info.id)
         setFormData(info)
     }
@@ -163,7 +162,7 @@ const Category: FC = () => {
     }
 
     useEffect(() => {
-        console.log(editData)
+        // console.log(editData)
         getCategoryList()
     }, [])
     const pageChange = (page: any) => {
@@ -172,7 +171,7 @@ const Category: FC = () => {
     }
 
     const handleCancel = () => {
-        setEditData({})
+        // setEditData({})
         setVisible(false)
     }
     const handleOk = async () => {
@@ -218,7 +217,7 @@ const Category: FC = () => {
                 <Button type="primary" onClick={() => {
                     setModalTitle('添加分类')
                     setVisible(true)
-                    setEditData({})
+                    // setEditData({})
                     setCurrentId('')
                     setHandlerType('add')
                     setFormData()

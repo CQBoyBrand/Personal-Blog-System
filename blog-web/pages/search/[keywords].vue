@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-  import { getArtByKeyword } from '~/api/service';
+  import { getArtByKeyword, setVisitInfo } from '~/api/service';
 import list from '../../components/articleList'
   const { params } = useRoute()
   const keywords = params.keywords;
@@ -20,6 +20,7 @@ import list from '../../components/articleList'
     currentPage: page || 1,
     limit: 10
   })
+  setVisitInfo()
 </script>
 
 <style  lang="scss">

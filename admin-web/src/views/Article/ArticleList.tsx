@@ -1,6 +1,6 @@
 import {FC, useEffect, useState} from "react";
 import {useNavigate} from 'react-router-dom'
-import {Button, message, Modal, Table, Tag} from "antd";
+import {Button, message, Modal, Table, Tag, Tabs} from "antd";
 import {ExclamationCircleOutlined} from '@ant-design/icons'
 import {timestampToTime} from "@/utils/utils";
 import {getArticleList, updateArtStatus} from "../../api/modules/article";
@@ -14,6 +14,7 @@ const ArticleList: FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [limit, setLimit] = useState(10)
     const [total, setTotal] = useState(0)
+    const [currentTab, setCurrentTab] = useState("1")
     const columns = [
         {title: '文章标题', dataIndex: 'artTitle', key: 'artTitle'},
         {
@@ -66,9 +67,9 @@ const ArticleList: FC = () => {
         {
             title: '操作',
             width: '200px',
-            render: (row: any, record: any) => {
-                console.log("row=", row)
-                console.log("record=", record)
+            render: (record: any) => {
+                // console.log("row=", row)
+                // console.log("record=", record)
                 return (
                     <div>
                         <Button type="primary" onClick={() => {
@@ -97,7 +98,8 @@ const ArticleList: FC = () => {
     const getArticleListHandler = (page?: any, pageSize?: any) => {
         let params = {
             currentPage: page || currentPage,
-            limit: pageSize || limit
+            limit: pageSize || limit,
+            status: currentTab
         }
         getArticleList(params).then(res => {
             let result = res.data
@@ -113,8 +115,9 @@ const ArticleList: FC = () => {
     }
 
     useEffect(() => {
-        getArticleListHandler()
-    }, [])
+        setCurrentPage(1)
+        getArticleListHandler(1)
+    }, [currentTab])
     const pageChange = (page: any, pageSize: any) => {
         setCurrentPage(page)
         setLimit(pageSize)
@@ -199,9 +202,25 @@ const ArticleList: FC = () => {
             },
         });
     }
-
+    const tabChange = (key: string) => {
+        setCurrentTab(key)
+      };
     return (
         <div className='wrapper-div'>
+            <Tabs
+                items={[
+                    {
+                        key: '1',
+                        label: '已发布',
+                    },
+                    {
+                        key: '0',
+                        label: '未发布',
+                    }
+                ]}
+                defaultActiveKey={currentTab}
+                onChange={tabChange}
+            />
             <Table
                 columns={columns}
                 rowKey='id'

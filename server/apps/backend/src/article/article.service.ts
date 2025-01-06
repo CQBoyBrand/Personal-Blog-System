@@ -94,7 +94,7 @@ export class ArticleService {
             from article as A
             left join tag as T
             on FIND_IN_SET(T.id , A.tag)
-            where A.authorId = ${params.authorId}
+            where A.authorId = ${params.authorId} and A.status = ${params.status}
             group by A.id
             ORDER BY A.cdate desc
             limit ${(params.currentPage - 1) * params.limit}, ${params.limit};
@@ -108,8 +108,18 @@ export class ArticleService {
         return articleDetail;
     }
 
-    async getArtCount(): Promise<number> {
-        return await this.articleRepository.createQueryBuilder().getCount();
+    async getArtCountByStatus(params): Promise<number> {
+        return await this.articleRepository
+        .createQueryBuilder("article")
+        .where('article.status= :status and article.authorId=:authorId', {status: params.status, authorId: params.authorId})
+        .getCount();
+    }
+
+    async getArtCount(params): Promise<number> {
+        return await this.articleRepository
+        .createQueryBuilder("article")
+        .where('article.authorId=:authorId', {authorId: params.authorId})
+        .getCount();
     }
 
     async deleteArticle(params): Promise<any> {

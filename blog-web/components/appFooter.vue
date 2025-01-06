@@ -1,5 +1,9 @@
 <template>
   <footer class="app-footer">
+    <div>
+      <div>自2025年1月7日开始统计</div>
+      <div>总访问IP数: {{ statisticInfo?.ip || 0 }}</div>
+    </div>
     <p>Powered By <a href="https://zh.nuxtjs.org/" rel="nofollow" target="_blank">Nuxt.js</a>，Designed By Brand</p>
     <p class="copyright">Copyright© 2017-{{currentYear}} <a href="https://github.com/CQBoyBrand" target="_blank">
       重庆崽儿Brand</a></p>
@@ -14,10 +18,11 @@
 </template>
 
 <script setup>
-import { getSiteConfig } from '~/api/service';
+import { getSiteConfig, getStatisticsInfo } from '~/api/service';
 
 const currentYear = new Date().getFullYear();
 const { data: siteConfig } = await getSiteConfig()
+const { data: statisticInfo } = await getStatisticsInfo()
 </script>
 
 <style scoped lang="scss">

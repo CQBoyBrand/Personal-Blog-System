@@ -8,6 +8,8 @@ import {Tag} from '@libs/db/entity/tag.entity';
 import {Comment} from '@libs/db/entity/comment.entity';
 import {Category} from '@libs/db/entity/category.entity';
 import {Config} from '@libs/db/entity/config.entity';
+import {Ip} from '@libs/db/entity/ip.entity';
+import {Statistic} from '@libs/db/entity/statistics.entity';
 
 const entityArr = [
     User,
@@ -17,6 +19,8 @@ const entityArr = [
     Comment,
     Category,
     Config,
+    Ip,
+    Statistic,
 ];
 
 const entity = TypeOrmModule.forFeature(entityArr);

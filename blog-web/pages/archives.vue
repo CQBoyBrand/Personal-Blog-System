@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { getArchive } from '~/api/service';
+import { getArchive, setVisitInfo } from '~/api/service';
 
   useHead({
     title: '归档 | Archives',
@@ -49,6 +49,7 @@ import { getArchive } from '~/api/service';
     const returnArtList = (obj,date) => {
       return obj[date]
     }
+    setVisitInfo()
 </script>
 
 <style lang="scss">
@@ -63,8 +64,8 @@ import { getArchive } from '~/api/service';
       text-align: center;
       padding: 15px 0;
 
-      .archive-desc {
-      }
+      // .archive-desc {
+      // }
 
       .archive-tips {
         padding-top: 8px;

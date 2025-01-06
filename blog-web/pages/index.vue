@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-  import { getArtByType } from '~/api/service';
+  import { getArtByType, setVisitInfo } from '~/api/service';
   import list from '../components/articleList'
   const route = useRoute()
   const page = route.query.page;
@@ -12,6 +12,7 @@
       artType: 'code',
       limit: 10
     });
+    setVisitInfo()
 </script>
 
 <style lang="">

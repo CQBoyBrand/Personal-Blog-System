@@ -47,7 +47,7 @@ export class ArticleController {
     @ApiBearerAuth()
     async getArticleList(@Body() params, @Req() req): Promise<any> {
         const artList = await this.articleService.getArtList({...params, authorId: req.user.id});
-        const artCount = await this.articleService.getArtCount();
+        const artCount = await this.articleService.getArtCountByStatus({...params, authorId: req.user.id});
 
         const result = {
             list: artList,
@@ -66,7 +66,7 @@ export class ArticleController {
     @ApiBearerAuth()
     async getArticleListByTag(@Body() params, @Req() req): Promise<any> {
         const artList = await this.articleService.getArtList({...params, authorId: req.user.id});
-        const artCount = await this.articleService.getArtCount();
+        const artCount = await this.articleService.getArtCount({...params, authorId: req.user.id});
 
         const result = {
             list: artList,

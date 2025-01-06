@@ -43,6 +43,8 @@
 </template>
 
 <script setup>
+import { setVisitInfo } from '~/api/service';
+
   useHead({
     title: "关于重庆崽儿Brand",
     meta: [
@@ -50,6 +52,7 @@
       { name: 'description', content: "站长的自我介绍"}
     ]
   })
+  setVisitInfo()
 </script>
 
 <style lang="scss" scoped>
