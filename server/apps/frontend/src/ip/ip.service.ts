@@ -47,9 +47,9 @@ export class IpService {
                 ipNum: visitNum + 1,
                 updateTime: currentTime
             }).then(() => {
-                 this.StatisticRepo.update(webVisitInfo.id, {
-                    ip: Number(webVisitInfo.ip) + 1
-                });
+                //  this.StatisticRepo.update(webVisitInfo.id, {
+                //     ip: Number(webVisitInfo.ip) + 1
+                // });
                 return null;
             })
         } else {
@@ -58,8 +58,8 @@ export class IpService {
             newIp.ipNum = 1;
             return await this.IpRepo.save(newIp).then(() => {
                 if(webVisitInfo) {
-                    const newStatistics: StatisticsInterface = new Statistic();
-                    newStatistics.ip = Number(statisticsInfo[0].ip) + 1
+                    // const newStatistics: StatisticsInterface = new Statistic();
+                    // newStatistics.ip = Number(statisticsInfo[0].ip) + 1
                     
                     this.StatisticRepo.update(webVisitInfo.id, {
                         ip: Number(webVisitInfo.ip) + 1
