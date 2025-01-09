@@ -36,7 +36,7 @@
       flex: 1;
     }
     .app-footer{
-      height: 94px;
+      // height: 94px;
     }
   }
 

@@ -21,6 +21,9 @@ import list from '../../components/articleList'
     limit: 10
   })
   setVisitInfo()
+  useHead({
+    title: '搜索 | Search - 重庆崽儿Brand的网络世界',
+  })
 </script>
 
 <style  lang="scss">

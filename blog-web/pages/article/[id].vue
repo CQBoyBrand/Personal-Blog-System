@@ -49,7 +49,7 @@
   const htmlData = ref("");
   htmlData.value = await mdRender(articleDetail.content)
   useHead({
-    title: articleDetail.artTitle,
+    title: articleDetail.artTitle + " - 重庆崽儿Brand的网络世界",
     meta: [
       { name: 'keywords', content: tagList.join(",") + ", " + articleDetail.abstract },
       { name: 'description', content: tagList.join(",") + ", "  + articleDetail.abstract }

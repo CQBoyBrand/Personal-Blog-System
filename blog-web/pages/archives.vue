@@ -28,11 +28,7 @@
 import { getArchive, setVisitInfo } from '~/api/service';
 
   useHead({
-    title: '归档 | Archives',
-    meta: [
-      { name: 'keywords', content: '归档,Archives' },
-      { name: 'description', content: '重庆崽儿Brand的个人博客,归档 | Archives' }
-    ]
+    title: '归档 | Archives - 重庆崽儿Brand的网络世界',
   })
   const {data: archiveData} = await getArchive(); 
   let actived = ref(0)

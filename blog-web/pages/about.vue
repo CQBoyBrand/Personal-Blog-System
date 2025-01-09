@@ -46,10 +46,10 @@
 import { setVisitInfo } from '~/api/service';
 
   useHead({
-    title: "关于重庆崽儿Brand",
+    title: "关于站长和本站 | About - 重庆崽儿Brand的网络世界",
     meta: [
       { name: 'keywords', content: "重庆崽儿Brand, Brand, 重庆崽儿, 崽儿" },
-      { name: 'description', content: "站长的自我介绍"}
+      { name: 'description', content: "站长的自我介绍和本站的一些介绍"}
     ]
   })
   setVisitInfo()

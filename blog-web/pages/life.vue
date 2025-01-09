@@ -13,6 +13,9 @@ const {data: articleList} = await getArtByType({
       limit: 10
     });
     setVisitInfo()
+    useHead({
+      title: '生活随笔 | Life - 重庆崽儿Brand的网络世界',
+    })
 </script>
 
 <style lang="">

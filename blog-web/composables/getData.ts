@@ -2,13 +2,15 @@ interface IOptions {
     url: string;
     method: any;
     params?: any;
+    cache?: any;
 }
 export default async function useHttp(options: IOptions) {
-    const {url, method, params} = options;
+    const {url, method, params, cache} = options;
     const config = useRuntimeConfig()
     const baseURL = config.public.baseURL;
     const {data, error}: any = await useFetch(baseURL + url, {
         method: method,
+        server: cache,
         // body: params ? JSON.stringify(params) : null,
         onRequest: ({ request, options }) => {
             options.body = params

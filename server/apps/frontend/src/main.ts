@@ -16,7 +16,7 @@ async function bootstrap() {
       // cors: true,
   });
   // console.log("ip=", req.ip || req.headers['x-forwarded-for']?.toString() || 'Unknown IP')
-  app.set('trust proxy', 'loopback');
+  app.set('trust proxy', 1);
   app.useGlobalInterceptors(new TransformInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());
   app.use(

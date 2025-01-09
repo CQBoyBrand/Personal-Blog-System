@@ -12,6 +12,7 @@ export function setVisitInfo() {
   return useHttp({
     url: visitPrefix + '/setVisitInfo',
     method: 'post',
+    cache: false
   })
 }
 // 获取网站统计信息

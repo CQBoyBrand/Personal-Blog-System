@@ -13,6 +13,9 @@
       limit: 10
     });
     setVisitInfo()
+    useHead({
+      title: '首页 | Code - 重庆崽儿Brand的网络世界',
+    })
 </script>
 
 <style lang="">

@@ -38,6 +38,9 @@ import { getlinkList, setVisitInfo } from '~/api/service';
 // const linkList = [];
   const {data: linkList} = await getlinkList();
   setVisitInfo()
+  useHead({
+    title: '友链 | Friends - 重庆崽儿Brand的网络世界',
+  })
   // const {data: commentsListData} = await useFetch('http://localhost:3002/link/getlinkList', {
   //   method: "POST",
   // });
