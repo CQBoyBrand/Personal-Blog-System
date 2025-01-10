@@ -32,25 +32,30 @@ export class ArticleService {
         newArticle.discuss = 0;
         newArticle.status = 0;
         return await this.articleRepository.save(newArticle).then(res => {
-            if (ENV === 'production') {
-                // 百度 seo push
-                request.post({
-                    url: `http://data.zz.baidu.com/urls?site=${process.env.BAIDU_PUSH_SITE}&token=${process.env.BAIDU_PUSH_TOKEN}`,
-                    headers: {'Content-Type': 'text/plain'},
-                    body: `${process.env.BAIDU_PUSH_SITE}/article/${newArticle.id}`,
-                }, (error, response, body) => {
-                    console.log('推送结果：', body);
-                });
-            }
-            return '操作成功';
+            // if (ENV === 'production') {
+            //     // 百度 seo push
+            //     request.post({
+            //         url: `http://data.zz.baidu.com/urls?site=${process.env.BAIDU_PUSH_SITE}&token=${process.env.BAIDU_PUSH_TOKEN}`,
+            //         headers: {'Content-Type': 'text/plain'},
+            //         body: `${process.env.BAIDU_PUSH_SITE}/article/${newArticle.id}`,
+            //     }, (error, response, body) => {
+            //         console.log('推送结果：', body);
+            //     });
+            // }
+            return '文章发布成功';
         }).catch( err => {
             console.log('addArticle-err', err);
-            throw new CustomException('操作失败');
+            throw new CustomException('文章发布失败');
         });
     }
 
     async editArticle(params): Promise<any> {
+        
         const currentTime = new Date().getTime();
+        // 获取该文章的状态
+        const currentArticle = await this.articleRepository.findOne({
+            where: {id: params.id}
+        })
         return await this.articleRepository.update(params.id, {
             artTitle: params.artTitle,
             artType: params.artType,
@@ -62,7 +67,7 @@ export class ArticleService {
             thumbnail: params.thumbnail,
             editdate: currentTime,
         }).then(res => {
-            if (ENV === 'production') {
+            if (ENV === 'production' && currentArticle.status === 1) {
                 // 百度推送
                 request.post({
                     url: `http://data.zz.baidu.com/update?site=${process.env.BAIDU_PUSH_SITE}&token=${process.env.BAIDU_PUSH_TOKEN}`,
@@ -72,10 +77,10 @@ export class ArticleService {
                     console.log('百度更新结果：', body);
                 });
             }
-            return '操作成功';
+            return '文章编辑成功';
         }).catch( err => {
             console.log('editArticle-err', err);
-            throw new CustomException('操作失败');
+            throw new CustomException('文章编辑失败');
         });
     }
 
@@ -147,13 +152,13 @@ export class ArticleService {
                         });
                     }
                 }
-                return '操作成功';
+                return '文章状态修改成功';
             } else {
                 throw new CustomException('操作失败');
             }
         }).catch( err => {
             console.log('delArticle-err', err);
-            throw new CustomException('操作失败');
+            throw new CustomException('文章状态修改失败');
         });
 
     }

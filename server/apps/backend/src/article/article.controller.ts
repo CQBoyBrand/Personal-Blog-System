@@ -2,7 +2,6 @@ import {Body, Controller, HttpCode, Post, Put, UseGuards, Req} from '@nestjs/com
 import {ApiBearerAuth, ApiOperation, ApiTags} from '@nestjs/swagger';
 import {AuthGuard} from '@nestjs/passport';
 import {ArticleService} from './article.service';
-import {Article} from '@libs/db/entity/article.entity';
 import {ArticleCreateDto} from './dto/article.dto';
 
 @ApiTags('文章')
