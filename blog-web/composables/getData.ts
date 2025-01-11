@@ -5,6 +5,7 @@ interface IOptions {
     cache?: any;
 }
 export default async function useHttp(options: IOptions) {
+   
     const {url, method, params, cache} = options;
     const config = useRuntimeConfig()
     const baseURL = config.public.baseURL;

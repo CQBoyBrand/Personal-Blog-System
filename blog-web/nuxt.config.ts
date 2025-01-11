@@ -32,7 +32,9 @@ export default defineNuxtConfig({
         { name: 'baidu-site-verification', content: process.env.BAIDU_CONSOLE },
         { name: 'renderer', content: 'webkit|ie-comp|ie-stand' },
       ],
-      script: [],
+      script: [
+        {src: `https://hm.baidu.com/hm.js?${process.env.BAIDU_TONGJI}`, async: true }
+      ],
       style: [],
       link: [
          {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
