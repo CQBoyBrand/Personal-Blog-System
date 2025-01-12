@@ -1,0 +1,30 @@
+.dashboard_container {
+    .statics_container {
+        display: flex;
+        justify-content: space-around;
+        .statics_item {
+            text-align: center;
+            padding: 15px 30px;
+            border-radius: 5px;
+            .today_info {
+                display: flex;
+                align-items: end;
+                .today_num {
+                    font-size: 30px;
+                }
+                .today_item {
+                    font-size: 14px;
+                    margin-right: 15px;
+                }
+            }
+            .total_info {
+                display: flex;
+                align-items: end;
+                margin-top: 10px;
+                .totla_item {
+                    margin-right: 15px;
+                }
+            }
+        }
+    }
+}

@@ -12,6 +12,7 @@ import { SiteConfigService } from './site-config/site-config.service';
 import { SiteConfigController } from './site-config/site-config.controller';
 import { SiteConfigModule } from './site-config/site-config.module';
 import {CommentModule} from './comment/comment.module';
+import { StatisticsModule } from './statistics/statistics.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import {CommentModule} from './comment/comment.module';
       UploadModule,
       SiteConfigModule,
       CommentModule,
+      StatisticsModule
   ],
   controllers: [UploadController, SiteConfigController],
   providers: [SiteConfigService],

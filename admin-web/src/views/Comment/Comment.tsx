@@ -230,7 +230,8 @@ const Comment: FC = () => {
                     {
                         total: total,
                         onChange: pageChange,
-                        current: currentPage
+                        current: currentPage,
+                        showTotal: (total) => `共 ${total} 条数据`
                     }
                 }
                 dataSource={dataSource}
