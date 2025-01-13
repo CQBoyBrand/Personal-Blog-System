@@ -1,7 +1,7 @@
 import {FC, useEffect, useRef, useState} from "react";
 import {useNavigate, useSearchParams} from 'react-router-dom'
 import {Button, Form, Input, message, Switch, Select, Upload} from "antd";
-import {PlusOutlined} from '@ant-design/icons';
+import {LoadingOutlined, PlusOutlined} from '@ant-design/icons';
 import MdEditor from "@/components/mdEditor/mdEditor";
 import {addArticle, editArticle, getArticleDetail} from "@/api/modules/article";
 import {getAllCategory} from "@/api/modules/category";
@@ -28,6 +28,8 @@ const ArticlePublish: FC = () => {
     const [mdContent, setMdContent] = useState('') // 回填 md 数据
     const [articleType, setArticleType] = useState('add') // 编辑或者添加
     const [artDiscuss, setArtDiscuss] = useState(true) // 是否开启文章评论，默认开启
+    const [saveLoading, setSaveLoading] = useState(false);
+    const [thumbnailType, setThumbnailType] = useState("manual"); // manual ｜ upload
     const uploadImage = (file: any) => {
         console.log(artTitle);
         console.log(abstract);
@@ -46,8 +48,7 @@ const ArticlePublish: FC = () => {
         formdata.append('fileName', keyname)
         formdata.append('type', 'article')
         uploadFiles(formdata).then(res => {
-            console.log(res.data.url);
-            mdRef.current.addImg(res.data.url)
+            mdRef.current.addImg(res?.data?.url)
         })
 
     }
@@ -120,12 +121,10 @@ const ArticlePublish: FC = () => {
         })
     }, [])
     const saveData = async () => {
-        // 通过 mdRef.current.getInputData().md 获取输入的 md 格式数据
-        // 通过 mdRef.current.getInputData().mdToHtml 获取输入的 转为 HTML 格式数据
-        // let mdStr = mdRef.current.getInputData().md
 
         try {
             const values = await form.validateFields();
+            setSaveLoading(true)
             if (articleType === 'add') {
                 // 新增文章
                 let params = {
@@ -147,7 +146,7 @@ const ArticlePublish: FC = () => {
                     }
                 }).catch(err => {
                     console.log(err)
-                })
+                }).finally(() => setSaveLoading(false))
             } else if (articleType === 'edit') {
                 // 编辑文章
                 let params = {
@@ -170,17 +169,15 @@ const ArticlePublish: FC = () => {
                     }
                 }).catch(err => {
                     console.log(err)
-                })
+                }).finally(() => setSaveLoading(false))
             }
         } catch (e) {
 
         }
     }
-    //  图片上传七牛云
+    const [thumbnailLoading, setThumbnailLoading]= useState(false);
+    //  图片上传
     const uploadImg = (req: any) => {
-        // let config = {
-        //     headers: { 'Content-Type': 'multipart/form-data' }
-        // }
         let filetype = ''
         if (req.file.type === 'image/png') {
             filetype = 'png'
@@ -195,20 +192,19 @@ const ArticlePublish: FC = () => {
         formdata.append('file', req.file)
         formdata.append('fileName', keyname)
         formdata.append('type', 'article')
+        setThumbnailLoading(true);
         uploadFiles(formdata).then(res => {
-            // mdRef.current.addImg(res.data.url)
             form.setFieldsValue({
                 thumbnail: res.data.url
             })
             setThumbnail(res.data.url)
-        })
+        }).finally(() => setThumbnailLoading(false))
 
     }
     // 图片上传前
-    const beforeUpload = (file: any, fileList: any) => {
+    const beforeUpload = (file: any) => {
         const isJPG = file.type === 'image/jpeg' || file.type === 'image/png'
         const isLt2M = file.size / 1024 / 1024 < 2
-        console.log(fileList)
         if (!isJPG) {
             message.error('上传图片只能是 JPG 格式!')
         }
@@ -225,6 +221,9 @@ const ArticlePublish: FC = () => {
         beforeUpload: beforeUpload,
         customRequest: uploadImg,
     };
+    const changeThumbnailType = (type: string) => {
+        setThumbnailType(type);
+    }
     return (
         <Form form={form} className='article-p-container'>
             <div className='article-p-left'>
@@ -240,6 +239,7 @@ const ArticlePublish: FC = () => {
                     <Form.Item
                         label="发布到"
                         name="artType"
+                        style={{width: "300px"}}
                         initialValue={'code'}
                         rules={[{required: true, message: '请选择发布板块'}]}
                     >
@@ -312,33 +312,50 @@ const ArticlePublish: FC = () => {
                         }
                     </Select>
                 </Form.Item>
-                <Form.Item
-                    label="缩略图"
-                    className='thumbnail-item'
-                    name="thumbnail"
-                >
-                    <Input size='large'
-                           placeholder="文章缩略图"
-                           style={{width: "200px"}}
-                           onChange={(e) => {
-                               setThumbnail(e.target.value)
-                           }}/>
-                </Form.Item>
-                <Form.Item
-                    className='thumbnail-item'
-                    name="thumbnail"
-                >
-                    <Upload
-                        {...props}
-                        className='upload-wrap'
+                {thumbnailType === "manual" && (
+                    <Form.Item
+                        label={(
+                            <div>
+                                <div>缩略图</div>
+                                <div className="change_thumbnail_type"  onClick={() => changeThumbnailType("upload")}>切换上传</div>
+                            </div>
+                        )}
+                        className='thumbnail-item'
+                        name="thumbnail"
                     >
-                        {thumbnail ? <div className='upload-img-div'>
-                            <img src={thumbnail} alt=""/>
-                        </div> : <div className='upload-img-div plus-icon'>
-                            <PlusOutlined/>
-                        </div>}
-                    </Upload>
-                </Form.Item>
+                        <Input size='large'
+                            placeholder="文章缩略图"
+                            style={{width: "200px"}}
+                            onChange={(e) => {
+                                setThumbnail(e.target.value)
+                            }}/>
+                    </Form.Item>
+                )}
+                 {thumbnailType === "upload" && (
+                    <Form.Item
+                        label={(
+                            <div>
+                                <div>缩略图</div>
+                                <div className="change_thumbnail_type" onClick={() => changeThumbnailType("manual")}>切换填写</div>
+                            </div>
+                        )}
+                        className='thumbnail-item'
+                        name="thumbnail"
+                    >
+                        <Upload
+                            {...props}
+                            disabled={thumbnailLoading}
+                            className='upload-wrap'
+                        >
+                            {thumbnail ? <div className='upload-img-div'>
+                                <img src={thumbnail} alt=""/>
+                            </div> : <div className='upload-img-div plus-icon'>
+                                { thumbnailLoading ? <LoadingOutlined /> : <PlusOutlined/>}
+                            </div>}
+                        </Upload>
+                    </Form.Item>
+                 )}
+                
                 <Form.Item label="评论"
                            name="artDiscuss">
                     <Switch checkedChildren="开启" unCheckedChildren="关闭" checked={artDiscuss} onChange={(e) => {
@@ -346,7 +363,7 @@ const ArticlePublish: FC = () => {
                     }}/>
                 </Form.Item>
                 <Form.Item>
-                    <Button type={"primary"} onClick={saveData}>保存</Button>
+                    <Button type={"primary"} loading={saveLoading} onClick={saveData}>保存</Button>
                 </Form.Item>
             </div>
         </Form>

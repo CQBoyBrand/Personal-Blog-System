@@ -32,8 +32,10 @@ const Comment: FC = () => {
     const [dataSource, setDataSource] = useState([])
     const [limit, setLimit] = useState(10)
     const [renderedComments, setRenderedComments] = useState<{ [key: string]: string }>({})
+    const [loading, setLoading] = useState(false);
 
     const getCommentListHandler = () => {
+        setLoading(true)
         let params = {
             currentPage: currentPage,
             limit: limit,
@@ -49,7 +51,7 @@ const Comment: FC = () => {
             }
         }).catch(err => {
             console.log(err)
-        })
+        }).finally(() => setLoading(false))
     };
     useEffect(() => {
         const renderAllComments = async () => {
@@ -226,6 +228,7 @@ const Comment: FC = () => {
             <Table
                 columns={columns}
                 rowKey='id'
+                loading={loading}
                 pagination={
                     {
                         total: total,

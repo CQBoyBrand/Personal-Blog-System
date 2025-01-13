@@ -16,6 +16,7 @@ const Tag: FC = () => {
     const [editData, setEditData] = useState({})
     const [handlerType, setHandlerType] = useState('add')
     const [currentId, setCurrentId] = useState('')
+    const [loading, setLoading] = useState(false);
     const colums = [
         {
             title: '标签名字',
@@ -129,6 +130,7 @@ const Tag: FC = () => {
         setFormData(info)
     }
     const getTagList = (page?: any, pageSize?: any) => {
+        setLoading(true);
         let params = {
             currentPage: page || currentPage,
             limit: pageSize || limit
@@ -141,7 +143,7 @@ const Tag: FC = () => {
                     setTotal(result.total)
                 }
             }
-        })
+        }).finally(() => setLoading(false))
     }
 
     useEffect(() => {
@@ -210,6 +212,7 @@ const Tag: FC = () => {
             </div>
             <Table
                 rowKey='id'
+                loading={loading}
                 pagination = {
                     {
                         total: total,

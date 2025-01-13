@@ -15,6 +15,7 @@ const Friend: FC = () => {
     const [editData, setEditData] = useState({})
     const [handlerType, setHandlerType] = useState('add')
     const [currentId, setCurrentId] = useState('')
+    const [loading, setLoading] = useState(false);
     const colums = [
         {
         title: '网站名字',
@@ -113,6 +114,7 @@ const Friend: FC = () => {
         setFormData(info)
     }
     const getUrllList = (page?: any, pageSize?: any) => {
+        setLoading(true)
         let params = {
             currentPage: page || currentPage,
             limit: pageSize || limit
@@ -125,7 +127,7 @@ const Friend: FC = () => {
                     setTotal(result.total)
                 }
             }
-        })
+        }).finally(() => setLoading(false))
     }
 
     useEffect(() => {
@@ -194,6 +196,7 @@ const Friend: FC = () => {
             </div>
             <Table
                 rowKey='id'
+                loading={loading}
                 pagination = {
                     {
                         total: total,

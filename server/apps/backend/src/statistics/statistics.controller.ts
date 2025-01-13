@@ -15,6 +15,6 @@ export class StatisticsController {
     @HttpCode(200)
     async getStatisticsInfo(): Promise<any> {
         const statisticsInfo = await this.StatisticsService.getStatisticsInfo();
-        return statisticsInfo[0];
+        return statisticsInfo;
     }
 }

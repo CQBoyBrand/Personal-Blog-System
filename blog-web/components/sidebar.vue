@@ -187,7 +187,7 @@ import { getFontTagList, getArticleHot, getFontCategoryList } from '~/api/servic
         .contact-detail{
           float: left;
           a{
-            color: #409EFF;
+            color: #0054e6;
             cursor: pointer;
           }
         }

@@ -4,6 +4,9 @@
   height: 100%;
   overflow: auto;
   flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #eee;
+  box-sizing: border-box;
 }
 
 .react-md-editor-toolbar{
@@ -68,6 +71,12 @@
   height: 100%;
   overflow: auto;
   position: relative;
+}
+.react-md-editor-input {
+  border-right: 1px solid #eee;
+}
+.react-md-editor-preview {
+  border-left: 1px solid #eee;
 }
 .cm-editor{
   height: 100%!important;

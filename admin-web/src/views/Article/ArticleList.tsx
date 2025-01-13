@@ -15,6 +15,7 @@ const ArticleList: FC = () => {
     const [limit, setLimit] = useState(10)
     const [total, setTotal] = useState(0)
     const [currentTab, setCurrentTab] = useState("1")
+    const [loading, setLoading] = useState(false);
     const columns = [
         {title: '文章标题', dataIndex: 'artTitle', key: 'artTitle'},
         {
@@ -101,6 +102,7 @@ const ArticleList: FC = () => {
             limit: pageSize || limit,
             status: currentTab
         }
+        setLoading(true);
         getArticleList(params).then(res => {
             let result = res.data
             if (res.code === 200) {
@@ -111,6 +113,8 @@ const ArticleList: FC = () => {
             }
         }).catch(err => {
             console.log(err)
+        }).finally(() => {
+            setLoading(false);
         })
     }
 
@@ -224,6 +228,7 @@ const ArticleList: FC = () => {
             <Table
                 columns={columns}
                 rowKey='id'
+                loading={loading}
                 pagination={
                     {
                         total: total,

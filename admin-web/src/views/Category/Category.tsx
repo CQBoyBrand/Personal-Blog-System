@@ -18,6 +18,7 @@ const Category: FC = () => {
     // const [editData, setEditData] = useState({})
     const [handlerType, setHandlerType] = useState('add')
     const [currentId, setCurrentId] = useState('')
+    const [loading, setLoading] = useState(false);
     const colums = [
         {
             title: '分类名字',
@@ -146,6 +147,7 @@ const Category: FC = () => {
         setFormData(info)
     }
     const getCategoryList = (page?: any) => {
+        setLoading(true)
         let params = {
             currentPage: page || currentPage,
             limit: limit
@@ -158,7 +160,7 @@ const Category: FC = () => {
                     setTotal(result.total)
                 }
             }
-        })
+        }).finally(() => setLoading(false))
     }
 
     useEffect(() => {
@@ -227,6 +229,7 @@ const Category: FC = () => {
             </div>
             <Table
                 rowKey='id'
+                loading={loading}
                 pagination = {
                     {
                         total: total,

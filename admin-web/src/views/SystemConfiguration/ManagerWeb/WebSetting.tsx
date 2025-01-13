@@ -10,6 +10,7 @@ const WebSetting: FC = () => {
     const [id, setId] = useState()
     const [configType, setConfigType] = useState('add')
     const [discussStatus, setDiscussStatus] = useState(false)
+    const [loading, setLoading] = useState(false);
 
 
     const getConfigHandler = () => {
@@ -43,11 +44,12 @@ const WebSetting: FC = () => {
         // }
         try {
             const values = await form.validateFields();
+            setLoading(true)
             if(configType === 'add') {
                 addConfig(values).then(() => {
                     message.success('操作成功')
                     getConfigHandler()
-                })
+                }).finally(() => setLoading(false))
             } else if (configType === 'edit') {
                 editConfig({
                     id: id,
@@ -59,7 +61,7 @@ const WebSetting: FC = () => {
                     } else {
                         message.error(res.message)
                     }
-                })
+                }).finally(() => setLoading(false))
             }
         } catch (errorInfo) {
             console.log('Failed:', errorInfo);
@@ -98,7 +100,7 @@ const WebSetting: FC = () => {
                     }}/>
                 </Form.Item>
                 <Form.Item>
-                    <Button style={{marginLeft: '100px'}} type="primary" htmlType="submit" onClick={saveWebInfo}>
+                    <Button loading={loading} style={{marginLeft: '100px'}} type="primary" htmlType="submit" onClick={saveWebInfo}>
                         {configType === 'add' ? '保存' : '更新'}
                     </Button>
                 </Form.Item>

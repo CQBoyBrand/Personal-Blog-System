@@ -20,6 +20,7 @@ const UserSetting: FC = () => {
         signature: '',
         newpass: ''
     })
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         const getUserInfo = sessionStorage.getItem('userInfo') ? JSON.parse(sessionStorage.getItem('userInfo') as string) : {}
         setNewUserInfo(getUserInfo)
@@ -34,9 +35,6 @@ const UserSetting: FC = () => {
 
     //  图片上传七牛云
     const uploadImg = (req:any) => {
-        // let config = {
-        //     headers: { 'Content-Type': 'multipart/form-data' }
-        // }
         let filetype = ''
         if (req.file.type === 'image/png') {
             filetype = 'png'
@@ -56,23 +54,6 @@ const UserSetting: FC = () => {
             })
             setAvatar(avatar)
         })
-        // // 重命名要上传的文件
-        // const keyname = sessionStorage.getItem('username') + '-' + new Date().getTime()  + '.' + filetype
-
-        // getQNToken().then(res => {
-        //         const formdata = new FormData()
-        //         formdata.append('file', req.file)
-        //         formdata.append('token', res.data)
-        //         formdata.append('key', keyname)
-        //         // 获取到凭证之后再将文件上传到七牛云空间
-        //         uploadToQN(domain, formdata).then( (result: { key: string; }) => {
-        //             let avatar = 'http://' + qiniuaddr + '/' + result.key
-        //             form.setFieldsValue({
-        //                 avatar:avatar
-        //             })
-        //             setAvatar(avatar)
-        //         })
-        // })
     }
     // 图片上传前
     const beforeUpload = (file: any, fileList: any) => {
@@ -93,6 +74,7 @@ const UserSetting: FC = () => {
     const saveUserInfo = async () => {
         try {
             const values = await form.validateFields();
+            setLoading(true)
             let postData = {
                 id: newUserInfo.id,
                 password: md5(values.oldpass),
@@ -125,8 +107,7 @@ const UserSetting: FC = () => {
                 } else {
                     message.error(res.message)
                 }
-            })
-            console.log('Success:', values);
+            }).finally(() => setLoading(false))
         } catch (errorInfo) {
             console.log('Failed:', errorInfo);
         }
@@ -208,7 +189,7 @@ const UserSetting: FC = () => {
                         <Input size='large'/>
                     </Form.Item>
                     <Form.Item>
-                        <Button style={{marginLeft: '100px'}} type="primary" htmlType="submit" onClick={saveUserInfo}>
+                        <Button loading={loading} style={{marginLeft: '100px'}} type="primary" htmlType="submit" onClick={saveUserInfo}>
                             保存
                         </Button>
                     </Form.Item>

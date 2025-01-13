@@ -36,7 +36,7 @@ async function mdRender(val: string){
 function MdEditor(props: any) {
     const inputRef = useRef<any>(null) // 获取 输入框 dom
     const mdContainer = useRef(null) // 获取 md 容器 dom
-    const fileUpload = useRef<any>()  // 获取 上产文件的input dom
+    const fileUpload = useRef<any>()  // 获取 上传文件的input dom
     const previewDom = useRef<any>(null)  // 获取 预览 dom
     const [showUpload, setShowUpload] = useState(false) // 上传图片按钮处理
     const [fullscreen, setFullscreen] = useState(false) // 全屏
@@ -70,6 +70,21 @@ function MdEditor(props: any) {
               parent: inputRef.current,
               state,
           });
+
+          // 添加滚动同步逻辑
+        const editorElement = view.scrollDOM;
+        const previewElement = previewDom.current;
+
+        const syncPreviewScroll = () => {
+        const editorScrollTop = editorElement.scrollTop;
+        const editorScrollHeight = editorElement.scrollHeight - editorElement.clientHeight;
+        const scrollRatio = editorScrollTop / editorScrollHeight;
+
+        const previewScrollHeight = previewElement.scrollHeight - previewElement.clientHeight;
+        previewElement.scrollTop = scrollRatio * previewScrollHeight;
+        };
+
+        editorElement.addEventListener("scroll", syncPreviewScroll);
         setMdEditor(view)
         return () => {
             view.destroy();
@@ -247,15 +262,7 @@ function MdEditor(props: any) {
         addImg: (params: string) => {
             // 父组件向该组件 markdown 中插入图片链接
             insertImage(params)
-        },
-        // getInputData() {
-        //     // 获取该组件输入的数据，返回给父组件
-        //     // 方便父组件拿到数据，和其他数据一起进行存储
-        //     return {
-        //         md: mdEditor.getValue(), // md 格式
-        //         mdToHtml: marked(mdEditor.getValue()) // md 专成 html 格式后的数据
-        //     }
-        // }
+        }
     }))
     return (
         <div className="react-md-container" ref={mdContainer}>
@@ -270,14 +277,14 @@ function MdEditor(props: any) {
                     </li>
 
                     <li onClick={() => insertImage()}>图片链接</li>
-                    <li onClick={() => insertDel()}>删除</li>
+                    <li onClick={() => insertDel()}>删除线</li>
                     {/* <li onClick={() => insertTable()}>表格</li> */}
                     {/* <li onClick={undo}>回退</li>
                     <li onClick={redo}>撤销</li> */}
                 </ul>
                 <ul className='tool-bar-lists-right'>
                     <li onClick={() => handleFullScreen()}>{fullscreen ? '退出全屏' : '全屏'}</li>
-                    <li onClick={() => handleCopyDom()}>复制DOM</li>
+                    <li onClick={() => handleCopyDom()}>复制预览内容</li>
                     {/* <li className='tool-bar-setting'>
                         <div>设置</div>
                         <div className='setting-panel'>
