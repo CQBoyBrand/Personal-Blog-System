@@ -29,7 +29,7 @@ const ArticlePublish: FC = () => {
     const [articleType, setArticleType] = useState('add') // 编辑或者添加
     const [artDiscuss, setArtDiscuss] = useState(true) // 是否开启文章评论，默认开启
     const [saveLoading, setSaveLoading] = useState(false);
-    const [thumbnailType, setThumbnailType] = useState("manual"); // manual ｜ upload
+    const [thumbnailType, setThumbnailType] = useState("upload"); // manual ｜ upload
     const uploadImage = (file: any) => {
         console.log(artTitle);
         console.log(abstract);
