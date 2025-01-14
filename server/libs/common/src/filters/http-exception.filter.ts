@@ -9,6 +9,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
+    console.log('错误提示', exception);
     const exceptionRes: any = exception.getResponse();
     const message = exceptionRes.message || exceptionRes.errmsg // exception.response.sqlMessage;
     const code = exceptionRes.statusCode || exceptionRes.errcode // exception.status;

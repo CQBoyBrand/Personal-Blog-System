@@ -31,6 +31,7 @@ export default defineNuxtConfig({
         { name: '360-site-verification', content: process.env.QIHOO360_CONSOLE },
         { name: 'baidu-site-verification', content: process.env.BAIDU_CONSOLE },
         { name: 'renderer', content: 'webkit|ie-comp|ie-stand' },
+        { name: 'baidu_union_verify', content: process.env.BAIDU_UNION },
       ],
       script: [
         {src: `https://hm.baidu.com/hm.js?${process.env.BAIDU_TONGJI}`, async: true }

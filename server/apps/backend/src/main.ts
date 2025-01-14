@@ -16,15 +16,19 @@ async function bootstrap() {
       // cors: true,
   });
 
-  app.set('trust proxy', 'loopback');
+  app.set('trust proxy', 1);
   app.useGlobalInterceptors(new TransformInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());
   app.use(
       rateLimit({
         windowMs: 10 * 60 * 1000, // 10 minutes
-        max: 300, // limit each IP to 100 requests per windowMs
+        max: 100, // limit each IP to 100 requests per windowMs
         message: "Too many requests from this IP, please try again later.",
-        // legacyHeaders: true
+        skip: (req) => {
+          const whitelist = [process.env.SERVER_IP]; // 白名单IP
+          const clientIP = req.ip || req.headers['x-forwarded-for']?.toString() || 'Unknown IP';
+          return whitelist.includes(clientIP); // 如果IP在白名单中，跳过限制
+        },
       }),
   );
   await app.listen(process.env.ADMIN_PORT);

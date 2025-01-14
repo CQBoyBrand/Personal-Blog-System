@@ -3,7 +3,7 @@
     <div class="about-me">关于我</div>
     <div class="clearfix about-me-detail">
       <div class="about-me-left">
-        <img src="https://s.gravatar.com/avatar/d8065bea49aa2877ce13686772727711?s=80" alt="重庆崽儿Brand">
+        <img src="https://ik.imagekit.io/bdwtrkjs9a/blog-image-folder/user/admin-user-1736003946740.jpg?updatedAt=1736003951788" alt="重庆崽儿Brand">
         <h5>重庆崽儿Brand</h5>
       </div>
       <ul class="about-me-right">
@@ -20,12 +20,12 @@
     <div class="site-box">
       <div class="site-descript">
         本站当初建立，主要是自己为了使用新学的技术，因为当初在工作中一直使用的原生和 JQuery 开发，新的框架在工作中一直没有使用的机会，于是只能自己来练手了。这个博客从2017年上线至今，现在它不仅仅是我练手的站点了，也是我自己用来记录学习、工作和一切自己想记录的东西的地方。感谢访问
-        <a href="http://www.brandhuang.com">我的博客</a>。
+        <a href="https://www.brandhuang.com">我的博客</a>。
         <div>
           博客界面如果你觉得有些丑，请保留～。反正我是看心情修改。如果你有一些简约看着又不错的博客界面，可以给我留言或者邮件，我参考参考。
         </div>
         <div style="text-align: center;">
-          <img src="http://static.brandhuang.com/Hi-brand-dongtu.gif" alt="hi-brand" />
+          <img src="https://ik.imagekit.io/bdwtrkjs9a/blog-image-folder/user/Hi-brand-dongtu.gif?updatedAt=1736861966664" alt="hi-brand" />
         </div>
       </div>
       <div>
@@ -156,6 +156,6 @@ import { setVisitInfo } from '~/api/service';
     }
   }
   a{
-        color: #409EFF;
+        color: #0054e6;
       }
 </style>

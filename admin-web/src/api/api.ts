@@ -1,3 +1,4 @@
+import { message } from "antd";
 import axios from "axios";
 import type {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig} from "axios";
 
@@ -22,7 +23,12 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 axiosInstance.interceptors.response.use((res: AxiosResponse) => {
     return res;
 }, (error: AxiosError) => {
-    console.log("error", error)
+    if (error.status === 401) {
+        message.error('token过期，请重新登录')
+        sessionStorage.clear()
+        sessionStorage.clear()
+        window.location.href = '/login'
+    }
     return Promise.reject(error);
 });
 
@@ -35,7 +41,6 @@ class HttpRequest {
                 resolve(res as unknown as IResult<T>);
             })
             .catch((err) => {
-                console.log("err", err)
                 reject(err)
             })
         });
