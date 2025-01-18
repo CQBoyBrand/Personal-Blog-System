@@ -159,6 +159,25 @@ export const RouteMap: IRoute[] = [
                 ]
             },
             {
+                id: "ad",
+                key: "ad",
+                title: "ad",
+                icon: <SettingFilled />,
+                path: "ad",
+                children: [
+                    {
+                        index: true, 
+                        id: "adList",
+                        key: "adList",
+                        path: "adList",
+                        icon: <BarsOutlined />,
+                        title: "adList",
+                        element: <LazyImportComponent lazyChildren={lazy(() => import("@/views/Ad/Ad"))} />,
+                        children: []
+                    },
+                ]
+            },
+            {
                 id: "setting",
                 key: "setting",
                 title: "setting",

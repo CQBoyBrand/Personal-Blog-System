@@ -14,4 +14,6 @@ export default {
     "tagList": "Tag List",
     "link": "Link Management",
     "linkList": "Link List",
+    "ad": "Ad Management",
+    "adList": "Ad List",
 }

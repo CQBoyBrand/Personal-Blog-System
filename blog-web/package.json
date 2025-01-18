@@ -30,6 +30,7 @@
     "node-emoji": "^2.2.0",
     "nuxt": "^3.14.159",
     "pinia": "^2.2.6",
+    "union-ad-vue": "^1.0.2",
     "vue": "latest",
     "vue-router": "latest"
   },

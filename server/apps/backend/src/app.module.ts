@@ -13,6 +13,7 @@ import { SiteConfigController } from './site-config/site-config.controller';
 import { SiteConfigModule } from './site-config/site-config.module';
 import {CommentModule} from './comment/comment.module';
 import { StatisticsModule } from './statistics/statistics.module';
+import { AdModule } from './ad/ad.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { StatisticsModule } from './statistics/statistics.module';
       ArticleModule,
       UploadModule,
       SiteConfigModule,
+      AdModule,
       CommentModule,
       StatisticsModule
   ],

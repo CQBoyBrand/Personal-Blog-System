@@ -4983,6 +4983,11 @@ unimport@^3.12.0, unimport@^3.13.1:
     strip-literal "^2.1.0"
     unplugin "^1.15.0"
 
+union-ad-vue@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/union-ad-vue/-/union-ad-vue-1.0.2.tgz#9ac6a6f07c181ca4fb1155b968dc05a33cf330d0"
+  integrity sha512-bxu5c3aK7985HQlsLwRXTUr0V56tD6r4M1H+sA9AkyNPeXoqZbrgLU/7rLoL2qiKwrFZQhQ7qL3nf+eE3jPxew==
+
 universalify@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.1.tgz#168efc2180964e6386d061e094df61afe239b18d"

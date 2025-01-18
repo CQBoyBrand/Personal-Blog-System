@@ -9,6 +9,7 @@ import { LinkModule } from './link/link.module';
 import { SiteConfigModule } from './site-config/site-config.module';
 import { IpModule } from './ip/ip.module';
 import { StatisticsModule } from './statistics/statistics.module';
+import { AdModule } from './ad/ad.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { StatisticsModule } from './statistics/statistics.module';
     LinkModule,
     SiteConfigModule,
     IpModule,
+    AdModule,
     StatisticsModule
   ],
   controllers: [],

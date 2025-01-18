@@ -14,4 +14,6 @@ export default {
     "tagList": "标签列表",
     "link": "友链管理",
     "linkList": "友链列表",
+    "ad": "广告管理",
+    "adList": "广告列表",
 }

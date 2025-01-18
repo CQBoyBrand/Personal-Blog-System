@@ -3,12 +3,12 @@
     <div class="main-left">
       <NuxtPage :page-key="route => route.fullPath"/>
     </div>
-    <side class="main-side"></side>
+    <sidebar class="main-side"></sidebar>
   </main>
 </template>
 
 <script setup>
-  import side from '@/components/sidebar'
+  import sidebar from '@/components/sidebar'
 </script>
 
 <style lang="scss">

@@ -9,6 +9,7 @@ import {Comment} from '@libs/db/entity/comment.entity';
 import {Category} from '@libs/db/entity/category.entity';
 import {Config} from '@libs/db/entity/config.entity';
 import {Ip} from '@libs/db/entity/ip.entity';
+import {Ad} from '@libs/db/entity/ad.entity';
 import {Statistic} from '@libs/db/entity/statistics.entity';
 
 const entityArr = [
@@ -20,6 +21,7 @@ const entityArr = [
     Category,
     Config,
     Ip,
+    Ad,
     Statistic,
 ];
 

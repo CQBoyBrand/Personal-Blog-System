@@ -50,26 +50,32 @@
           [{{item.total}}]</NuxtLink>
       </div>
     </section>
+    <section class="module-css">
+      <Ad :ads="adList?.list || []" :interval="3000"/>
+    </section>
     <!--阿里云服务器-->
-    <section class="module-css sticky-css">
+    <!-- <section class="module-css sticky-css">
       <div class="module-title">阿里云优惠券<span style="font-size: 12px;">（新用户可获得15%补贴）</span></div>
       <div class="module-item-wrap aliyun">
         <a href="https://www.aliyun.com/minisite/goods?userCode=r2v7kr9u" target="_blank">
-          <img width="100%" height="auto" src="../assets/images/aliyun/cnodejs540-130.jpg" alt="阿里云优惠券" />
+          <img width="100%" height="100%" src="../assets/images/aliyun/cnodejs540-130.jpg" alt="阿里云优惠券" />
         </a>
       </div>
-    </section>
+    </section> -->
   </aside>
 </template>
 
 <script setup>
-import { getFontTagList, getArticleHot, getFontCategoryList } from '~/api/service';
-
+import Ad from './ad.vue';
+import { getFontTagList, getArticleHot, getFontCategoryList, getAdList } from '~/api/service';
  const {data: hotArticleList} = await getArticleHot();
 
  const {data: tagList} = await getFontTagList();
 
  const {data: categoryList} = await getFontCategoryList();
+
+
+ const {data: adList}= await getAdList();
 </script>
 
 <style lang="scss">

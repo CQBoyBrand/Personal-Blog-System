@@ -66,6 +66,11 @@ const Login: FC = () => {
                                             size='large'
                                             placeholder='登录密码'
                                             prefix={<KeyOutlined/>}
+                                            onPressEnter={(e: any) => {
+                                                if (e.target.value.trim().length > 6) {
+                                                    checkLogin()
+                                                }
+                                            }}
                                             onChange={(e) => {
                                                 setPassword(e.target.value)
                                             }}
