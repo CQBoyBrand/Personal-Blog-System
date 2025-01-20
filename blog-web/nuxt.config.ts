@@ -10,6 +10,9 @@ export default defineNuxtConfig({
   devServer: {
     port: 3100
   },
+  build: {
+    transpile: ["swiper"],
+  },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
