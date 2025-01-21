@@ -64,7 +64,7 @@ const props = defineProps({
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 
 .swiper-slide img {

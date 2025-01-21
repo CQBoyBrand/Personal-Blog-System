@@ -31,7 +31,7 @@
   })
   setVisitInfo()
   useHead({
-    title: '分类 | Category - 重庆崽儿Brand的网络世界',
+    title: `${categoryName.value} 分类 | Category - 重庆崽儿Brand的网络世界`,
   })
 </script>
 
