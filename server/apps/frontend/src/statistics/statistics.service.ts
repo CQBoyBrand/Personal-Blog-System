@@ -16,6 +16,7 @@ export class StatisticsService {
 
     async getStatisticsInfo(): Promise<any> {
         const todayIp = await this.getTodayIP();
+        const todayPv = await this.getTodayPV();
         const statisticsInfo = await this.statisticsRepo.query(`
             select
                 ip, currentIp, pv, currentPv, uv, currentUv
@@ -23,6 +24,7 @@ export class StatisticsService {
         `);
         let result = statisticsInfo[0] || {}
         result.currentIp = todayIp.length;
+        result.currentPv = todayPv[0]?.pvNum || 0;
         return result
     }
 
@@ -30,6 +32,14 @@ export class StatisticsService {
         return await this.IpRepo.query(`
             SELECT * 
                 FROM ip 
+                WHERE updateTime >= UNIX_TIMESTAMP(CURDATE()) * 1000
+                AND updateTime < UNIX_TIMESTAMP(CURDATE() + INTERVAL 1 DAY) * 1000;
+        `);
+    }
+    async getTodayPV(): Promise<any> {
+        return await this.IpRepo.query(`
+            SELECT * 
+                FROM pv 
                 WHERE updateTime >= UNIX_TIMESTAMP(CURDATE()) * 1000
                 AND updateTime < UNIX_TIMESTAMP(CURDATE() + INTERVAL 1 DAY) * 1000;
         `);

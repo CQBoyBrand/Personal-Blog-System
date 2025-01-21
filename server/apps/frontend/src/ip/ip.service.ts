@@ -5,6 +5,7 @@ import { Statistic } from '@libs/db/entity/statistics.entity';
 import {Repository} from 'typeorm';
 import { IpInterface } from './interface/ip.interface';
 import { StatisticsInterface } from '../statistics/interface/statistics.interface';
+import { Pv } from '@libs/db/entity/pv.entity';
 
 @Injectable()
 export class IpService {
@@ -13,8 +14,36 @@ export class IpService {
         private readonly IpRepo: Repository<Ip>,
         @InjectRepository(Statistic)
         private readonly StatisticRepo: Repository<Statistic>,
+        @InjectRepository(Pv)
+        private readonly PvRepo: Repository<Pv>,
     ) {}
 
+    async setPvInfo() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // 补零到两位
+        const day = String(today.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+
+        const todayPv = await this.PvRepo.query(`
+            SELECT * 
+                FROM pv 
+                WHERE updateTime >= UNIX_TIMESTAMP(CURDATE()) * 1000
+                AND updateTime < UNIX_TIMESTAMP(CURDATE() + INTERVAL 1 DAY) * 1000;
+        `);
+        if (todayPv.length === 0) {
+            const newPv: Pv = new Pv();
+            newPv.pvNum = 1;
+            newPv.cdate = formattedDate;
+            newPv.updateTime = new Date().getTime();
+            this.PvRepo.save(newPv);
+        } else {
+            this.PvRepo.update(todayPv[0].id, {
+                pvNum: Number(todayPv[0].pvNum) + 1,
+                updateTime: new Date().getTime(),
+            });
+        }
+    }
     async setIpInfo(params): Promise<any> {
 
         // 从2025年1月7日开始统计,时间戳 1736179200000
@@ -39,6 +68,8 @@ export class IpService {
             newStatistics.currentUv = 1;
             this.StatisticRepo.save(newStatistics);
         }
+
+        this.setPvInfo();
         if (existIp) {
             const currentTime = new Date().getTime();
             const visitNum = Number(existIp.ipNum)
@@ -69,3 +100,4 @@ export class IpService {
         }
     }
 }
+

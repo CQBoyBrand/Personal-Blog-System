@@ -11,6 +11,7 @@ import {Config} from '@libs/db/entity/config.entity';
 import {Ip} from '@libs/db/entity/ip.entity';
 import {Ad} from '@libs/db/entity/ad.entity';
 import {Statistic} from '@libs/db/entity/statistics.entity';
+import { Pv } from './entity/pv.entity';
 
 const entityArr = [
     User,
@@ -22,6 +23,7 @@ const entityArr = [
     Config,
     Ip,
     Ad,
+    Pv,
     Statistic,
 ];
 

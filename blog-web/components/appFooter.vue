@@ -2,7 +2,7 @@
   <footer class="app-footer">
     <div>
       <div>自2025年1月7日开始统计</div>
-      <div>总IP: {{ statisticInfo?.ip || 0 }}，今日IP: {{ statisticInfo?.currentIp || 0 }}</div>
+      <div>总IP: {{ statisticInfo?.ip || 0 }}，今日IP: {{ statisticInfo?.currentIp || 0 }}，今日PV: {{ statisticInfo?.currentPv || 0 }}</div>
     </div>
     <p style="padding: 3px 0;">Powered and Designed By Brand</p>
     <p class="copyright">Copyright© 2017-{{currentYear}} <a href="https://github.com/CQBoyBrand" target="_blank">
@@ -23,6 +23,13 @@ import { getSiteConfig, getStatisticsInfo } from '~/api/service';
 const currentYear = new Date().getFullYear();
 const { data: siteConfig } = await getSiteConfig()
 const { data: statisticInfo } = await getStatisticsInfo()
+const router = useRouter();
+
+onMounted(() => {
+  router.afterEach((to, from) => {
+    console.log('Navigated from:', from.fullPath, 'to:', to.fullPath);
+  });
+});
 </script>
 
 <style scoped lang="scss">
