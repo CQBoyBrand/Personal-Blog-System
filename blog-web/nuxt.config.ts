@@ -41,7 +41,7 @@ export default defineNuxtConfig({
       ],
       style: [],
       link: [
-         {rel: 'icon', type: 'image/x-icon', href: './favicon.ico'},
+         {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
          {rel: 'canonical', href: 'https://www.brandhuang.com'},
       ]
     },

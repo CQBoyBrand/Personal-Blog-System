@@ -140,8 +140,11 @@ const Ad: FC = () => {
         });
     }
     const setFormData = (info: any = {
-        siteName: '',
-        siteUrl: '',
+        adName: '',
+        adUrl: '',
+        adImage: '',
+        adDesc: '',
+        adPosition: 'sidebar',
     }) => {
         form.setFieldsValue(info)
     }

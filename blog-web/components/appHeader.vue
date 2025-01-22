@@ -5,8 +5,6 @@
       <div class="nav_box transition-box" v-show="isShow">
         <NuxtLink class="linkItem" to="/" >代码</NuxtLink>
         <NuxtLink class="linkItem" to="/life">生活</NuxtLink>
-        <NuxtLink class="linkItem" to="/archives">归档</NuxtLink>
-        <NuxtLink class="linkItem" to="/friends">友链</NuxtLink>
         <NuxtLink class="linkItem" to="/about">关于我</NuxtLink>
         <span class="linkItem">
           <form autocomplete="off" @submit.prevent="searchHandle">
@@ -31,7 +29,6 @@
           <nuxt-link to="/" tag="li" @click.native="menuToggle">代码</nuxt-link>
           <nuxt-link to="/life" tag="li" @click.native="menuToggle">生活</nuxt-link>
           <nuxt-link to="/archives" tag="li" @click.native="menuToggle">归档</nuxt-link>
-          <nuxt-link to="/friends" tag="li" @click.native="menuToggle">友链</nuxt-link>
           <nuxt-link to="/about" tag="li" @click.native="menuToggle">关于我</nuxt-link>
           <span>
             <form autocomplete="off" @submit.prevent="searchHandleMob" style="width: 96%;">

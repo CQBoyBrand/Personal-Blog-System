@@ -1,5 +1,17 @@
 <template>
   <aside class="sidebar">
+    <section class="module-css">
+      <div class="module-item-wrap statistics">
+        <div class="statistics_item">
+          <div class="statistics_num" @click="jumpToArchive" style="cursor: pointer;">{{ statisticInfo.totalArticles }}</div>
+          <div>全部文章</div>
+        </div>
+        <div class="statistics_item">
+          <div class="statistics_num">{{ statisticInfo.currentPv }}</div>
+          <div>今日阅读</div>
+        </div>
+      </div>
+    </section>
 <!--    联系我-->
     <section class="module-css">
       <div class="module-title">联系我</div>
@@ -50,7 +62,7 @@
           [{{item.total}}]</NuxtLink>
       </div>
     </section>
-    <section class="module-css">
+    <section class="module-css sticky-css">
       <Ad :ads="adList?.list || []" :interval="3000"/>
     </section>
   </aside>
@@ -58,7 +70,7 @@
 
 <script setup>
 import Ad from './ad.vue';
-import { getFontTagList, getArticleHot, getFontCategoryList, getAdList } from '~/api/service';
+import { getFontTagList, getArticleHot, getFontCategoryList, getAdList, getStatisticsInfo } from '~/api/service';
  const {data: hotArticleList} = await getArticleHot();
 
  const {data: tagList} = await getFontTagList();
@@ -67,6 +79,12 @@ import { getFontTagList, getArticleHot, getFontCategoryList, getAdList } from '~
 
 
  const {data: adList}= await getAdList();
+
+ const { data: statisticInfo } = await getStatisticsInfo()
+ const router = useRouter()
+ const jumpToArchive = () => {
+  router.push('/archives')
+ }
 </script>
 
 <style lang="scss">
@@ -92,6 +110,27 @@ import { getFontTagList, getArticleHot, getFontCategoryList, getAdList } from '~
     }
     .module-item{
       padding: 0 15px;
+    }
+    .statistics {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+      box-sizing: border-box;
+      .statistics_item + .statistics_item {
+        border-left: 1px solid #eee;
+      }
+      .statistics_item {
+        font-size: 14px;
+        text-align: center;
+        padding: 8px 20px;
+        box-sizing: border-box;
+        .statistics_num {
+          font-size: 18px;
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+      }
     }
     .hot{
       width: 100%;
