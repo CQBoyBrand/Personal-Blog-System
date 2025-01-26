@@ -10,9 +10,9 @@
       <a target="_blank" rel="nofollow" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50011702500392"
          style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
         <img src="@/assets/images/beian.png" style="float:left;width: 20px;height: 20px;" alt=""/>
-        <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#666;">{{ siteConfig.psr }}</p></a>
+        <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#666;">{{ siteConfig?.psr || "" }}</p></a>
     </div>
-    <p style="margin-top: 3px;"><a href="http://beian.miit.gov.cn" rel="nofollow" target="_blank">{{ siteConfig.icp }}</a></p>
+    <p style="margin-top: 3px;"><a href="http://beian.miit.gov.cn" rel="nofollow" target="_blank">{{ siteConfig?.icp || "" }}</a></p>
   </footer>
 </template>
 
@@ -21,7 +21,6 @@ import { getSiteConfig } from '~/api/service';
 
 const currentYear = new Date().getFullYear();
 const { data: siteConfig } = await getSiteConfig()
-// const { data: statisticInfo } = await getStatisticsInfo()
 
 
 </script>

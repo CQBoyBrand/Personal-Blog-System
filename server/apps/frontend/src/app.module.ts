@@ -7,7 +7,6 @@ import { CategoryModule } from './category/category.module';
 import { CommentModule } from './comment/comment.module';
 import { LinkModule } from './link/link.module';
 import { SiteConfigModule } from './site-config/site-config.module';
-import { IpModule } from './ip/ip.module';
 import { StatisticsModule } from './statistics/statistics.module';
 import { AdModule } from './ad/ad.module';
 
@@ -21,7 +20,6 @@ import { AdModule } from './ad/ad.module';
     CommentModule,
     LinkModule,
     SiteConfigModule,
-    IpModule,
     AdModule,
     StatisticsModule
   ],

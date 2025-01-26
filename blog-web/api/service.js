@@ -1,12 +1,12 @@
 import useHttp from "~/composables/getData"
+import useHttpOnlyClient from "~/composables/getDataClient"
 const articlePrefix = '/article'
 const categoryPrefix = '/category'
 const tagPrefix = '/tag'
 const commentPrefix = '/comment'
 const linkPrefix = '/link'
 const configPrefix = '/config'
-const visitPrefix = '/visit'
-const statisticsPrefix = '/sticstatis'
+const statisticsPrefix = '/statistics'
 const adPrefix = '/ad'
 // 获取广告列表
 export function getAdList() {
@@ -17,23 +17,24 @@ export function getAdList() {
     console.log(err)  
   })
 }
-// 发送客户端信息到服务端
-export function setVisitInfo() {
-  return useHttp({
-    url: visitPrefix + '/setVisitInfo',
-    method: 'post',
-    cache: false
-  }).catch((err) => {
-    console.log(err)  
-  })
-}
+// // 发送客户端信息到服务端
+// export function setVisitInfo() {
+//   return useHttp({
+//     url: visitPrefix + '/setVisitInfo',
+//     method: 'post',
+//     cache: false
+//   }).catch((err) => {
+//     console.log(err)  
+//   })
+// }
 // 获取网站统计信息
-export function getStatisticsInfo() {
-  return useHttp({
-    url: statisticsPrefix + '/getStatisticsInfo',
+export function getStatisticsInfo(params) {
+  return useHttpOnlyClient({
+    url: statisticsPrefix + '/statisticsInfo',
     method: 'post',
+    params
   }).catch((err) => {
-    console.log(err)  
+    console.log("er=",err)  
   })
 }
 // 获取网站配置

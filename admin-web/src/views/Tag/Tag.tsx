@@ -17,7 +17,7 @@ const Tag: FC = () => {
     const [handlerType, setHandlerType] = useState('add')
     const [currentId, setCurrentId] = useState('')
     const [loading, setLoading] = useState(false);
-    const colums = [
+    const colums: any = [
         {
             title: '标签名字',
             dataIndex: 'tagname',
@@ -54,6 +54,7 @@ const Tag: FC = () => {
         }, {
             title: '操作',
             width: '200px',
+            fixed: 'right',
             render: (record: any) => {
                 return (
                     <div>
@@ -212,6 +213,9 @@ const Tag: FC = () => {
             </div>
             <Table
                 rowKey='id'
+                scroll={{
+                    x: "max-content"
+                }}
                 loading={loading}
                 pagination = {
                     {

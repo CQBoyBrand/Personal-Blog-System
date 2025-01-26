@@ -96,7 +96,7 @@ const Comment: FC = () => {
         setCurrentPage(page)
         setLimit(pageSize)
     }
-    const columns = useMemo(() => {
+    const columns: any = useMemo(() => {
         const list =  [
             {
                 title: '消息id',
@@ -171,6 +171,7 @@ const Comment: FC = () => {
             {
                 title: '操作',
                 width: 100,
+                fixed: 'right',
                 render: (record: any) => {
                     return (
                         <div>
@@ -228,6 +229,10 @@ const Comment: FC = () => {
             <Table
                 columns={columns}
                 rowKey='id'
+                scroll={{
+                    x: "max-content",
+                    y: 600
+                }}
                 loading={loading}
                 pagination={
                     {

@@ -1,5 +1,5 @@
 import {FC, useEffect, useState} from "react";
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useSearchParams} from 'react-router-dom'
 import {Button, message, Modal, Table, Tag, Tabs} from "antd";
 import {ExclamationCircleOutlined} from '@ant-design/icons'
 import {timestampToTime} from "@/utils/utils";
@@ -10,14 +10,25 @@ const {confirm} = Modal;
 
 const ArticleList: FC = () => {
     const navigate = useNavigate()
+    const [searchParams] = useSearchParams();
     const [dataSource, setDataSource] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [limit, setLimit] = useState(10)
     const [total, setTotal] = useState(0)
-    const [currentTab, setCurrentTab] = useState("1")
+    const [currentTab, setCurrentTab] = useState(searchParams.get('status') || "1")
     const [loading, setLoading] = useState(false);
-    const columns = [
-        {title: '文章标题', dataIndex: 'artTitle', key: 'artTitle'},
+    const columns: any = [
+        {
+            title: '文章ID',
+            dataIndex: 'id',
+            key: 'id',
+            with: 100
+        },
+        {
+            title: '文章标题',
+            dataIndex: 'artTitle',
+            key: 'artTitle',
+        },
         {
             title: '所属板块',
             dataIndex: 'artType',
@@ -68,9 +79,8 @@ const ArticleList: FC = () => {
         {
             title: '操作',
             width: '200px',
+            fixed: 'right',
             render: (record: any) => {
-                // console.log("row=", row)
-                // console.log("record=", record)
                 return (
                     <div>
                         <Button type="primary" onClick={() => {
@@ -228,6 +238,9 @@ const ArticleList: FC = () => {
             <Table
                 columns={columns}
                 rowKey='id'
+                scroll={{
+                    x: "max-content"
+                }}
                 loading={loading}
                 pagination={
                     {

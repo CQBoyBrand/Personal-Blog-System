@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-  import { getArtByCategory, getFontCategoryList, setVisitInfo } from '~/api/service';
+  import { getArtByCategory, getFontCategoryList } from '~/api/service';
   import list from '../components/articleList'
   import { useRoute } from 'vue-router';
   const { params } = useRoute()
@@ -29,7 +29,6 @@
       categoryName.value = item.categoryname;
     }
   })
-  setVisitInfo()
   useHead({
     title: `${categoryName.value} 分类 | Category - 重庆崽儿Brand的网络世界`,
   })

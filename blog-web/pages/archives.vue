@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { getArchive, setVisitInfo } from '~/api/service';
+import { getArchive } from '~/api/service';
 
   useHead({
     title: '归档 | Archives - 重庆崽儿Brand的网络世界',
@@ -45,7 +45,6 @@ import { getArchive, setVisitInfo } from '~/api/service';
     const returnArtList = (obj,date) => {
       return obj[date]
     }
-    setVisitInfo()
 </script>
 
 <style lang="scss">

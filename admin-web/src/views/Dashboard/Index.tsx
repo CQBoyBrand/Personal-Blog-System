@@ -26,12 +26,8 @@ const Index: FC = () => {
         </div>
         <div className="statics_item">
           <div className="today_info">
-            <div className="today_item">今日UV</div>
-            <div className="today_num">{visitInfo.currentUv}</div>
-          </div>
-          <div className="total_info">
-            <div className="totla_item">总计UV</div>
-            <div>{visitInfo.uv}</div>
+            <div className="today_item">已发布</div>
+            <div className="today_num">{visitInfo.totalArticles} 篇</div>
           </div>
         </div>
         <div className="statics_item">

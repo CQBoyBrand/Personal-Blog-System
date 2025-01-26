@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-  import { getArtDetail, getComment, setVisitInfo } from "~/api/service";
+  import { getArtDetail, getComment } from "~/api/service";
   import { mdRender } from "../../utils/utils"
   let tagList = [];
   const { params } = useRoute()
@@ -55,7 +55,6 @@
       { name: 'description', content: tagList.join(",") + ", "  + articleDetail.abstract }
     ]
   })
-  setVisitInfo()
 </script>
 
 <style lang="scss">

@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { getArtByType, setVisitInfo } from '~/api/service';
+import { getArtByType } from '~/api/service';
 import list from '../components/articleList'
 const route = useRoute()
   const page = route.query.page;
@@ -12,7 +12,6 @@ const {data: articleList} = await getArtByType({
       artType: 'life',
       limit: 10
     });
-    setVisitInfo()
     useHead({
       title: '生活随笔 | Life - 重庆崽儿Brand的网络世界',
     })

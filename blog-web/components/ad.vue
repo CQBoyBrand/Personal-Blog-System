@@ -1,5 +1,5 @@
 <template>
-  <div class="ad-carousel">
+  <div class="img-carousel">
     <swiper
       :initial-slide="0"
       :loop="true"
@@ -11,6 +11,7 @@
       :modules="[Autoplay, Mousewheel, Pagination, Navigation]"
       class="my-swiper"
     >
+    
       <swiper-slide v-for="(ad, index) in ads" :key="index">
         <slot :ad="ad">
           <a :href="ad.adUrl" target="_blank" rel="nofollow">
@@ -49,7 +50,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.ad-carousel {
+.img-carousel {
   width: 100%;
   height: 60px; /* 自定义广告高度 */
   overflow: hidden;

@@ -3,11 +3,11 @@
     <section class="module-css">
       <div class="module-item-wrap statistics">
         <div class="statistics_item">
-          <div class="statistics_num" @click="jumpToArchive" style="cursor: pointer;">{{ statisticInfo.totalArticles }}</div>
+          <div class="statistics_num" @click="jumpToArchive" style="cursor: pointer;">{{ loadingStatistics ? "..." : statisticInfo?.totalArticles }}</div>
           <div>全部文章</div>
         </div>
         <div class="statistics_item">
-          <div class="statistics_num">{{ statisticInfo.currentPv }}</div>
+          <div class="statistics_num">{{ loadingStatistics ? "..." : statisticInfo?.currentPv  }}</div>
           <div>今日阅读</div>
         </div>
       </div>
@@ -40,7 +40,7 @@
     <!--热门文章-->
     <section class="module-css">
       <div class="module-title">热门文章</div>
-      <ul class="module-item-wrap hot">
+      <ul class="module-item-wrap hot" v-if="hotArticleList?.length > 0">
         <li class="hot-item module-item" v-for="(item, index) in hotArticleList" :key="item.id + '_' + index"><span>{{index +
           1}}</span><NuxtLink
           :to="`/article/${item.id}`" :title="item.artTitle">{{item.artTitle}}</NuxtLink></li>
@@ -49,7 +49,7 @@
     <!--分类-->
     <section class="module-css">
       <div class="module-title">分类</div>
-      <ul class="module-item-wrap category">
+      <ul class="module-item-wrap category" v-if="categoryList?.length > 0">
         <li class="category-item module-item" v-for="(item, index) in categoryList" :key="item.id + '_' + index"><NuxtLink
           :to="`/category/${item.id}`" >{{item.categoryname}}<span>共 {{item.total}} 篇文章</span></NuxtLink></li>
       </ul>
@@ -57,13 +57,14 @@
     <!--标签-->
     <section class="module-css">
       <div class="module-title">标签</div>
-      <div class="module-item-wrap tag">
+      <div class="module-item-wrap tag" v-if="tagList?.length > 0">
         <NuxtLink :to="`/tag/${item.id}`"  v-for="(item, index) in tagList" :key="item.tagname + '_' + index"># {{item.tagname}}
           [{{item.total}}]</NuxtLink>
       </div>
     </section>
     <section class="module-css sticky-css">
-      <Ad :ads="adList?.list || []" :interval="3000"/>
+      <div style="text-align: center;line-height: 60px;font-size: 16px;color: #ddd;letter-spacing: 15px;" v-if="adList?.list.length === 0">广而告之</div>
+      <Ad v-else :ads="adList?.list || []" :interval="3000"/>
     </section>
   </aside>
 </template>
@@ -79,8 +80,15 @@ import { getFontTagList, getArticleHot, getFontCategoryList, getAdList, getStati
 
 
  const {data: adList}= await getAdList();
-
- const { data: statisticInfo } = await getStatisticsInfo()
+ const currentRoute = useRoute();
+ const statisticInfo = ref({});
+ const loadingStatistics = ref(false);
+ watch(currentRoute, async () => {
+  loadingStatistics.value = true;
+  const {data} = await getStatisticsInfo();
+  statisticInfo.value = data || {};
+  loadingStatistics.value = false;
+ }, {immediate: true});
  const router = useRouter()
  const jumpToArchive = () => {
   router.push('/archives')

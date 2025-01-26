@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-  import { getArticleListByTag, getFontTagList, setVisitInfo } from '~/api/service';
+  import { getArticleListByTag, getFontTagList } from '~/api/service';
 import list from '../../components/articleList'
   import { useRoute } from 'vue-router';
   const { params } = useRoute()
@@ -28,7 +28,6 @@ import list from '../../components/articleList'
       tagName.value = item.tagname;
     }
   })
-  setVisitInfo()
   useHead({
     title: `${tagName.value} 标签 | Tag - 重庆崽儿Brand的网络世界`,
   })

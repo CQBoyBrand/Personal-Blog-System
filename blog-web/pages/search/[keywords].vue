@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-  import { getArtByKeyword, setVisitInfo } from '~/api/service';
+  import { getArtByKeyword } from '~/api/service';
 import list from '../../components/articleList'
   const { params } = useRoute()
   const keywords = params.keywords;
@@ -20,7 +20,6 @@ import list from '../../components/articleList'
     currentPage: page || 1,
     limit: 10
   })
-  setVisitInfo()
   useHead({
     title: '搜索 | Search - 重庆崽儿Brand的网络世界',
   })

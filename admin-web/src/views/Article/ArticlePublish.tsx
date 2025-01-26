@@ -18,9 +18,9 @@ const ArticlePublish: FC = () => {
     const id = searchParams.get('id');
     const md = useRef(null)
     const [mdRef, setMdRef] = useState<any>()
-    const [artTitle, setArtTitle] = useState('') // 文章标题
-    const [abstract, setAbstract] = useState('') // 文章摘要
-    const [category, setCategory] = useState('') // 文章分类
+    // const [artTitle, setArtTitle] = useState('') // 文章标题
+    // const [abstract, setAbstract] = useState('') // 文章摘要
+    // const [category, setCategory] = useState('') // 文章分类
     const [tag, setTag] = useState() // 文章标签
     const [thumbnail, setThumbnail] = useState('') // 文章缩略图
     const [tagList, setTagList] = useState([]) // 标签列表
@@ -29,11 +29,9 @@ const ArticlePublish: FC = () => {
     const [articleType, setArticleType] = useState('add') // 编辑或者添加
     const [artDiscuss, setArtDiscuss] = useState(true) // 是否开启文章评论，默认开启
     const [saveLoading, setSaveLoading] = useState(false);
+    const [artStatus, setArtStatus] = useState(0)
     const [thumbnailType, setThumbnailType] = useState("upload"); // manual ｜ upload
     const uploadImage = (file: any) => {
-        console.log(artTitle);
-        console.log(abstract);
-        console.log(category);
         let filetype = ''
         if (file.type === 'image/png') {
             filetype = 'png'
@@ -71,13 +69,14 @@ const ArticlePublish: FC = () => {
                 id
             }).then((res: any) => {
                 if (res.code === 200) {
-                    setArtTitle(res.data.artTitle)
-                    setAbstract(res.data.abstract)
+                    // setArtTitle(res.data.artTitle)
+                    // setAbstract(res.data.abstract)
                     setMdContent(res.data.content)
-                    setCategory(res.data.category)
+                    // setCategory(res.data.category)
                     setTag(res.data.tag)
                     setThumbnail(res.data.thumbnail)
                     setArtDiscuss(!!res.data.artDiscuss)
+                    setArtStatus(res.data.status)
                     form.setFieldsValue({
                         artTitle: res.data.artTitle,
                         artType: res.data.artType,
@@ -140,7 +139,7 @@ const ArticlePublish: FC = () => {
                 addArticle(params).then(res => {
                     if (res.code === 200) {
                         message.success('文章添加成功')
-                        history('/article/articleList')
+                        history('/article/articleList?status=0')
                     } else {
                         message.error(res.message)
                     }
@@ -163,7 +162,7 @@ const ArticlePublish: FC = () => {
                 editArticle(params).then(res => {
                     if (res.code === 200) {
                         message.success('文章修改成功')
-                        history('/article/articleList')
+                        history(`/article/articleList?status=${artStatus}`)
                     } else {
                         message.error(res.message)
                     }

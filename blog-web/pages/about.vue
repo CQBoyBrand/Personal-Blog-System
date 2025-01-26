@@ -43,7 +43,6 @@
 </template>
 
 <script setup>
-import { setVisitInfo } from '~/api/service';
 
   useHead({
     title: "关于站长和本站 | About - 重庆崽儿Brand的网络世界",
@@ -52,7 +51,6 @@ import { setVisitInfo } from '~/api/service';
       { name: 'description', content: "站长的自我介绍和本站的一些介绍"}
     ]
   })
-  setVisitInfo()
 </script>
 
 <style lang="scss" scoped>

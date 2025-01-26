@@ -16,7 +16,7 @@ const Friend: FC = () => {
     const [handlerType, setHandlerType] = useState('add')
     const [currentId, setCurrentId] = useState('')
     const [loading, setLoading] = useState(false);
-    const colums = [
+    const colums: any = [
         {
         title: '网站名字',
         dataIndex: 'siteName',
@@ -43,6 +43,7 @@ const Friend: FC = () => {
     }, {
         title: '操作',
         width: '200px',
+        fixed: 'right',
         render: (record: any) => {
             return (
                 <div>
@@ -197,6 +198,9 @@ const Friend: FC = () => {
             <Table
                 rowKey='id'
                 loading={loading}
+                scroll={{
+                    x: "max-content"
+                }}
                 pagination = {
                     {
                         total: total,

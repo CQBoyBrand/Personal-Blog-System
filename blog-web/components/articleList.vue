@@ -26,7 +26,7 @@
       <div class="nextBtn page-change-btn" @click="nextPage">下一页</div>
     </div>
     <section v-else class="no-content">
-      <p>不好意思，暂无内容</p>
+      <p>暂无内容</p>
     </section>
   </article>
 </template>
@@ -60,6 +60,9 @@ const nextPage = () => {
   .articleList {
     background-color: #fff;
     padding: 15px;
+    min-height: 100px;
+    height: 100%;
+    position: relative;
     @media screen and (max-width: 768px) {
     .article-thumbnail {
       display: none;
@@ -163,7 +166,7 @@ const nextPage = () => {
     }
     .no-content{
       height: 100%;
-      position: relative;
+      // position: relative;
       p{
         position: absolute;
         top: 50%;
