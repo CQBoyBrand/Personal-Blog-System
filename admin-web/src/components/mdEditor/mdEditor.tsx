@@ -4,7 +4,7 @@ import hljs from 'highlight.js'
 import { markedHighlight } from "marked-highlight";
 import './mdEditor.scss'
 import './preview.scss'
-
+import * as emoji from 'node-emoji'
 import { basicSetup } from 'codemirror';
 import { EditorView , keymap} from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
@@ -28,8 +28,8 @@ marked.use({
 .use(Hilighter)
 
 async function mdRender(val: string){
-    // const replacer = (match) => emoji.emojify(match)
-    let html = await marked.parse(val)
+    const replacer = (match: any) => emoji.emojify(match)
+    let html = await marked.parse(val.replace(/(:.*:)/g, replacer))
     return html.replace(/<a/g, '<a target="_blank"')
 }
 
@@ -45,9 +45,10 @@ function MdEditor(props: any) {
     const [previewContent, setPreviewContent] = useState<any>() // 预览内容
     // const [mdVal, setMdVal] = useState('') // 预览内容
     useEffect(() => {
+        const replacer = (match: any) => emoji.emojify(match)
         setShowUpload(true)
           const state = EditorState.create({
-              doc: props.defaultMd,
+              doc: props.defaultMd.replace(/(:.*:)/g, replacer),
               extensions: [
                 basicSetup,
                 keymap.of(defaultKeymap),

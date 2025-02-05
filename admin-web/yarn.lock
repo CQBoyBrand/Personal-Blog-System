@@ -1187,6 +1187,11 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.21.2.tgz#e4291e3c1bc637083f87936c333cdbcad22af63b"
   integrity sha512-6UUxd0+SKomjdzuAcp+HAmxw1FlGBnl1v2yEPSabtx4lBfdXHDVsW7+lQkgz9cNFJGY3AWR7+V8P5BqkD9L9nA==
 
+"@sindresorhus/is@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.6.0.tgz#3c7c9c46e678feefe7a2e5bb609d3dbd665ffb3f"
+  integrity sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==
+
 "@swc/core-darwin-arm64@1.7.23":
   version "1.7.23"
   resolved "https://registry.yarnpkg.com/@swc/core-darwin-arm64/-/core-darwin-arm64-1.7.23.tgz#4ba141f07ba9b90cfc153582cbd874ebb11542fb"
@@ -1561,6 +1566,11 @@ chalk@^4.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+char-regex@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
+  integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
+
 charenc@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
@@ -1677,6 +1687,11 @@ delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==
+
+emojilib@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/emojilib/-/emojilib-2.4.0.tgz#ac518a8bb0d5f76dda57289ccb2fdf9d39ae721e"
+  integrity sha512-5U0rVMU5Y2n2+ykNLQqMoqklN9ICBT/KsvC1Gz6vqHbz2AXXGkG+Pm5rMWk/8Vjrr/mY9985Hi8DYzn1F09Nyw==
 
 esbuild@^0.21.3:
   version "0.21.5"
@@ -2185,6 +2200,16 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
+
+node-emoji@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-2.2.0.tgz#1d000e3c76e462577895be1b436f4aa2d6760eb0"
+  integrity sha512-Z3lTE9pLaJF47NyMhd4ww1yFTAP8YhYI8SleJiHzM46Fgpm5cnNzSl9XfzFNqbaz+VlJrIj3fXQ4DeN1Rjm6cw==
+  dependencies:
+    "@sindresorhus/is" "^4.6.0"
+    char-regex "^1.0.2"
+    emojilib "^2.4.0"
+    skin-tone "^2.0.0"
 
 node-fetch@^2.6.12:
   version "2.7.0"
@@ -2983,6 +3008,13 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
+skin-tone@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/skin-tone/-/skin-tone-2.0.0.tgz#4e3933ab45c0d4f4f781745d64b9f4c208e41237"
+  integrity sha512-kUMbT1oBJCpgrnKoSr0o6wPtvRWT9W9UKvGLwfJYO2WuahZRHOpEyL1ckyMGgMWh0UdpmaoFqKKD29WTomNEGA==
+  dependencies:
+    unicode-emoji-modifier-base "^1.0.0"
+
 source-map-js@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.0.tgz#16b809c162517b5b8c3e7dcd315a2a5c2612b2af"
@@ -3109,6 +3141,11 @@ undici-types@~6.19.8:
   version "6.19.8"
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.8.tgz#35111c9d1437ab83a7cdc0abae2f26d88eda0a02"
   integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
+
+unicode-emoji-modifier-base@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/unicode-emoji-modifier-base/-/unicode-emoji-modifier-base-1.0.0.tgz#dbbd5b54ba30f287e2a8d5a249da6c0cef369459"
+  integrity sha512-yLSH4py7oFH3oG/9K+XWrz1pSi3dfUrWEnInbxMfArOfc1+33BlGPQtLsOYwvdMy11AwUBetYuaRxSPqgkq+8g==
 
 uri-js@^4.2.2:
   version "4.4.1"
