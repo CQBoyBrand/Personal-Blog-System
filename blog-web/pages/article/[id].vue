@@ -25,7 +25,9 @@
       咦，你要找的东西好像不见了
     </div>
 
-
+    <div id="lightbox" class="lightbox">
+        <img id="lightboxImg" src="" alt="放大图片">
+    </div>
     <!--评论-->
     <!-- <comment :artDiscuss="articleDetail.artDiscuss" :commentsList="commentsList" :commentId="{id:articleDetail.id}"></comment> -->
   </div>
@@ -48,6 +50,28 @@
   tagList = articleDetail?.tag.split(",");
   const htmlData = ref("");
   htmlData.value = await mdRender(articleDetail.content)
+  onMounted(() => {
+    const preview = document.getElementById("r-md-preview");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+   // 绑定图片点击事件（放大）
+    function bindImageClickEvent() {
+      const images = preview.querySelectorAll("img");
+      images.forEach(img => {
+          img.style.cursor = "pointer"; // 让鼠标变成手型，提示可点击
+          img.addEventListener("click", () => {
+              lightboxImg.src = img.src;
+              lightbox.style.display = "flex";
+          });
+      });
+    }
+
+    // 关闭放大图片
+    lightbox.addEventListener("click", () => {
+        lightbox.style.display = "none";
+    });
+    bindImageClickEvent()
+  })
   useHead({
     title: articleDetail.artTitle + " - 重庆崽儿Brand的网络世界",
     meta: [
@@ -55,6 +79,7 @@
       { name: 'description', content: tagList.join(",") + ", "  + articleDetail.abstract }
     ]
   })
+  
 </script>
 
 <style lang="scss">
@@ -124,5 +149,16 @@
     .not-found{
       text-align: center;
     }
+    /* 图片放大样式 */
+    .lightbox {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;z-index: 99999;
+            background: rgba(0, 0, 0, 0.8); display: flex;
+            justify-content: center; align-items: center;
+            display: none; /* 默认隐藏 */
+        }
+        .lightbox img {
+            max-width: 90vw; max-height: 90vh;
+            border-radius: 10px; box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
   }
 </style>
