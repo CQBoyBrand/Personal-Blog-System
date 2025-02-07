@@ -17,4 +17,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'), // @代替src
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router-dom"],
+          antd: ["antd"],
+        },
+      },
+    },
+  },
 })

@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { useNavigate  } from "react-router-dom"
 import { Button, Card, Input, message, Space, Spin } from "antd";
-import {UserOutlined, KeyOutlined} from "@ant-design/icons/lib";
+import {UserOutlined, KeyOutlined} from "@ant-design/icons";
 import md5 from "md5"
 import "./Login.scss"
 import { login } from "@/api/modules/user";
