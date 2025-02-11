@@ -47,7 +47,19 @@
   display: none;
   font-size: 12px;
 }
-
+.emoji-box {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: wrap;
+  width: 200px;
+  .emoji-item {
+    cursor: pointer;
+    text-align: center;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+  }
+}
 .setting-panel .panelItem{
   display: flex;
   align-items: center;

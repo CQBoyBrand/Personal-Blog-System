@@ -6,6 +6,7 @@
 import {marked} from "marked";
 import * as emoji from 'node-emoji'
 import { markedHighlight } from "marked-highlight";
+import markedKatex from "marked-katex-extension";
 import hljs from 'highlight.js'
 const Hilighter = markedHighlight({
   emptyLangClass: 'hljs',
@@ -21,6 +22,9 @@ marked.use({
   breaks: true,
 })
 .use(Hilighter)
+.use(markedKatex({
+  throwOnError: false
+}))
 export async function mdRender(val){
   const replacer = (match) => emoji.emojify(match)
   let html = await marked.parse(val.replace(/(:.*:)/g, replacer))

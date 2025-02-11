@@ -1,7 +1,9 @@
 import {useEffect, useRef, useState, useImperativeHandle} from 'react';
+import { Popover } from 'antd';
 import {marked} from "marked";
 import hljs from 'highlight.js'
 import { markedHighlight } from "marked-highlight";
+import markedKatex from "marked-katex-extension";
 import './mdEditor.scss'
 import './preview.scss'
 import * as emoji from 'node-emoji'
@@ -26,6 +28,9 @@ marked.use({
   breaks: true,
 })
 .use(Hilighter)
+.use(markedKatex({
+    throwOnError: false
+  }))
 
 async function mdRender(val: string){
     const replacer = (match: any) => emoji.emojify(match)
@@ -34,6 +39,37 @@ async function mdRender(val: string){
 }
 
 function MdEditor(props: any) {
+    const emojiData = [
+        ':stuck_out_tongue_winking_eye:',
+        ':smirk:',
+        ':flushed:',
+        ':cold_sweat:',
+        ':sleeping:',
+        ':sunglasses:',
+        ':question:',
+        ':call_me_hand:',
+        ':grinning:',
+        ':heart:',
+        ':muscle:',
+        ':clap:',
+        ':new_moon_with_face:',
+        ':ox:',
+        ':beer:',
+        ':see_no_evil:',
+        ':hear_no_evil:',
+        ':speak_no_evil:',
+        ':v:',
+        ':kissing_heart:',
+        ':sob:',
+        ':unamused:',
+        ':horse:',
+        ':pill:',
+        ':confused:',
+        ':broken_heart:',
+        ':joy:',
+        ':pensive:',
+        ':sweat_smile:',
+      ]
     const inputRef = useRef<any>(null) // 获取 输入框 dom
     const mdContainer = useRef(null) // 获取 md 容器 dom
     const fileUpload = useRef<any>()  // 获取 上传文件的input dom
@@ -120,6 +156,9 @@ function MdEditor(props: any) {
             case "table":
                 insertTxt = `\n|     |\n| --- |\n|     |\n`;
                 break;
+            case "emoji":
+                insertTxt = ` ${content} `;
+                break;
             default:
                 break;
         }
@@ -171,6 +210,17 @@ function MdEditor(props: any) {
     const insertDel = () => {
         insertContentIntoEditor("del");
     }
+    // 插入 emoji
+    const insertEmoji = (data: string) => {
+        insertContentIntoEditor("emoji", data);
+    }
+    const content = (
+        <div className='emoji-box'>
+          {
+            emojiData.map(item => (<div className='emoji-item' onClick={() => insertEmoji(item)}>{emoji.emojify(item)}</div>))
+          }
+        </div>
+      );
     // 插入表格
     // const insertTable = () => {
     //     insertContentIntoEditor("table");
@@ -279,6 +329,11 @@ function MdEditor(props: any) {
 
                     <li onClick={() => insertImage()}>图片链接</li>
                     <li onClick={() => insertDel()}>删除线</li>
+                    <li>
+                    <Popover placement="topLeft" title={"常用Emoji"} content={content}>
+                        emoji
+                    </Popover>
+                    </li>
                     {/* <li onClick={() => insertTable()}>表格</li> */}
                     {/* <li onClick={undo}>回退</li>
                     <li onClick={redo}>撤销</li> */}
