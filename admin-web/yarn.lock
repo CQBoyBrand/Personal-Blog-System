@@ -2264,6 +2264,11 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
+marked-footnote@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/marked-footnote/-/marked-footnote-1.2.4.tgz#fcf534467fc9e0fb5a83bce44747cf3849561998"
+  integrity sha512-DB2Kl+wFh6YwZd70qABMY6WUkG1UuyqoNTFoDfGyG79Pz24neYtLBkB+45a7o72V7gkfvbC3CGzIYFobxfMT1Q==
+
 marked-highlight@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/marked-highlight/-/marked-highlight-2.2.1.tgz#33b7fcac24088c0e0213229b7d01044a2974670d"

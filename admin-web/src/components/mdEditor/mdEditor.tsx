@@ -13,6 +13,7 @@ import { EditorState } from '@codemirror/state';
 import {defaultKeymap} from "@codemirror/commands"
 import { markdown } from '@codemirror/lang-markdown';
 import {languages} from "@codemirror/language-data";
+import markedFootnote from 'marked-footnote'
 
 const Hilighter = markedHighlight({
   emptyLangClass: 'hljs',
@@ -30,7 +31,7 @@ marked.use({
 .use(Hilighter)
 .use(markedKatex({
     throwOnError: false
-  }))
+  })).use(markedFootnote())
 
 async function mdRender(val: string){
     const replacer = (match: any) => emoji.emojify(match)

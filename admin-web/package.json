@@ -27,6 +27,7 @@
     "imagekitio-react": "^4.2.0",
     "katex": "^0.16.21",
     "marked": "^15.0.4",
+    "marked-footnote": "^1.2.4",
     "marked-highlight": "^2.2.1",
     "marked-katex-extension": "^5.1.4",
     "md5": "^2.3.0",
