@@ -26,6 +26,7 @@
     "marked": "^15.0.3",
     "marked-code-format": "^1.1.6",
     "marked-code-preview": "^1.3.7",
+    "marked-footnote": "^1.2.4",
     "marked-highlight": "^2.2.1",
     "marked-katex-extension": "^5.1.4",
     "marked-smartypants": "^1.1.9",

@@ -30,7 +30,8 @@ marked.use({
 })
 .use(Hilighter)
 .use(markedKatex({
-    throwOnError: false
+    throwOnError: false,
+    nonStandard: true
   })).use(markedFootnote())
 
 async function mdRender(val: string){
@@ -218,7 +219,7 @@ function MdEditor(props: any) {
     const content = (
         <div className='emoji-box'>
           {
-            emojiData.map(item => (<div className='emoji-item' onClick={() => insertEmoji(item)}>{emoji.emojify(item)}</div>))
+            emojiData.map((item, index) => (<div key={`emiji_${index}`} className='emoji-item' onClick={() => insertEmoji(item)}>{emoji.emojify(item)}</div>))
           }
         </div>
       );
