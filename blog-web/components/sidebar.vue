@@ -65,6 +65,10 @@
     <section class="module-css sticky-css">
       <div style="text-align: center;line-height: 60px;font-size: 16px;color: #ddd;letter-spacing: 15px;" v-if="adList?.list.length === 0">广而告之</div>
       <Ad v-else :ads="adList?.list || []" :interval="3000"/>
+     
+    </section>
+    <section class="module-css sticky-css" style="top: 140px">
+      <UnionAd id="u6997881"></UnionAd>
     </section>
   </aside>
 </template>

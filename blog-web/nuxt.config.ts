@@ -49,7 +49,9 @@ export default defineNuxtConfig({
   modules: [
     // '@pinia/nuxt'
   ],
-  plugins: [],
+  plugins: [
+    "@/plugins/union-ad-vue.client.js"
+  ],
   css: [
     '@/assets/css/style.scss',
     '@/assets/css/preview.scss',

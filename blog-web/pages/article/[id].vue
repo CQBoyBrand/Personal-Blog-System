@@ -4,10 +4,19 @@
       <h2 class="article-title">{{articleDetail.artTitle}}</h2>
       <p class="article-info"><span>发布于：{{articleDetail.cdate.split(" ")[0]}}</span><span>{{articleDetail.pv}} 次浏览</span><span>{{commentsList.total}} 条评论</span>
       </p>
+      <div v-if="articleDetail.id" class="article-copy">
+        <div>作者：重庆崽儿Brand</div>
+        <div>
+          From: <a :href="artUrl">{{ artUrl }}</a>
+        </div>
+      </div>
       <div class="article-content" id="r-md-preview">
         <div v-html="htmlData">
 
         </div>
+      </div>
+      <div>
+        <UnionAd id="u6997881"></UnionAd>
       </div>
       <div class="article-type">
         <p>文章归类于：
@@ -42,6 +51,7 @@
   const {data: articleDetail} = await getArtDetail({
       id: articleId
     });
+    const artUrl = `https://www.brandhuang.com/article/${ articleDetail.id}` || "";
   const {data: commentsList} = await getComment({
       artId: params.id,
       currentPage: 1,
@@ -90,6 +100,15 @@
   .article_id {
     background-color: #fff;
     padding: 15px;
+    .article-copy {
+      font-size: 12px;
+      color: #999;
+      padding: 0 15px;
+      box-sizing: border-box;
+      a {
+        color: #409EFF;
+      }
+    }
     .article-title {
       text-align: center;
       font-size: 24px;
