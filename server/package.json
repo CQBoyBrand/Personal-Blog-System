@@ -43,6 +43,7 @@
     "marked": "^15.0.0",
     "md5": "^2.2.1",
     "mysql": "^2.18.1",
+    "mysql2": "^3.14.0",
     "nodemailer": "^6.9.16",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",

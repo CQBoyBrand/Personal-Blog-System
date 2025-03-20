@@ -50,6 +50,7 @@ const envPath = ENV ? `.env.${ENV}` : '.env';
                     entities: entityArr,
                     synchronize: true,
                     charset: 'utf8mb4',
+                    driver: require('mysql2')
                 };
             },
         }),
