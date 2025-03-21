@@ -199,7 +199,8 @@ const Friend: FC = () => {
                 rowKey='id'
                 loading={loading}
                 scroll={{
-                    x: "max-content"
+                    x: "max-content",
+                     y: "calc(100vh - 300px)"
                 }}
                 pagination = {
                     {

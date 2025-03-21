@@ -214,7 +214,8 @@ const Tag: FC = () => {
             <Table
                 rowKey='id'
                 scroll={{
-                    x: "max-content"
+                    x: "max-content",
+                     y: "calc(100vh - 300px)"
                 }}
                 loading={loading}
                 pagination = {

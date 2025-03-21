@@ -239,8 +239,10 @@ const ArticleList: FC = () => {
                 columns={columns}
                 rowKey='id'
                 scroll={{
-                    x: "max-content"
+                    x: "max-content",
+                     y: "calc(100vh - 300px)"
                 }}
+                className="article_table"
                 loading={loading}
                 pagination={
                     {

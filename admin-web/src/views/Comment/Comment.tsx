@@ -231,7 +231,7 @@ const Comment: FC = () => {
                 rowKey='id'
                 scroll={{
                     x: "max-content",
-                    y: 600
+                    y: "calc(100vh - 300px)"
                 }}
                 loading={loading}
                 pagination={

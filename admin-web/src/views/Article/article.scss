@@ -17,6 +17,13 @@
     margin-top: 10px;
   }
 }
+.wrapper-div {
+  display: flex;
+  flex-direction: column;
+  .article_table {
+    flex: 1;
+  }
+}
 .ant-row {
   width: 100%;
 }
