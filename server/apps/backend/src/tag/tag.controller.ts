@@ -43,15 +43,15 @@ export class TagController {
         return result;
     }
 
-    @Post('getAllTag')
+    @Post('getAllTagPublished')
     @ApiOperation({
-        summary: '获取所有标签',
+        summary: '获取所有已发布标签',
     })
     @HttpCode(200)
     @UseGuards(AuthGuard('jwt'))
     @ApiBearerAuth()
-    async getAllTag(@Body() params,  @Req() req): Promise<any> {
-        const allTagList = await this.tagService.getAllTag({...params, authorId: req.user.id});
+    async getAllTagPublished(@Body() params,  @Req() req): Promise<any> {
+        const allTagList = await this.tagService.getAllTagPublished({...params, authorId: req.user.id});
 
         return allTagList;
     }

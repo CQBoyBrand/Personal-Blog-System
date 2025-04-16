@@ -21,8 +21,8 @@ export function getTag (params?: Object) {
     .catch(e => e)
 }
 // 获取标签列表(所有，不分页)
-export function getAllTag (params?: Object) {
-  return ax.post(prefix + '/getAllTag', params)
+export function getAllTagPublished (params?: Object) {
+  return ax.post(prefix + '/getAllTagPublished', params)
     .then(res => res.data)
     .catch(e => e)
 }

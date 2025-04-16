@@ -25,8 +25,9 @@ export class TagService {
         });
     }
 
-    async getAllTag(params): Promise<TagInterface[]> {
+    async getAllTagPublished(params): Promise<TagInterface[]> {
         const tagAll = await this.tagRepository.createQueryBuilder('tag')
+            .where('tag.status= :status and tag.authorId=:authorId', {status: 1,authorId: params.authorId})
             .getMany();
         return  tagAll;
     }

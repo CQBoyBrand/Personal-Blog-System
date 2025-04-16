@@ -5,7 +5,7 @@ import {LoadingOutlined, PlusOutlined} from '@ant-design/icons';
 import MdEditor from "@/components/mdEditor/mdEditor";
 import {addArticle, editArticle, getArticleDetail} from "@/api/modules/article";
 import {getAllCategory} from "@/api/modules/category";
-import {getAllTag} from "@/api/modules/tag";
+import {getAllTagPublished} from "@/api/modules/tag";
 import { uploadFiles} from "@/api/modules/upload";
 import './article.scss'
 
@@ -108,7 +108,7 @@ const ArticlePublish: FC = () => {
             console.log(err)
         })
 
-        getAllTag().then(res => {
+        getAllTagPublished().then(res => {
             if (res.code === 200) {
                 res.data.map((item: any) => {
                     item.id = item.id.toString()
