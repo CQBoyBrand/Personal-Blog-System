@@ -67,9 +67,9 @@
       <Ad v-else :ads="adList?.list || []" :interval="3000"/>
      
     </section>
-    <section class="module-css sticky-css" style="top: 140px">
+    <!-- <section class="module-css sticky-css" style="top: 140px">
       <UnionAd id="u6997881"></UnionAd>
-    </section>
+    </section> -->
   </aside>
 </template>
 

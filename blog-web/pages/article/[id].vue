@@ -15,9 +15,9 @@
 
         </div>
       </div>
-      <div>
+      <!-- <div>
         <UnionAd id="u6997881"></UnionAd>
-      </div>
+      </div> -->
       <div class="article-type">
         <p>文章归类于：
           <span :to="`/category/${articleDetail.category}`" class="category">{{articleDetail.category}}</span>
