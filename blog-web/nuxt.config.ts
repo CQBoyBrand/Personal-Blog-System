@@ -37,7 +37,8 @@ export default defineNuxtConfig({
         { name: 'baidu_union_verify', content: process.env.BAIDU_UNION },
       ],
       script: [
-        {src: `https://hm.baidu.com/hm.js?${process.env.BAIDU_TONGJI}`, async: true }
+        {src: `https://hm.baidu.com/hm.js?${process.env.BAIDU_TONGJI}`, async: true },
+        {src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.GOOGLE_AD}`, async: true },
       ],
       style: [],
       link: [

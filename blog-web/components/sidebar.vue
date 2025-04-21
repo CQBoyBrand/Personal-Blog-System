@@ -46,6 +46,9 @@
           :to="`/article/${item.id}`" :title="item.artTitle">{{item.artTitle}}</NuxtLink></li>
       </ul>
     </section>
+    <section class="module-css">
+      <adBanner adClient="ca-pub-3799223021946643" adSlot="7905665318" style="height: 320px;" />
+    </section>
     <!--分类-->
     <section class="module-css">
       <div class="module-title">分类</div>
@@ -75,7 +78,9 @@
 
 <script setup>
 import Ad from './ad.vue';
+import adBanner from './googleAd.vue';  
 import { getFontTagList, getArticleHot, getFontCategoryList, getAdList, getStatisticsInfo } from '~/api/service';
+
  const {data: hotArticleList} = await getArticleHot();
 
  const {data: tagList} = await getFontTagList();
