@@ -35,7 +35,7 @@
     </div>
 
     <div id="lightbox" class="lightbox">
-        <img id="lightboxImg" src="" alt="放大图片">
+        <img id="lightboxImg" src="" alt="preview">
     </div>
     <!--评论-->
     <!-- <comment :artDiscuss="articleDetail.artDiscuss" :commentsList="commentsList" :commentId="{id:articleDetail.id}"></comment> -->

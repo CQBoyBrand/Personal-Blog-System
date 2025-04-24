@@ -13,7 +13,7 @@
                 class="search_input"
                 type="text" v-model="searchval" placeholder="输入搜索关键词">
               <span class="search_btn" @click="searchHandle">
-                <img :src="searchSvg" alt="" />
+                <img :src="searchSvg" alt="search icon" />
               </span>
             </div>
           </form>
@@ -23,7 +23,7 @@
     <nav class="nav_wrap clearfix" v-else>
       <h1 class="logo">重庆崽儿Brand</h1>
       <div class="menu_icon">
-        <img @click="showMenu($event)" src="@/assets/images/menu.svg" alt="" />
+        <img @click="showMenu($event)" src="@/assets/images/menu.svg" alt="menu icon" />
       </div>
         <ul class="nav_box transition-box" v-show="isShow">
           <nuxt-link to="/" tag="li" @click.native="menuToggle">代码</nuxt-link>
@@ -39,7 +39,7 @@
                   @blur="isFocus=false"
                   type="text" v-model="searchval" placeholder="输入搜索关键词">
                 <span class="search_btn" @click="searchHandle">
-                  <img :src="searchSvg" alt="" />
+                  <img :src="searchSvg" alt="search icon" />
                 </span>
               </div>
             </form>

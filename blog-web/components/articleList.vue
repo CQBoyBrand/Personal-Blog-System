@@ -2,10 +2,10 @@
   <article class="articleList">
     <section v-if="total > 0 && articleList.length > 0" class="article-item" v-for="(item, index ) in articleList" :key="index">
       <NuxtLink :to="`/article/${item.id}`">
-        <h3 class="article-title">{{item.artTitle}}</h3>
+        <h2 class="article-title">{{item.artTitle}}</h2>
         <div class="article-info-container">
           <div class="article-thumbnail" v-if="!isMobile && item.thumbnail">
-            <img :src="item.thumbnail" alt="">
+            <img :src="item.thumbnail" alt="article thumbnail">
           </div>
           <div class="article-content-wrap" :class="showImage && (item.thumbnail != '') && !isMobile ? 'fl' : ''">
             <div class="article-abstract">
@@ -75,6 +75,7 @@ const nextPage = () => {
         padding: 10px 0;
         width: 100%;
         color: #000;
+        font-size: 18px;
         // white-space: nowrap;
         // overflow: hidden;
         // text-overflow: ellipsis;
