@@ -1,4 +1,4 @@
-import {FC, useEffect, useRef, useState} from "react";
+import {FC, useEffect, useMemo, useRef, useState} from "react";
 import {useNavigate, useSearchParams} from 'react-router-dom'
 import {Button, Form, Input, message, Switch, Select, Upload} from "antd";
 import {LoadingOutlined, PlusOutlined} from '@ant-design/icons';
@@ -31,6 +31,7 @@ const ArticlePublish: FC = () => {
     const [saveLoading, setSaveLoading] = useState(false);
     const [artStatus, setArtStatus] = useState(0)
     const [thumbnailType, setThumbnailType] = useState("upload"); // manual ｜ upload
+    
     const uploadImage = (file: any) => {
         let filetype = ''
         if (file.type === 'image/png') {
@@ -55,6 +56,17 @@ const ArticlePublish: FC = () => {
             content: content,
         })
     }
+    const mdEditorEl = useMemo(() => {
+        return (
+            <MdEditor
+            defaultMd={mdContent}
+            updateContent={updateContent}
+            imgUpload={uploadImage}
+            cRef={md}
+            save
+            />
+        )
+    }, [mdContent, md]);
     useEffect(() => {
         // getUploadToken()
     }, [])
@@ -252,7 +264,7 @@ const ArticlePublish: FC = () => {
                         </Select>
                     </Form.Item>
                 </div>
-                <MdEditor defaultMd={mdContent} updateContent={updateContent} imgUpload={uploadImage} cRef={md} save/>
+               {mdEditorEl}
                 <Form.Item
                     name="content"
                     className='mdContent'
