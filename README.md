@@ -1,6 +1,6 @@
 # Personal-Blog-System
 
-> 好像 nodejs 17+ 不再支持 centos。选择服务器镜像可能需要注意下。
+> 似乎 nodejs 17+ 不再支持 centos。选择服务器镜像可能需要注意下。
 
 > centos安装高版本nodejs网上有办法解决，请自行搜索
 
@@ -123,12 +123,14 @@
         
         
         根据前面的配置，本地安装的有mysql，导入数据库文件后，应该就能把整个项目跑起来了
+
+        新建数据库时，CHARACTER 设置为 utf8mb4 ， Collation 选择 utf8mb4_unicode_ci
 ```
 
 ### 初次使用本项目请注意
-由于数据库没有初始数据，要登录后台需要先注册用户
+数据库 admin 端内置了一个用户，账号 test 密码 123
 
-`（2020年8月更新： 使用admin-web时，请先自行注册一个账号。）`
+`如果用户登不上，可自行注册一个用户`
 
 操作详情参考：[issues #8](https://github.com/CQBoyBrand/Koa2-nuxt-MySQL/issues/8)
 
@@ -162,7 +164,7 @@ npm run pm2backend:prod
   
  3. 项目比较详细、完整的部署请看我的文章(备用地址二)：[https://segmentfault.com/a/1190000013095046](https://segmentfault.com/a/1190000013095046)
  
-  我 1 核 1G 的垃圾服务器在服务器直接执行 `nest start frontend` ，直接卡爆。。。,高配置的应该没啥问题吧
+  我的垃圾服务器 在服务器直接执行 `nest start frontend` ，直接卡爆。。。,高配置的不知有没有问题
 
 ### 公众号「九零后重庆崽儿」
 
