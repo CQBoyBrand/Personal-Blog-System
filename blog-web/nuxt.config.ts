@@ -38,6 +38,20 @@ export default defineNuxtConfig({
       ],
       script: [
         {src: `https://hm.baidu.com/hm.js?${process.env.BAIDU_TONGJI}`, async: true },
+        {
+          src: `https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_CONSOLE}`,
+          async: true
+        },
+        {
+          children: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.GOOGLE_CONSOLE}');
+          `,
+          type: 'text/javascript',
+          tagPosition: 'head',
+        },
         {src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.GOOGLE_AD}`, async: true, crossorigin: 'anonymous'},
       ],
       style: [],
