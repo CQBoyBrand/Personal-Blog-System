@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb02bac0-a8a7-4222-a18e-378dcb8c4d77" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/blog-web/server/routes/rss.xml.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-web/server/routes/sitemap.xml.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-web/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/blog-web/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-web/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/blog-web/nuxt.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/apps/frontend/src/site-config/site-config.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/apps/frontend/src/site-config/site-config.controller.ts" afterDir="false" />
@@ -83,7 +85,7 @@
       <updated>1751425701644</updated>
       <workItem from="1751425702654" duration="22000" />
       <workItem from="1751425726585" duration="51000" />
-      <workItem from="1751441780097" duration="14205000" />
+      <workItem from="1751441780097" duration="15066000" />
     </task>
     <servers />
   </component>
