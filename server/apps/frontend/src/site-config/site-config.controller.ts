@@ -1,4 +1,4 @@
-import {Controller, Get, HttpCode, Post} from '@nestjs/common';
+import {Controller, Get, HttpCode, Header, Res} from '@nestjs/common';
 import {SiteConfigService} from './site-config.service';
 import {ApiOperation} from '@nestjs/swagger';
 
@@ -16,5 +16,29 @@ export class SiteConfigController {
     async getSiteConfig(): Promise<any> {
         const siteConfig = await this.configService.getConfig();
         return siteConfig;
+    }
+
+    @Get('rss.xml')
+    @ApiOperation({
+        summary: 'rss',
+    })
+    @Header('Content-Type', 'application/xml')
+    @HttpCode(200)
+    async getRss(@Res() res: any): Promise<any> {
+        const rss = await this.configService.generateRSS();
+        res.setHeader('Content-Type', 'application/rss+xml; charset=utf-8');
+        res.send(rss);
+    }
+
+    @Get('sitemap.xml')
+    @ApiOperation({
+        summary: 'sitemap',
+    })
+    @Header('Content-Type', 'application/xml')
+    @HttpCode(200)
+    async getSitemap(@Res() res: any): Promise<any> {
+        const sitemap = await this.configService.generateSitemap();
+      res.setHeader('Content-Type', 'application/rss+xml; charset=utf-8');
+      res.send(sitemap);
     }
 }
