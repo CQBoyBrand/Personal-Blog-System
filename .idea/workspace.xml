@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb02bac0-a8a7-4222-a18e-378dcb8c4d77" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/blog-web/assets/css/preview.scss" beforeDir="false" afterPath="$PROJECT_DIR$/blog-web/assets/css/preview.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-web/components/sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-web/components/sidebar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-web/pages/article/[id].vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-web/pages/article/[id].vue" afterDir="false" />
-    </list>
+    <list default="true" id="cb02bac0-a8a7-4222-a18e-378dcb8c4d77" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +82,7 @@
       <workItem from="1751425726585" duration="51000" />
       <workItem from="1751441780097" duration="16035000" />
       <workItem from="1751522981266" duration="833000" />
-      <workItem from="1752109950492" duration="10615000" />
+      <workItem from="1752109950492" duration="10983000" />
     </task>
     <servers />
   </component>
