@@ -81,6 +81,7 @@
         lightbox.style.display = "none";
     });
     bindImageClickEvent()
+    addCopyButtons()
   })
   useHead({
     title: articleDetail.artTitle + " - 重庆崽儿Brand的网络世界",
@@ -89,7 +90,25 @@
       { name: 'description', content: tagList.join(",") + ", "  + articleDetail.abstract }
     ]
   })
-  
+  const addCopyButtons = () => {
+    const codeBlocks = document.querySelectorAll('pre > code')
+    codeBlocks.forEach(code => {
+      const pre = code.parentElement
+      if (!pre || pre.querySelector('.copy-btn')) return // 避免重复插入
+
+      const button = document.createElement('button')
+      button.textContent = '复制'
+      button.className = 'copy-btn'
+      button.addEventListener('click', () => {
+        navigator.clipboard.writeText(code.textContent || '')
+        button.textContent = '已复制！'
+        setTimeout(() => button.textContent = '复制', 1500)
+      })
+
+      pre.appendChild(button)
+      pre.style.position = 'relative'
+    })
+  }
 </script>
 
 <style lang="scss">
@@ -179,5 +198,17 @@
             max-width: 90vw; max-height: 90vh;
             border-radius: 10px; box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background-color: #eee;
+      border: none;
+      padding: 2px 6px;
+      font-size: 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
   }
 </style>

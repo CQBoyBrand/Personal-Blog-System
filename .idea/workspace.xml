@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb02bac0-a8a7-4222-a18e-378dcb8c4d77" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/blog-web/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/blog-web/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-web/assets/css/preview.scss" beforeDir="false" afterPath="$PROJECT_DIR$/blog-web/assets/css/preview.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-web/components/sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-web/components/sidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-web/pages/article/[id].vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-web/pages/article/[id].vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,29 +35,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;v2&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/brand/Blog/Personal-Blog-System/blog-web/server/routes&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/brand/Blog/Personal-Blog-System/server/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/brand/Blog/Personal-Blog-System/admin-web/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "v2",
+    "last_opened_file_path": "/Users/brand/Blog/Personal-Blog-System/admin-web",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/brand/Blog/Personal-Blog-System/server/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/brand/Blog/Personal-Blog-System/server/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/blog-web/server/routes" />
+      <recent name="$PROJECT_DIR$/admin-web" />
       <recent name="$PROJECT_DIR$/blog-web" />
+      <recent name="$PROJECT_DIR$/server" />
+      <recent name="$PROJECT_DIR$/blog-web/server/routes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/blog-web/server" />
@@ -82,6 +86,7 @@
       <workItem from="1751425726585" duration="51000" />
       <workItem from="1751441780097" duration="16035000" />
       <workItem from="1751522981266" duration="833000" />
+      <workItem from="1752109950492" duration="10615000" />
     </task>
     <servers />
   </component>

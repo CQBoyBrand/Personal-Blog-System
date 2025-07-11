@@ -17,6 +17,9 @@
       <div class="module-title">联系我</div>
       <div class="module-item-wrap contact-me">
         <div class="contact-method clearfix">
+          <div class="contact-label">RSS：</div><div class="contact-detail"><a href="/rss.xml" target="_blank">订阅我</a></div>
+        </div>
+        <div class="contact-method clearfix">
           <div class="contact-label">邮箱：</div><div class="contact-detail"><a href="mailto:brandhuang@qq.com">brandhuang@qq.com</a></div>
         </div>
         <div class="contact-method clearfix">

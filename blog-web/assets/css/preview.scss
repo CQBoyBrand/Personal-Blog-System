@@ -84,6 +84,9 @@
   margin: 0 3px;
   font-style: italic;
 }
+#r-md-preview pre > code {
+  max-height: 45vh;
+}
 #r-md-preview ul,
 #r-md-preview ol{
   margin: 0;
